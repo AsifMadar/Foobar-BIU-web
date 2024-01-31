@@ -1,0 +1,27 @@
+.post {
+	width: max(60vw, 800px);
+}
+
+.post-author-img {
+	width: 65px;
+	clip-path: circle();
+}
+
+.post-time {
+	font-size: 75%;
+}
+
+body.light-theme {
+	.post {
+		border-color: #dee2e6 !important;
+		background: var(--bs-light-bg-subtle);
+	}
+
+	.post-author-name {
+		color: var(--bs-primary-text-emphasis);
+	}
+
+	.post-time {
+		color: var(--bs-secondary);
+	}
+}
