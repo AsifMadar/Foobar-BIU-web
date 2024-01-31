@@ -1,15 +1,16 @@
 // App.js
 import './App.css'
 import React, { useState, useContext } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    Navigate,
+} from 'react-router-dom'
 import SignInPage from '../SignIn/SignInPage.js'
 import SignUpPage from '../SignUpPage/SignUpPage.js'
 
 export const UserContent = React.createContext(null)
-
-function IsConnected() {
-    return GoToFeed
-}
 
 function GoToFeed() {
     return (
@@ -29,13 +30,43 @@ function App() {
                 {/* default value for the global variable of userContent */}
                 <UserContent.Provider value={{ signIn: false }}>
                     <Routes>
-                        {/* If user is logged in go to feed. else, go to signInPage */}
+                        {/* If user is logged in go to feed */}
                         {user.signIn ? (
-                            <Route path="/signin" element={<GoToFeed />} />
+                            <>
+                                <Route path="/feed" element={<GoToFeed />} />
+                                <Route
+                                    path="/"
+                                    element={<Navigate to="/feed" replace />}
+                                />
+                                <Route
+                                    path="/signin"
+                                    element={<Navigate to="/feed" replace />}
+                                />
+                                <Route
+                                    path="/signup"
+                                    element={<Navigate to="/feed" replace />}
+                                />
+                            </>
                         ) : (
-                            <Route path="/" element={<SignInPage />} />
+                            <>
+                                <Route
+                                    path="/signin"
+                                    element={<SignInPage />}
+                                />
+                                <Route
+                                    path="/signup"
+                                    element={<SignUpPage />}
+                                />
+                                <Route
+                                    path="/"
+                                    element={<Navigate to="/signin" replace />}
+                                />
+                                <Route
+                                    path="/feed"
+                                    element={<Navigate to="/signin" replace />}
+                                />
+                            </>
                         )}
-                        <Route path="/signup" element={<SignUpPage />} />
                     </Routes>
                 </UserContent.Provider>
             </div>
