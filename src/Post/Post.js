@@ -20,10 +20,9 @@ import './Post.css'
  */
 function Post({ details }) {
     const date = new Date(details.timestamp)
-    const timeStr = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
 
     return (
-        <div className="post border rounded">
+        <div className="post border rounded mb-3">
             <header className="d-flex flex-row p-2">
                 <img
                     className="post-author-img"
@@ -34,7 +33,11 @@ function Post({ details }) {
                     <span className="post-author-name h5">
                         {details.author.displayName}
                     </span>
-                    <span className="post-time">Published on {timeStr}</span>
+                    <span className="post-time">
+                        Published on {date.getDate()}/{date.getMonth() + 1}/
+                        {date.getFullYear()} {date.getHours()}:
+                        {date.getMinutes()}
+                    </span>
                 </div>
             </header>
             <article className="text-start p-3">{details.contents}</article>
