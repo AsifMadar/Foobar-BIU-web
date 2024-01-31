@@ -7,10 +7,10 @@ import SignInPage from '../SignIn/SignInPage.js'
 export const UserContent = React.createContext(null)
 
 function IsConnected() {
-    return Home
+    return GoToFeed
 }
 
-function Home() {
+function GoToFeed() {
     const { signIn } = useContext(UserContent)
 
     return (
@@ -37,7 +37,7 @@ function App() {
                     <Routes>
                         {/* calls for the signin check first because we want to put him in the url of fakebook/signin */}
                         <Route path="/signin" element={<IsConnected />} />
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<GoToFeed />} />
                     </Routes>
                 </UserContent.Provider>
             </div>
