@@ -1,25 +1,47 @@
-import logo from '../logo.svg'
+// App.js
 import './App.css'
+import React, { useState, useContext } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import SignInPage from '../SignIn/SignInPage.js'
+
+export const UserContent = React.createContext(null)
+
+function IsConnected() {
+    return Home
+}
+
+function Home() {
+    const { signIn } = useContext(UserContent)
+
+    return (
+        <div>
+            {signIn ? (
+                <div>
+                    {/* Content for authenticated user */}
+                    <p>Welcome to the Home Page!</p>
+                </div>
+            ) : (
+                <SignInPage />
+            )}
+        </div>
+    )
+}
 
 function App() {
-    const i = 2
-    if (i === 1) console.log(2)
+    const [user, setUser] = useState(null)
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link btn btn-light"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <Router>
+            <div className="Fakebook">
+                <UserContent.Provider value={{ signIn: false }}>
+                    <Routes>
+                        {/* calls for the signin check first because we want to put him in the url of fakebook/signin */}
+                        <Route path="/signin" element={<IsConnected />} />
+                        <Route path="/" element={<Home />} />
+                    </Routes>
+                </UserContent.Provider>
+            </div>
+        </Router>
     )
 }
 
