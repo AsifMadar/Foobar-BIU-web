@@ -1,14 +1,22 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import TextField from '../TextField/TextField.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
+
 function SignInPage() {
-    //contains the username and password
     const [username, setUsername] = useState('')
-    const [password, setPassowrd] = useState('')
-    //when the user is clicking signIn check validality and go to feed if its ok. else, pop a message
+    const [password, setPassword] = useState('')
+
+    const navigate = useNavigate()
+
     const handleSignInClick = () => {
         console.log('Signing in with username:', username)
         console.log('Signing in with password:', password)
+    }
+
+    const handleSignUpClick = () => {
+        // Use the navigate function to navigate to the "/signup" route
+        navigate('/signup')
     }
 
     return (
@@ -27,16 +35,16 @@ function SignInPage() {
             />
             <TextField
                 label="Password"
-                onInputChange={inputValue => setPassowrd(inputValue)}
+                onInputChange={inputValue => setPassword(inputValue)}
             />
             <div style={{ margin: '5px 0' }}>
                 <button className="btn btn-primary" onClick={handleSignInClick}>
-                    Sign In
+                    Sign-In
                 </button>
             </div>
             <div style={{ margin: '5px 0' }}>
-                <button className="btn btn-primary" onClick={handleSignInClick}>
-                    Sign up
+                <button className="btn btn-primary" onClick={handleSignUpClick}>
+                    Sign-up
                 </button>
             </div>
         </div>
