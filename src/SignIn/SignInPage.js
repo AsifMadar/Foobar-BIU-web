@@ -15,7 +15,7 @@ function SignInPage() {
         console.log(user.password)
         if (user.username === username && user.password === password) {
             setUser(prevUser => ({
-                ...prevUser,
+                ...prevUser, //using the same fields as before
                 signIn: true,
             }))
             navigate('/feed')

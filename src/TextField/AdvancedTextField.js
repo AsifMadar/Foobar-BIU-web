@@ -14,7 +14,7 @@ function AdvancedTextField({
     const [inputValue, setInputValue] = useState('')
 
     const handleInputChange = event => {
-        const newValue = event.target.value
+        const newValue = event.target.value //The input which the user typed
         setInputValue(newValue)
 
         if (typeof onInputChange === 'function') {
@@ -53,7 +53,7 @@ function AdvancedTextField({
                 </div>
             )}
             <input
-                type={mask}
+                type={mask} //type depends on the given isMasked
                 className="form-control"
                 id={textFieldId}
                 value={inputValue}
