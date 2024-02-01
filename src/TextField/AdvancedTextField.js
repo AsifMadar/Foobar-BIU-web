@@ -43,9 +43,9 @@ function AdvancedTextField({
     const mask = isMasked ? 'password' : 'text'
 
     return (
-        <div className="textFieldComp">
+        <div className="textFieldComp" style={{ textAlign: 'center' }}>
             <label htmlFor="textField" className="form-label">
-                {label}:
+                {label}
             </label>
             {instruction && (
                 <div style={{ color: 'red', fontSize: 'small' }}>

@@ -10,9 +10,8 @@ function SignInPage() {
 
     const navigate = useNavigate()
     const { user, setUser } = useContext(UserContent)
+    //if the given input is valid connect the user, else, alert him
     const handleSignInClick = () => {
-        console.log(user.username)
-        console.log(user.password)
         if (user.username === username && user.password === password) {
             setUser(prevUser => ({
                 ...prevUser, //using the same fields as before
@@ -20,13 +19,11 @@ function SignInPage() {
             }))
             navigate('/feed')
         } else {
-            console.log(user.username)
             alert('Invalid username or password')
         }
     }
-
+    // Use the navigate function to navigate to the "/signup" route
     const handleSignUpClick = () => {
-        // Use the navigate function to navigate to the "/signup" route
         navigate('/signup')
     }
 
@@ -42,11 +39,13 @@ function SignInPage() {
             <header className="bg-primary text-white p-3">
                 <h1>Sign in</h1>
             </header>
+            {/* Username textField */}
             <AdvancedTextField
                 label="Username"
                 onInputChange={inputValue => setUsername(inputValue)}
                 textFieldId={'loginUsername'}
             />
+            {/* Password textField */}
             <AdvancedTextField
                 label="Password"
                 onInputChange={inputValue => setPassword(inputValue)}
@@ -54,11 +53,13 @@ function SignInPage() {
                 isMasked={true}
             />
             <div style={{ margin: '5px 0' }}>
+                {/* Sign in button */}
                 <button className="btn btn-primary" onClick={handleSignInClick}>
                     Sign-In
                 </button>
             </div>
             <div style={{ margin: '5px 0' }}>
+                {/* Sign up button */}
                 <button className="btn btn-danger" onClick={handleSignUpClick}>
                     Sign-up
                 </button>
