@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-function TextField({ label, onInputChange }) {
+function TextField({ label, onInputChange, boolFeature, funcValid, valid }) {
     const [inputValue, setInputValue] = useState('')
-    // if there is a change, it changes in the father function
+
     const handleInputChange = event => {
         const newValue = event.target.value
         setInputValue(newValue)
@@ -28,7 +28,10 @@ function TextField({ label, onInputChange }) {
 
 TextField.propTypes = {
     label: PropTypes.string.isRequired,
-    onInputChange: PropTypes.func, // Callback function to handle input change
+    onInputChange: PropTypes.func,
+    boolFeature: PropTypes.bool,
+    funcValid: PropTypes.func,
+    valid: PropTypes.bool,
 }
 
 export default TextField
