@@ -21,5 +21,6 @@ module.exports = {
         'no-var': 'error',
         'prefer-const': 'error',
         'react/react-in-jsx-scope': 'off',
+        'react/prop-types': 'off',
     },
 }
