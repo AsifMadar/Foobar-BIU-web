@@ -41,6 +41,7 @@ function AdvancedTextField({
         inputElement.classList.add(className)
     }
     const mask = isMasked ? 'password' : 'text'
+
     return (
         <div className="textFieldComp">
             <label htmlFor="textField" className="form-label">

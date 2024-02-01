@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AdvancedTextField from '../TextField/AdvancedTextField.js'
+import { UserContent } from '../App/App.js'
 
 function SignUpPage() {
     const [username, setUsername] = useState('')
@@ -11,10 +12,25 @@ function SignUpPage() {
     const [displayName, setDisplayName] = useState('')
 
     const navigate = useNavigate()
+    const { setUser } = useContext(UserContent)
 
+    //this function sign in and initialize the user
     const handleSignUpClick = () => {
-        // Use the navigate function to navigate to the "/signup" route
-        navigate('/signup')
+        if (checkAllValid()) {
+            setUser({ signIn: true, username, password, displayName, img })
+            navigate('/feed')
+        } else {
+            alert('Invalid')
+        }
+    }
+    //checks if all the given info is valid
+    const checkAllValid = () => {
+        return (
+            isUsernameValid(username) &&
+            isPasswordValid(password) &&
+            isRePasswordValid(rePassword) &&
+            isDisplayNameValid(displayName)
+        )
     }
 
     const isUsernameValid = username => {

@@ -1,18 +1,28 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import TextField from '../TextField/TextField.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AdvancedTextField from '../TextField/AdvancedTextField.js'
+import { UserContent } from '../App/App.js'
 
 function SignInPage() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
-
+    const { user, setUser } = useContext(UserContent)
     const handleSignInClick = () => {
-        console.log('Signing in with username:', username)
-        console.log('Signing in with password:', password)
+        console.log(user.username)
+        console.log(user.password)
+        if (user.username === username && user.password === password) {
+            setUser(prevUser => ({
+                ...prevUser,
+                signIn: true,
+            }))
+            navigate('/feed')
+        } else {
+            console.log(user.username)
+            alert('Invalid username or password')
+        }
     }
 
     const handleSignUpClick = () => {
@@ -29,7 +39,9 @@ function SignInPage() {
                 justifyContent: 'center',
                 height: '80vh',
             }}>
-            <h2>Sign in</h2>
+            <header className="bg-primary text-white p-3">
+                <h1>Sign in</h1>
+            </header>
             <AdvancedTextField
                 label="Username"
                 onInputChange={inputValue => setUsername(inputValue)}
@@ -39,6 +51,7 @@ function SignInPage() {
                 label="Password"
                 onInputChange={inputValue => setPassword(inputValue)}
                 textFieldId={'loginPassword'}
+                isMasked={true}
             />
             <div style={{ margin: '5px 0' }}>
                 <button className="btn btn-primary" onClick={handleSignInClick}>
@@ -46,7 +59,7 @@ function SignInPage() {
                 </button>
             </div>
             <div style={{ margin: '5px 0' }}>
-                <button className="btn btn-primary" onClick={handleSignUpClick}>
+                <button className="btn btn-danger" onClick={handleSignUpClick}>
                     Sign-up
                 </button>
             </div>

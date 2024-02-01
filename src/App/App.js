@@ -9,26 +9,39 @@ import {
 } from 'react-router-dom'
 import SignInPage from '../SignIn/SignInPage.js'
 import SignUpPage from '../SignUpPage/SignUpPage.js'
+import { useNavigate } from 'react-router-dom'
 
 export const UserContent = React.createContext(null)
 
 function GoToFeed() {
+    const { setUser } = useContext(UserContent)
+    const navigate = useNavigate()
+    const logout = () => {
+        setUser(prevUser => ({
+            ...prevUser,
+            signIn: false,
+        }))
+        navigate('/signin')
+    }
     return (
         <div>
             {/* Content for authenticated user */}
             <p>Welcome to the Home Page!</p>
+            <button className="btn btn-danger" onClick={logout}>
+                Logout
+            </button>
         </div>
     )
 }
 
 function App() {
-    const [user, setUser] = useState({ signIn: false })
+    const [user, setUser] = useState({ signIn: null })
 
     return (
         <Router>
             <div className="Fakebook">
                 {/* default value for the global variable of userContent */}
-                <UserContent.Provider value={{ signIn: false }}>
+                <UserContent.Provider value={{ user: user, setUser: setUser }}>
                     <Routes>
                         {/* If user is logged in go to feed */}
                         {user.signIn ? (
