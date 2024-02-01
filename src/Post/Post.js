@@ -36,7 +36,7 @@ function Post({ currentUser, details, toggleLike, users }) {
         names = names.map(username =>
             username === currentUser.username
                 ? 'You'
-                : users[username].displayName,
+                : users[username].displayName ?? username,
         )
         if (names.length === 0) return ''
         if (names.length === 1) return names[0]
