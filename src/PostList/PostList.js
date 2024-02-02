@@ -19,6 +19,7 @@ function PostList({ users, currentUser }) {
             ...postsDetails,
             {
                 author: currentUser.username,
+                comments: [],
                 contents: 'second try',
                 likes: [],
                 shares: [],
@@ -27,17 +28,10 @@ function PostList({ users, currentUser }) {
         ])
     }
 
-    function likePost(i, like) {
-        const newPostsDetails = [...postsDetails]
-        if (like) {
-            newPostsDetails[i].likes.push(currentUser.username)
-        } else {
-            const currentUserIndex = newPostsDetails[i].likes.findIndex(
-                username => username === currentUser.username,
-            )
-            newPostsDetails[i].likes.splice(currentUserIndex, 1)
-        }
-        setPostsDetails(newPostsDetails)
+    function updatePost(i, newPost) {
+        const newArray = [...postsDetails]
+        newArray.splice(i, 1, newPost)
+        setPostsDetails(newArray)
     }
 
     return (
@@ -48,7 +42,7 @@ function PostList({ users, currentUser }) {
                     key={i}
                     currentUser={currentUser}
                     details={details}
-                    toggleLike={like => likePost(i, like)}
+                    updateDetails={newPost => updatePost(i, newPost)}
                     users={users}
                 />
             ))}

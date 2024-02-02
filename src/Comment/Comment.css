@@ -1,0 +1,45 @@
+.comment {
+	font-size: 90%;
+}
+
+.comment-author-img {
+	height: 40px;
+	clip-path: circle();
+}
+
+.comment-time {
+	font-size: 75%;
+}
+
+.comment-body {
+	width: fit-content;
+	max-width: 65%;
+	white-space: break-spaces;
+}
+
+.comment-likes .icon-link {
+	padding: 0;
+	display: inline-block;
+
+	img {
+		margin: 0 0.25em 7px;
+		width: 15px;
+	}
+}
+
+/* Theme */
+body.light-theme {
+	--comment-border-color: #dee2e6;
+
+	.comment-body {
+		background: var(--bs-gray-200);
+	}
+
+	.comment-author-name {
+		color: var(--bs-primary-text-emphasis);
+	}
+
+	.comment-time, .comment-likes {
+		color: var(--bs-secondary);
+	}
+}

@@ -1,10 +1,12 @@
 import './Post.css'
+import Comment from '../Comment/Comment.js'
 import DEFAULT_ICON from '../img/default-user-icon.svg'
 import likeIcon from '../img/like-icon.svg'
 import likeBtnWhite from '../img/like-btn-white.svg'
 import likeBtnBlue from '../img/like-btn-blue.svg'
 import shareBtn from '../img/share-btn.svg'
 import { usernamesToStr } from '../utils/usernamesToStr.js'
+import { timestampToStr } from '../utils/timestampToStr.js'
 
 const DEFAULT_DISPLAY_NAME = 'Unknown User'
 
@@ -27,19 +29,53 @@ const DEFAULT_DISPLAY_NAME = 'Unknown User'
 /**
  * @param {object} props
  * @param {PostDetails} props.details
- * @param {(like: boolean) => void} props.toggleLike Will be called when the user clicks "Like"
+ * @param {(newDetails: PostDetails) => void} props.updateDetails Will be called when the post data has changed
  * @param {Record<string, User>} props.users A map of all users
  * @param {User} props.currentUser
  */
-function Post({ currentUser, details, toggleLike, users }) {
-    const date = new Date(details.timestamp)
+function Post({ currentUser, details, updateDetails, users }) {
     const isLikedByMe = details.likes.includes(currentUser.username)
-    const likesNameList = usernamesToStr(details.likes, users)
-    const sharesNameList = usernamesToStr(details.shares, users)
+    const likesNameList = usernamesToStr(
+        details.likes,
+        users,
+        currentUser.username,
+    )
+    const sharesNameList = usernamesToStr(
+        details.shares,
+        users,
+        currentUser.username,
+    )
     const author = users[details.author] ?? {
         displayName: DEFAULT_DISPLAY_NAME,
         imageURL: DEFAULT_ICON,
         username: details.author,
+    }
+
+    function handleLike() {
+        const detailsCopy = structuredClone(details)
+        if (isLikedByMe) {
+            const currentUserIndex = detailsCopy.likes.findIndex(
+                username => username === currentUser.username,
+            )
+            detailsCopy.likes.splice(currentUserIndex, 1)
+        } else {
+            detailsCopy.likes.push(currentUser.username)
+        }
+        updateDetails(detailsCopy)
+    }
+
+    function toggleCommentLike(i, like) {
+        const detailsCopy = structuredClone(details)
+        const newComments = detailsCopy.comments
+        if (like) {
+            newComments[i].likes.push(currentUser.username)
+        } else {
+            const currentUserIndex = newComments[i].likes.findIndex(
+                username => username === currentUser.username,
+            )
+            newComments[i].likes.splice(currentUserIndex, 1)
+        }
+        updateDetails(detailsCopy)
     }
 
     return (
@@ -55,9 +91,7 @@ function Post({ currentUser, details, toggleLike, users }) {
                         {author.displayName}
                     </span>
                     <span className="post-time">
-                        Published on {date.getDate()}/{date.getMonth() + 1}/
-                        {date.getFullYear()} {date.getHours()}:
-                        {date.getMinutes()}
+                        Published on {timestampToStr(details.timestamp)}
                     </span>
                 </div>
             </header>
@@ -88,11 +122,9 @@ function Post({ currentUser, details, toggleLike, users }) {
                         )}
                     </span>
                 </div>
-                <div className="post-actions-row row border-top m-2">
+                <div className="post-actions-row row border-top border-bottom m-2">
                     <span className="col">
-                        <button
-                            className="btn icon-link"
-                            onClick={() => toggleLike(!isLikedByMe)}>
+                        <button className="btn icon-link" onClick={handleLike}>
                             <img
                                 src={isLikedByMe ? likeBtnBlue : likeBtnWhite}
                                 alt="Like the post"
@@ -107,6 +139,17 @@ function Post({ currentUser, details, toggleLike, users }) {
                         </button>
                     </span>
                 </div>
+            </footer>
+            <footer>
+                {details.comments.map((comment, i) => (
+                    <Comment
+                        key={i}
+                        currentUser={currentUser}
+                        toggleLike={val => toggleCommentLike(i, val)}
+                        details={comment}
+                        users={users}
+                    />
+                ))}
             </footer>
         </div>
     )
