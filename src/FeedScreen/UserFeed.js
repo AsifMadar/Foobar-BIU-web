@@ -6,9 +6,9 @@ import { UserContent } from '../App/App.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './UserFeed.css'
 
-function Feed({ initialPosts }) {
+function Feed() {
     const { user, setUser } = useContext(UserContent)
-    const [posts, setPosts] = useState(initialPosts || [])
+    const [posts, setPosts] = useState([])
     const [newPostContent, setNewPostContent] = useState('')
 
     const handleAddPost = () => {
