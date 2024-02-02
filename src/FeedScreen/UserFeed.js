@@ -1,11 +1,13 @@
 // FacebookFeed.js
-import React, { useState } from 'react'
-import PropTypes from 'prop-types' // Import PropTypes
+import React, { useContext, useState } from 'react'
+import PropTypes from 'prop-types'
 import Menu from './Menu.js'
-
+import { UserContent } from '../App/App.js'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './UserFeed.css'
 
-const Feed = ({ user, initialPosts }) => {
+function Feed({ initialPosts }) {
+    const { user, setUser } = useContext(UserContent)
     const [posts, setPosts] = useState(initialPosts || [])
     const [newPostContent, setNewPostContent] = useState('')
 
@@ -13,7 +15,7 @@ const Feed = ({ user, initialPosts }) => {
         if (newPostContent.trim() !== '') {
             const newPost = {
                 id: posts.length + 1,
-                user: user,
+                user: user.username,
                 content: newPostContent,
             }
             setPosts([...posts, newPost])
