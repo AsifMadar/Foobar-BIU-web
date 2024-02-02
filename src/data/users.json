@@ -1,0 +1,22 @@
+{
+	"testuser": {
+		"displayName": "Test User",
+		"imageURL": "/favicon.png",
+		"username": "testuser"
+	},
+	"avi.adar1": {
+		"displayName": "Avi Adar",
+		"imageURL": "/favicon.png",
+		"username": "avi.adar1"
+	},
+	"alias.el": {
+		"displayName": "Eliyah Alias",
+		"imageURL": "/favicon.png",
+		"username": "alias.el"
+	},
+	"moisheM": {
+		"displayName": "Moishe Meivin",
+		"imageURL": "/favicon.png",
+		"username": "moisheM"
+	}
+}

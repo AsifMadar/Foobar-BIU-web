@@ -1,6 +1,9 @@
 .post {
-	width: max(60vw, 800px);
 	border-color: var(--post-border-color) !important;
+
+	article {
+		white-space: break-spaces;
+	}
 
 	footer {
 		border-top-color: var(--post-border-color) !important;
@@ -31,6 +34,7 @@
 	width: 20px;
 }
 
+/* Theme */
 body.light-theme {
 	--post-border-color: #dee2e6;
 

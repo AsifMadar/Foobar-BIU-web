@@ -1,8 +1,11 @@
 import './Post.css'
+import DEFAULT_ICON from './default-user-icon.svg'
 import likeIcon from './like-icon.svg'
 import likeBtnWhite from './like-btn-white.svg'
 import likeBtnBlue from './like-btn-blue.svg'
 import shareBtn from './share-btn.svg'
+
+const DEFAULT_DISPLAY_NAME = 'Unknown User'
 
 /**
  * @typedef {object} User
@@ -13,7 +16,7 @@ import shareBtn from './share-btn.svg'
 
 /**
  * @typedef {object} PostDetails
- * @prop {User} author
+ * @prop {string} author The username of the post's author
  * @prop {string} contents Text contents of the post
  * @prop {string[]} likes An array containing the usernames of the users who liked the post
  * @prop {number} shares An array containing the usernames of the users who shared the post
@@ -47,21 +50,26 @@ function Post({ currentUser, details, toggleLike, users }) {
     }
 
     const date = new Date(details.timestamp)
-    const likesNameList = usernamesToStr(details.likes, users)
-    const sharesNameList = usernamesToStr(details.shares, users) // Empty for now
     const isLikedByMe = details.likes.includes(currentUser.username)
+    const likesNameList = usernamesToStr(details.likes, users)
+    const sharesNameList = usernamesToStr(details.shares, users)
+    const author = users[details.author] ?? {
+        displayName: DEFAULT_DISPLAY_NAME,
+        imageURL: DEFAULT_ICON,
+        username: details.author,
+    }
 
     return (
         <div className="post border rounded mb-3">
             <header className="d-flex flex-row p-2">
                 <img
                     className="post-author-img"
-                    alt={'Profile picture of ' + details.author.displayName}
-                    src={details.author.imageURL}
+                    alt={'Profile picture of ' + author.displayName}
+                    src={author.imageURL}
                 />
                 <div className="d-flex flex-column text-start ms-3">
                     <span className="post-author-name h5">
-                        {details.author.displayName}
+                        {author.displayName}
                     </span>
                     <span className="post-time">
                         Published on {date.getDate()}/{date.getMonth() + 1}/
