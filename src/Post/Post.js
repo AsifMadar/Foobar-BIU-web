@@ -1,9 +1,10 @@
 import './Post.css'
-import DEFAULT_ICON from './default-user-icon.svg'
-import likeIcon from './like-icon.svg'
-import likeBtnWhite from './like-btn-white.svg'
-import likeBtnBlue from './like-btn-blue.svg'
-import shareBtn from './share-btn.svg'
+import DEFAULT_ICON from '../img/default-user-icon.svg'
+import likeIcon from '../img/like-icon.svg'
+import likeBtnWhite from '../img/like-btn-white.svg'
+import likeBtnBlue from '../img/like-btn-blue.svg'
+import shareBtn from '../img/share-btn.svg'
+import { usernamesToStr } from '../utils/usernamesToStr.js'
 
 const DEFAULT_DISPLAY_NAME = 'Unknown User'
 
@@ -31,24 +32,6 @@ const DEFAULT_DISPLAY_NAME = 'Unknown User'
  * @param {User} props.currentUser
  */
 function Post({ currentUser, details, toggleLike, users }) {
-    /**
-     * @param {string[]} names
-     * @param {Record<string, User>} users
-     */
-    function usernamesToStr(names) {
-        names = names.map(username =>
-            username === currentUser.username
-                ? 'You'
-                : users[username].displayName ?? username,
-        )
-        if (names.length === 0) return ''
-        if (names.length === 1) return names[0]
-        if (names.length === 2) return names[0] + ' and ' + names.at(-1)
-        if (names.length > 2) {
-            return names.slice(0, -1).join(', ') + ', and ' + names.at(-1)
-        }
-    }
-
     const date = new Date(details.timestamp)
     const isLikedByMe = details.likes.includes(currentUser.username)
     const likesNameList = usernamesToStr(details.likes, users)
