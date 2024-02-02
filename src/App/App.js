@@ -1,24 +1,15 @@
-import logo from '../logo.svg'
+// App.js
+import React from 'react'
+import UserFeed from '../FeedScreen/UserFeed.js'
 import './App.css'
 
-function App() {
-    const i = 2
-    if (i === 1) console.log(2)
+const App = () => {
+    const user = 'YourUsername' // Replace with the actual username
+    const initialPosts = [] // You can initialize this with some posts if needed
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link btn btn-light"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
+        <div className="app">
+            <UserFeed user={user} initialPosts={initialPosts} />
         </div>
     )
 }

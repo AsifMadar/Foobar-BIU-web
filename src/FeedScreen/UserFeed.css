@@ -1,0 +1,54 @@
+/* FacebookFeed.css */
+
+
+/* Feed Styles */
+.container {
+  max-width: 600px;
+  margin: 60px auto 0; 
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.post-input-section {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(61, 173, 104, 0.1);
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#postContent {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.add-post-button {
+  background-color: #4267B2;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-post-button:hover {
+  background-color: #3a589e;
+}
+
+.posts {
+  margin-top: 20px;
+}
