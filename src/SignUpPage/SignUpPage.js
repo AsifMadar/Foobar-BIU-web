@@ -36,6 +36,10 @@ function SignUpPage() {
         setImg(selectedImage)
     }
 
+    const handleSignInPageClick = () => {
+        navigate('/signin')
+    }
+
     const handleAddPictureClick = () => {
         // Trigger the hidden file input and enabling us to add a picture using reference
         if (fileInputRef.current) {
@@ -152,6 +156,14 @@ function SignUpPage() {
             <div style={{ margin: '5px 0' }}>
                 <button className="btn btn-primary" onClick={handleSignUpClick}>
                     Sign-up
+                </button>
+            </div>
+            {/* Sign in page button */}
+            <div style={{ margin: '5px 0' }}>
+                <button
+                    className="btn btn-primary"
+                    onClick={handleSignInPageClick}>
+                    Sign-in page
                 </button>
             </div>
         </div>
