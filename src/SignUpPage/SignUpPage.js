@@ -49,6 +49,7 @@ function SignUpPage() {
     //checks if all the input is valid
     const checkAllValid = () => {
         return (
+            img != null &&
             isUsernameValid(username) &&
             isPasswordValid(password) &&
             isRePasswordValid(rePassword) &&
@@ -127,11 +128,14 @@ function SignUpPage() {
                 isMasked={true}
             />
             {/* Add profile picture button */}
+            <div style={{ color: 'red', fontSize: 'small' }}>
+                {'*Add a profile picture (must)'}
+            </div>
             <div style={{ margin: '5px 0' }}>
                 <button
-                    className="btn btn-danger"
+                    className="btn btn-success"
                     onClick={handleAddPictureClick}>
-                    Add Profile Picture
+                    Add
                 </button>
                 <input
                     type="file"
