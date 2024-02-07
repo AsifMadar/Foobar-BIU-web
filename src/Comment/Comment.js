@@ -1,40 +1,21 @@
 import './Comment.css'
-import DEFAULT_ICON from '../img/default-user-icon.svg'
 import likeBtnWhite from '../img/like-btn-white.svg'
 import likeBtnBlue from '../img/like-btn-blue.svg'
 import { timestampToStr } from '../utils/timestampToStr.js'
 
-const DEFAULT_DISPLAY_NAME = 'Unknown User'
-
-/**
- * @typedef {import('../Post/Post.js').User} User
- * @prop {string} displayName
- * @prop {string} imageURL
- * @prop {string} username
- */
-
-/**
- * @typedef {object} CommentDetails
- * @prop {string} author The username of the comment's author
- * @prop {string} contents Text contents of the comment
- * @prop {string[]} likes An array containing the usernames of the users who liked the comment
- * @prop {string} timestamp Creation time
- */
+/** @typedef {import('../data/posts.json').User} User */
+/** @typedef {import('../data/posts.json').Comment} Comment */
 
 /**
  * @param {object} props
- * @param {CommentDetails} props.details
+ * @param {Comment} props.details
  * @param {(like: boolean) => void} props.toggleLike Will be called when the user clicks "Like"
  * @param {Record<string, User>} props.users A map of all users
  * @param {User} props.currentUser
  */
-function Comment({ currentUser, details, toggleLike, users }) {
-    const isLikedByMe = details.likes.includes(currentUser.username)
-    const author = users[details.author] ?? {
-        displayName: DEFAULT_DISPLAY_NAME,
-        imageURL: DEFAULT_ICON,
-        username: details.author,
-    }
+function Comment({ currentUser, details, toggleLike }) {
+    const isLikedByMe = details.likes.includes(currentUser)
+    const author = details.author
 
     return (
         <div className="comment m-3 d-flex flex-row">

@@ -1,6 +1,5 @@
 import './Post.css'
 import Comment from '../Comment/Comment.js'
-import DEFAULT_ICON from '../img/default-user-icon.svg'
 import likeIcon from '../img/like-icon.svg'
 import likeBtnWhite from '../img/like-btn-white.svg'
 import likeBtnBlue from '../img/like-btn-blue.svg'
@@ -8,58 +7,28 @@ import shareBtn from '../img/share-btn.svg'
 import { usernamesToStr } from '../utils/usernamesToStr.js'
 import { timestampToStr } from '../utils/timestampToStr.js'
 
-const DEFAULT_DISPLAY_NAME = 'Unknown User'
-
-/**
- * @typedef {object} User
- * @prop {string} displayName
- * @prop {string} imageURL
- * @prop {string} username
- */
-
-/**
- * @typedef {object} PostDetails
- * @prop {string} author The username of the post's author
- * @prop {string} contents Text contents of the post
- * @prop {string[]} likes An array containing the usernames of the users who liked the post
- * @prop {number} shares An array containing the usernames of the users who shared the post
- * @prop {string} timestamp Creation time
- */
+/** @typedef {import('../data/posts.json').User} User */
+/** @typedef {import('../data/posts.json').Post} Post */
 
 /**
  * @param {object} props
- * @param {PostDetails} props.details
- * @param {(newDetails: PostDetails) => void} props.updateDetails Will be called when the post data has changed
- * @param {Record<string, User>} props.users A map of all users
+ * @param {Post} props.details
+ * @param {(newDetails: Post) => void} props.updateDetails Will be called when the post data has to be changed
  * @param {User} props.currentUser
  */
-function Post({ currentUser, details, updateDetails, users }) {
-    const isLikedByMe = details.likes.includes(currentUser.username)
-    const likesNameList = usernamesToStr(
-        details.likes,
-        users,
-        currentUser.username,
-    )
-    const sharesNameList = usernamesToStr(
-        details.shares,
-        users,
-        currentUser.username,
-    )
-    const author = users[details.author] ?? {
-        displayName: DEFAULT_DISPLAY_NAME,
-        imageURL: DEFAULT_ICON,
-        username: details.author,
-    }
+function Post({ currentUser, details, updateDetails }) {
+    const isLikedByMe = details.likes.includes(currentUser)
+    const likesNameList = usernamesToStr(details.likes, currentUser)
+    const sharesNameList = usernamesToStr(details.shares, currentUser)
+    const author = details.author
 
     function handleLike() {
         const detailsCopy = structuredClone(details)
         if (isLikedByMe) {
-            const currentUserIndex = detailsCopy.likes.findIndex(
-                username => username === currentUser.username,
-            )
+            const currentUserIndex = detailsCopy.likes.indexOf(currentUser)
             detailsCopy.likes.splice(currentUserIndex, 1)
         } else {
-            detailsCopy.likes.push(currentUser.username)
+            detailsCopy.likes.push(currentUser)
         }
         updateDetails(detailsCopy)
     }
@@ -68,11 +37,9 @@ function Post({ currentUser, details, updateDetails, users }) {
         const detailsCopy = structuredClone(details)
         const newComments = detailsCopy.comments
         if (like) {
-            newComments[i].likes.push(currentUser.username)
+            newComments[i].likes.push(currentUser)
         } else {
-            const currentUserIndex = newComments[i].likes.findIndex(
-                username => username === currentUser.username,
-            )
+            const currentUserIndex = newComments[i].likes.indexOf(currentUser)
             newComments[i].likes.splice(currentUserIndex, 1)
         }
         updateDetails(detailsCopy)
@@ -147,7 +114,6 @@ function Post({ currentUser, details, updateDetails, users }) {
                         currentUser={currentUser}
                         toggleLike={val => toggleCommentLike(i, val)}
                         details={comment}
-                        users={users}
                     />
                 ))}
             </footer>

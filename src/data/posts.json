@@ -1,23 +1,68 @@
 [
 	{
-		"author": "testuser",
+		"author": {
+			"displayName": "Test User",
+			"imageURL": "/favicon.png",
+			"username": "testuser"
+		},
 		"comments": [
 			{
-				"author": "alias.el",
+				"author": {
+					"displayName": "Eliyah Alias",
+					"imageURL": "/favicon.png",
+					"username": "alias.el"
+				},
 				"contents": "Hi & welcome! Do you feel like meeting tomorrow?",
-				"likes": ["testuser"],
+				"likes": [
+					{
+						"displayName": "Test User",
+						"imageURL": "/favicon.png",
+						"username": "testuser"
+					}
+				],
 				"timestamp": 1706572233917
 			},
 			{
-				"author": "testuser",
+				"author": {
+					"displayName": "Test User",
+					"imageURL": "/favicon.png",
+					"username": "testuser"
+				},
 				"contents": "@Eliyah how about monday?",
 				"likes": [],
 				"timestamp": 1706573233917
 			}
 		],
 		"contents": "hi 👋! This is my first post here 🙂.\nWhat's up?",
-		"likes": ["avi.adar1", "alias.el", "moisheM"],
-		"shares": ["avi.adar1", "moisheM"],
+		"likes": [
+			{
+				"displayName": "Avi Adar",
+				"imageURL": "/favicon.png",
+				"username": "avi.adar1"
+			},
+			{
+				"displayName": "Eliyah Alias",
+				"imageURL": "/favicon.png",
+				"username": "alias.el"
+			},
+			{
+				"displayName": "Moishe Meivin",
+				"imageURL": "/favicon.png",
+				"username": "moisheM"
+			}
+		],
+		"shares": [
+			{
+				"displayName": "Avi Adar",
+				"imageURL": "/favicon.png",
+				"username": "avi.adar1"
+			},
+			{
+				"displayName": "Moishe Meivin",
+				"imageURL": "/favicon.png",
+				"username": "moisheM"
+			}
+		],
 		"timestamp": 1706570233917
 	}
 ]

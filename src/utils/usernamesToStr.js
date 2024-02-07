@@ -1,14 +1,15 @@
+/** @typedef {import('../data/posts.json').User} User */
+
 /**
- * Convert a list of usernames to a string listing the respective display names
- * @param {string[]} names
- * @param {{[username: string]: { displayName: string }}} users
- * @param {string} [currentUsername] If provided, instances of `currentUsername` in the list will be replaced with 'You'
+ * Converts a list of users to a string listing the respective display names
+ * @param {User[]} users
+ * @param {User} [currentUser] If provided, instances of `currentUser` in the list will be replaced with 'You'
  */
-export function usernamesToStr(names, users, currentUsername) {
-    names = names.map(username =>
-        currentUsername && username === currentUsername
+export function usernamesToStr(users, currentUser) {
+    const names = users.map(user =>
+        currentUser && user.username === currentUser.username
             ? 'You'
-            : users[username].displayName ?? username,
+            : user.displayName,
     )
 
     if (names.length === 0) return ''

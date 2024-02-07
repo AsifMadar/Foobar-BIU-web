@@ -1,24 +1,17 @@
-import logo from '../logo.svg'
 import './App.css'
+import { useState } from 'react'
+import PostList from '../PostList/PostList.js'
 
 function App() {
-    const i = 2
-    if (i === 1) console.log(2)
+    const [currentUser] = useState({
+        displayName: 'Test User',
+        imageURL: '/favicon.png',
+        username: 'testuser',
+    })
+
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link btn btn-light"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
+            <PostList currentUser={currentUser} />
         </div>
     )
 }

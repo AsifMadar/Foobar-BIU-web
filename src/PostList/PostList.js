@@ -2,23 +2,20 @@ import Post from '../Post/Post.js'
 import posts from '../data/posts.json'
 import { useState } from 'react'
 
-/**
- * @typedef {import('../Post/Post.js').User} User
- */
+/** @typedef {import('../data/posts.json').User} User */
 
 /**
  * @param {object} props
- * @param {Record<string, User>} props.users A map of all users
  * @param {User} props.currentUser
  */
-function PostList({ users, currentUser }) {
+function PostList({ currentUser }) {
     const [postsDetails, setPostsDetails] = useState(posts)
 
     const addPost = () => {
         setPostsDetails([
             ...postsDetails,
             {
-                author: currentUser.username,
+                author: currentUser,
                 comments: [],
                 contents: 'second try',
                 likes: [],
@@ -43,7 +40,6 @@ function PostList({ users, currentUser }) {
                     currentUser={currentUser}
                     details={details}
                     updateDetails={newPost => updatePost(i, newPost)}
-                    users={users}
                 />
             ))}
         </div>
