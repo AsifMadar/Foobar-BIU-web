@@ -13,6 +13,11 @@
 			border-bottom-color: var(--post-border-color) !important;
 		}
 	}
+	
+	.new-comment textarea {
+		font-size: 90%;
+		height: 4em;
+	}
 }
 
 .post-author-img {
@@ -54,6 +59,10 @@ body.light-theme {
 	.tooltip-text {
 		color: var(--bs-light);
 		--background-color: rgba(var(--bs-secondary-color-rgb), 0.9);
+	}
+
+	.new-comment textarea {
+		background: var(--bs-gray-100);
 	}
 }
 

@@ -1,11 +1,14 @@
 import './Post.css'
-import Comment from '../Comment/Comment.js'
-import likeIcon from '../img/like-icon.svg'
-import likeBtnWhite from '../img/like-btn-white.svg'
-import likeBtnBlue from '../img/like-btn-blue.svg'
-import shareBtn from '../img/share-btn.svg'
-import { usernamesToStr } from '../utils/usernamesToStr.js'
+import { createRef } from 'react'
 import { timestampToStr } from '../utils/timestampToStr.js'
+import { usernamesToStr } from '../utils/usernamesToStr.js'
+import { useState } from 'react'
+import Comment from '../Comment/Comment.js'
+import commentIcon from '../img/comment-icon.svg'
+import likeBtnBlue from '../img/like-btn-blue.svg'
+import likeBtnWhite from '../img/like-btn-white.svg'
+import likeIcon from '../img/like-icon.svg'
+import shareBtn from '../img/share-btn.svg'
 
 /** @typedef {import('../data/posts.json').User} User */
 /** @typedef {import('../data/posts.json').Post} Post */
@@ -21,6 +24,9 @@ function Post({ currentUser, details, updateDetails }) {
     const likesNameList = usernamesToStr(details.likes, currentUser)
     const sharesNameList = usernamesToStr(details.shares, currentUser)
     const author = details.author
+
+    const [isCommenting, setIsCommenting] = useState(false)
+    const newCommentTextRef = createRef()
 
     function handleLike() {
         const detailsCopy = structuredClone(details)
@@ -43,6 +49,23 @@ function Post({ currentUser, details, updateDetails }) {
             newComments[i].likes.splice(currentUserIndex, 1)
         }
         updateDetails(detailsCopy)
+    }
+
+    function postComment() {
+        const text = newCommentTextRef.current.value
+        // Post the new comment if it is not empty
+        if (text.trim()) {
+            const newComment = {
+                author: currentUser,
+                contents: text,
+                likes: [],
+                timestamp: Date.now(),
+            }
+            const detailsCopy = structuredClone(details)
+            detailsCopy.comments.push(newComment)
+            updateDetails(detailsCopy)
+        }
+        setIsCommenting(false)
     }
 
     return (
@@ -81,6 +104,9 @@ function Post({ currentUser, details, updateDetails }) {
                         )}
                     </span>
                     <span className="shares-count col text-end pe-4 align-middle tooltip-container">
+                        <span className="comments-count me-4">
+                            {details.comments.length} comments
+                        </span>
                         {details.shares.length} shares
                         {details.shares.length > 0 && (
                             <span className="tooltip-text rounded p-1">
@@ -100,6 +126,14 @@ function Post({ currentUser, details, updateDetails }) {
                         </button>
                     </span>
                     <span className="col">
+                        <button
+                            className="btn icon-link"
+                            onClick={() => setIsCommenting(!isCommenting)}>
+                            <img src={commentIcon} alt="Add a reply" />
+                            Reply
+                        </button>
+                    </span>
+                    <span className="col">
                         <button className="btn icon-link">
                             <img src={shareBtn} alt="Share the post" />
                             Share
@@ -108,6 +142,41 @@ function Post({ currentUser, details, updateDetails }) {
                 </div>
             </footer>
             <footer>
+                {isCommenting && (
+                    <div className="new-comment m-3 d-flex flex-row">
+                        <img
+                            className="comment-author-img"
+                            alt={
+                                'Profile picture of ' + currentUser.displayName
+                            }
+                            src={currentUser.imageURL}
+                        />
+                        <div className="comment-body ms-2 ps-2 pb-1 pe-2 rounded-3 text-start">
+                            <span className="comment-author-name fw-semibold">
+                                {currentUser.displayName}
+                            </span>
+                            <div className="text-start">
+                                <textarea
+                                    className="new-comment-text border-0 p-1 rounded"
+                                    placeholder="Type your comment..."
+                                    ref={newCommentTextRef}
+                                />
+                            </div>
+                            <div>
+                                <button
+                                    className="btn me-4 btn-close"
+                                    onClick={() =>
+                                        setIsCommenting(false)
+                                    }></button>
+                                <button
+                                    className="btn m-1 btn-sm btn-success"
+                                    onClick={postComment}>
+                                    Comment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 {details.comments.map((comment, i) => (
                     <Comment
                         key={i}
