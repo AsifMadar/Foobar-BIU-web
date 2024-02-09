@@ -8,7 +8,7 @@ function SignUpPage() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
-    const [img, setImg] = useState(null)
+    const [profileImage, setImg] = useState(null)
     const [displayName, setDisplayName] = useState('')
 
     const navigate = useNavigate()
@@ -22,7 +22,9 @@ function SignUpPage() {
                 username,
                 password,
                 displayName,
-                img: img ? URL.createObjectURL(img) : null, //saves the img via url, if there's no image saves null
+                profileImage: profileImage
+                    ? URL.createObjectURL(profileImage)
+                    : null, //saves the img via url, if there's no image saves null
             })
             //moves the user to the feed page
             navigate('/feed')
@@ -49,7 +51,7 @@ function SignUpPage() {
     //checks if all the input is valid
     const checkAllValid = () => {
         return (
-            img != null &&
+            profileImage != null &&
             isUsernameValid(username) &&
             isPasswordValid(password) &&
             isRePasswordValid(rePassword) &&
@@ -71,7 +73,8 @@ function SignUpPage() {
 
     const isDisplayNameValid = displayName => {
         return (
-            checkLen(displayName, 2, 8) && isOnlyLettersAndNumbers(displayName)
+            checkLen(displayName, 2, 16) &&
+            isOnlyLettersAndNumbersAndSpace(displayName)
         )
     }
 
@@ -82,6 +85,9 @@ function SignUpPage() {
     const isOnlyLettersAndNumbers = item => {
         return /^[a-zA-Z0-9]+$/.test(item)
     }
+    const isOnlyLettersAndNumbersAndSpace = item => {
+        return /^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/.test(item)
+    }
     //file input reference, used to save the picture by reference
     const fileInputRef = useRef(null)
 
@@ -91,8 +97,8 @@ function SignUpPage() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
-                height: '80vh',
+                justifyContent: 'flex-start', // Adjust this as needed
+                minHeight: '80vh', // Now it's a minimum height, allowing growth
             }}>
             <header className="bg-primary text-white p-3">
                 <h1>Sign Up</h1>
@@ -135,7 +141,7 @@ function SignUpPage() {
                 <button
                     className="btn btn-success"
                     onClick={handleAddPictureClick}>
-                    Add
+                    Add Picture
                 </button>
                 <input
                     type="file"
@@ -144,7 +150,18 @@ function SignUpPage() {
                     onChange={e => handleImageChange(e.target.files[0])}
                     ref={fileInputRef}
                 />
+                {/* Shows up the profile image */}
             </div>
+            {profileImage && (
+                <>
+                    <h2>Your Profile Picture</h2>
+                    <img
+                        src={URL.createObjectURL(profileImage)}
+                        alt="Profile"
+                        style={{ width: '500px', height: 'auto' }}
+                    />
+                </>
+            )}
             {/* Display name textField */}
             <AdvancedTextField
                 label="Display name"
@@ -154,7 +171,7 @@ function SignUpPage() {
                 textFieldId={'signUpDisplayName'}
                 funcValid={isDisplayNameValid}
                 inValidationErrorMessage={'Invalid Display name'}
-                instruction={'English letters and numbers only, 2-8 letters'}
+                instruction={'English letters and numbers only, 2-16 letters'}
             />
             {/* Sign up button */}
             <div style={{ margin: '5px 0' }}>
