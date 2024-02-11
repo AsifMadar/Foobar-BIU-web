@@ -1,4 +1,5 @@
 import './Post.css'
+import { createRef } from 'react'
 import { timestampToStr } from '../utils/timestampToStr.js'
 import { usernamesToStr } from '../utils/usernamesToStr.js'
 import { useState } from 'react'
@@ -8,6 +9,8 @@ import likeBtnBlue from '../img/like-btn-blue.svg'
 import likeBtnWhite from '../img/like-btn-white.svg'
 import likeIcon from '../img/like-icon.svg'
 import shareBtn from '../img/share-btn.svg'
+import urlIcon from '../img/url-icon.svg'
+import whatsappIcon from '../img/whatsapp-icon.svg'
 
 /** @typedef {import('../data/posts.json').User} User */
 /** @typedef {import('../data/posts.json').Post} Post */
@@ -25,6 +28,8 @@ function Post({ currentUser, details, updateDetails }) {
     const author = details.author
 
     const [isCommenting, setIsCommenting] = useState(false)
+    const [isCommentListOpen, setIsCommentListOpen] = useState(false)
+    const modalRef = createRef()
 
     function handleLike() {
         const detailsCopy = structuredClone(details)
@@ -58,6 +63,11 @@ function Post({ currentUser, details, updateDetails }) {
             updateDetails(detailsCopy)
         }
         setIsCommenting(false)
+    }
+
+    function share(type) {
+        // Sharing isn't implemented yet
+        modalRef.current.close()
     }
 
     return (
@@ -96,7 +106,11 @@ function Post({ currentUser, details, updateDetails }) {
                         )}
                     </span>
                     <span className="comments-count col text-middle">
-                        <span className="comments-count me-4">
+                        <span
+                            className="me-4"
+                            onClick={() =>
+                                setIsCommentListOpen(!isCommentListOpen)
+                            }>
                             {details.comments.length} comments
                         </span>
                     </span>
@@ -122,45 +136,77 @@ function Post({ currentUser, details, updateDetails }) {
                     <span className="col">
                         <button
                             className="btn icon-link"
-                            onClick={() => setIsCommenting(!isCommenting)}>
+                            onClick={() => {
+                                if (isCommentListOpen) {
+                                    setIsCommenting(!isCommenting)
+                                } else {
+                                    setIsCommentListOpen(true)
+                                    setIsCommenting(true)
+                                }
+                            }}>
                             <img src={commentIcon} alt="Add a reply" />
                             Reply
                         </button>
                     </span>
                     <span className="col">
-                        <button className="btn icon-link">
+                        <button
+                            className="btn icon-link"
+                            onClick={() => modalRef.current.showModal()}>
                             <img src={shareBtn} alt="Share the post" />
                             Share
                         </button>
                     </span>
                 </div>
             </footer>
-            <footer>
-                {isCommenting && (
-                    <Comment
-                        currentUser={currentUser}
-                        updateDetails={postNewComment}
-                        details={{
-                            author: currentUser,
-                            contents: '',
-                            likes: [],
-                            timestamp: new Date(0),
-                        }}
-                        editImmediately={true}
-                        editFailed={() => setIsCommenting(false)}
-                    />
-                )}
-                {details.comments.map((comment, i) => (
-                    <Comment
-                        key={i}
-                        currentUser={currentUser}
-                        updateDetails={newComment =>
-                            updateComment(i, newComment)
-                        }
-                        details={comment}
-                    />
-                ))}
-            </footer>
+            {isCommentListOpen && (
+                <footer>
+                    {isCommenting && (
+                        <Comment
+                            currentUser={currentUser}
+                            updateDetails={postNewComment}
+                            details={{
+                                author: currentUser,
+                                contents: '',
+                                likes: [],
+                                timestamp: new Date(0),
+                            }}
+                            editImmediately={true}
+                            editFailed={() => setIsCommenting(false)}
+                        />
+                    )}
+                    {details.comments.map((comment, i) => (
+                        <Comment
+                            key={i}
+                            currentUser={currentUser}
+                            updateDetails={newComment =>
+                                updateComment(i, newComment)
+                            }
+                            details={comment}
+                        />
+                    ))}
+                </footer>
+            )}
+            <dialog className="share-dialog" ref={modalRef}>
+                <div>
+                    <span className="float-start">
+                        <button
+                            className="btn btn-close"
+                            onClick={() => modalRef.current.close()}
+                        />
+                    </span>
+                    <h3 className="text-middle ms-4 me-4 mb-3">Share by</h3>
+                </div>
+                <div className="share-buttons">
+                    <button className="btn" onClick={() => share('whatsapp')}>
+                        <img src={whatsappIcon} alt="" />
+                        Whatsapp
+                    </button>
+                    <button className="btn" onClick={() => share('link')}>
+                        <img src={urlIcon} alt="" />
+                        Copy Link
+                    </button>
+                </div>
+            </dialog>
         </div>
     )
 }

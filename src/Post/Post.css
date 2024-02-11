@@ -18,6 +18,31 @@
 		font-size: 90%;
 		height: 4em;
 	}
+
+	dialog[open] {
+		opacity: 1;
+	}
+
+	dialog {
+		opacity: 0;
+		transition:
+			opacity 0.7s ease-out,
+			overlay 0.7s ease-out,
+			display 0.7s ease-out;
+	}
+	
+	dialog::backdrop {
+		background-color: rgb(0 0 0 / 0%);
+		transition:
+			display 0.7s,
+			overlay 0.7s,
+			background-color 0.7s;
+	}
+
+	dialog[open]::backdrop {
+		background-color: rgb(0 0 0 / 75%);
+	}
+
 }
 
 .post-author-img {
@@ -38,6 +63,29 @@
 
 .btn.icon-link img {
 	width: 20px;
+}
+
+.share-buttons {
+	display: flex;
+	flex-direction: row;
+
+	button {
+		display: flex;
+		flex-direction: column;
+	}
+
+	img {
+		margin: 0 auto;
+		width: 40px;
+	}
+}
+
+.comments-count {
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 /* Theme */
