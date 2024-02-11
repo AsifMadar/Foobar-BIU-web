@@ -5,6 +5,8 @@ import { usernamesToStr } from '../utils/usernamesToStr.js'
 import { useState } from 'react'
 import Comment from '../Comment/Comment.js'
 import commentIcon from '../img/comment-icon.svg'
+import deleteIcon from '../img/trash-icon.svg'
+import editIcon from '../img/pencil-icon.svg'
 import likeBtnBlue from '../img/like-btn-blue.svg'
 import likeBtnWhite from '../img/like-btn-white.svg'
 import likeIcon from '../img/like-icon.svg'
@@ -88,6 +90,24 @@ function Post({ currentUser, details, updateDetails }) {
                         Published on {timestampToStr(details.timestamp)}
                     </span>
                 </div>
+                {author.username === currentUser.username && (
+                    <div
+                        className="post-edit-delete-section flex-column"
+                        role="group">
+                        <div className="btn-group align-middle">
+                            <button className="btn icon-link">
+                                <img src={editIcon} alt="" />
+                                Edit
+                            </button>
+                            <button
+                                className="btn icon-link"
+                                onClick={() => updateDetails(null)}>
+                                <img src={deleteIcon} alt="" />
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                )}
             </header>
             <article className="text-start p-3">{details.contents}</article>
             <footer className="border-top container">

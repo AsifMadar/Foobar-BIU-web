@@ -27,7 +27,11 @@ function PostList({ currentUser }) {
 
     function updatePost(i, newPost) {
         const newArray = [...postsDetails]
-        newArray.splice(i, 1, newPost)
+        if (newPost) {
+            newArray.splice(i, 1, newPost)
+        } else {
+            newArray.splice(i, 1)
+        }
         setPostsDetails(newArray)
     }
 

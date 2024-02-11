@@ -43,6 +43,30 @@
 		background-color: rgb(0 0 0 / 75%);
 	}
 
+	.share-buttons {
+		display: flex;
+		flex-direction: row;
+
+		button {
+			display: flex;
+			flex-direction: column;
+		}
+
+		img {
+			margin: 0 auto;
+			width: 40px;
+		}
+	}
+
+	.post-edit-delete-section {
+		visibility: hidden;
+		margin-left: auto;
+	}
+
+	&:hover .post-edit-delete-section {
+		visibility: visible;
+	}
+
 }
 
 .post-author-img {
@@ -63,21 +87,6 @@
 
 .btn.icon-link img {
 	width: 20px;
-}
-
-.share-buttons {
-	display: flex;
-	flex-direction: row;
-
-	button {
-		display: flex;
-		flex-direction: column;
-	}
-
-	img {
-		margin: 0 auto;
-		width: 40px;
-	}
 }
 
 .comments-count {
