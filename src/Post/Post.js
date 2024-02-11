@@ -79,7 +79,7 @@ function Post({ currentUser, details, updateDetails }) {
             </header>
             <article className="text-start p-3">{details.contents}</article>
             <footer className="border-top container">
-                <div className="row m-2">
+                <div className="stats row m-2">
                     <span className="likes-count col text-start ps-3 tooltip-container">
                         <img
                             className="post-like-icon icon-link m-1"
@@ -95,10 +95,12 @@ function Post({ currentUser, details, updateDetails }) {
                             </span>
                         )}
                     </span>
-                    <span className="shares-count col text-end pe-4 align-middle tooltip-container">
+                    <span className="comments-count col text-middle">
                         <span className="comments-count me-4">
                             {details.comments.length} comments
                         </span>
+                    </span>
+                    <span className="shares-count col text-end pe-4 tooltip-container">
                         {details.shares.length} shares
                         {details.shares.length > 0 && (
                             <span className="tooltip-text rounded p-1">

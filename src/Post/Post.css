@@ -52,7 +52,7 @@ body.light-theme {
 		color: var(--bs-primary-text-emphasis);
 	}
 
-	.post-time, .shares-count, .likes-count {
+	.post-time, .stats {
 		color: var(--bs-secondary);
 	}
 
