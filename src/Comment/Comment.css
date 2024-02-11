@@ -47,6 +47,10 @@ body.light-theme {
 		background: var(--bs-gray-200);
 	}
 
+	.new-comment-text {
+		background: var(--bs-gray-100);
+	}
+
 	.comment-author-name {
 		color: var(--bs-primary-text-emphasis);
 	}
