@@ -1,5 +1,13 @@
 .comment {
 	font-size: 90%;
+
+	.edit-delete-section {
+		visibility: hidden;
+	}
+
+	&:hover .edit-delete-section {
+		visibility: visible;
+	}
 }
 
 .comment-author-img {
