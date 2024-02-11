@@ -1,5 +1,4 @@
 import './Post.css'
-import { createRef } from 'react'
 import { timestampToStr } from '../utils/timestampToStr.js'
 import { usernamesToStr } from '../utils/usernamesToStr.js'
 import { useState } from 'react'
@@ -26,7 +25,6 @@ function Post({ currentUser, details, updateDetails }) {
     const author = details.author
 
     const [isCommenting, setIsCommenting] = useState(false)
-    const newCommentTextRef = createRef()
 
     function handleLike() {
         const detailsCopy = structuredClone(details)
@@ -39,30 +37,24 @@ function Post({ currentUser, details, updateDetails }) {
         updateDetails(detailsCopy)
     }
 
-    function toggleCommentLike(i, like) {
+    function updateComment(i, newComment) {
         const detailsCopy = structuredClone(details)
-        const newComments = detailsCopy.comments
-        if (like) {
-            newComments[i].likes.push(currentUser)
+        const newArray = [...details.comments]
+        if (newComment) {
+            newArray.splice(i, 1, newComment)
         } else {
-            const currentUserIndex = newComments[i].likes.indexOf(currentUser)
-            newComments[i].likes.splice(currentUserIndex, 1)
+            newArray.splice(i, 1)
         }
+        detailsCopy.comments = newArray
         updateDetails(detailsCopy)
     }
 
-    function postComment() {
-        const text = newCommentTextRef.current.value
+    function postNewComment(commentDetails) {
         // Post the new comment if it is not empty
-        if (text.trim()) {
-            const newComment = {
-                author: currentUser,
-                contents: text,
-                likes: [],
-                timestamp: Date.now(),
-            }
+        if (commentDetails.contents.trim()) {
+            commentDetails.timestamp = Date.now()
             const detailsCopy = structuredClone(details)
-            detailsCopy.comments.push(newComment)
+            detailsCopy.comments.push(commentDetails)
             updateDetails(detailsCopy)
         }
         setIsCommenting(false)
@@ -88,6 +80,7 @@ function Post({ currentUser, details, updateDetails }) {
             <article className="text-start p-3">{details.contents}</article>
             <footer className="border-top container">
                 <div className="row m-2">
+                    {isCommenting.toString()}
                     <span className="likes-count col text-start ps-3 tooltip-container">
                         <img
                             className="post-like-icon icon-link m-1"
@@ -143,45 +136,26 @@ function Post({ currentUser, details, updateDetails }) {
             </footer>
             <footer>
                 {isCommenting && (
-                    <div className="new-comment m-3 d-flex flex-row">
-                        <img
-                            className="comment-author-img"
-                            alt={
-                                'Profile picture of ' + currentUser.displayName
-                            }
-                            src={currentUser.imageURL}
-                        />
-                        <div className="comment-body ms-2 ps-2 pb-1 pe-2 rounded-3 text-start">
-                            <span className="comment-author-name fw-semibold">
-                                {currentUser.displayName}
-                            </span>
-                            <div className="text-start">
-                                <textarea
-                                    className="new-comment-text border-0 p-1 rounded"
-                                    placeholder="Type your comment..."
-                                    ref={newCommentTextRef}
-                                />
-                            </div>
-                            <div>
-                                <button
-                                    className="btn me-4 btn-close"
-                                    onClick={() =>
-                                        setIsCommenting(false)
-                                    }></button>
-                                <button
-                                    className="btn m-1 btn-sm btn-success"
-                                    onClick={postComment}>
-                                    Comment
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <Comment
+                        currentUser={currentUser}
+                        updateDetails={postNewComment}
+                        details={{
+                            author: currentUser,
+                            contents: '',
+                            likes: [],
+                            timestamp: new Date(0),
+                        }}
+                        editImmediately={true}
+                        editFailed={() => setIsCommenting(false)}
+                    />
                 )}
                 {details.comments.map((comment, i) => (
                     <Comment
                         key={i}
                         currentUser={currentUser}
-                        toggleLike={val => toggleCommentLike(i, val)}
+                        updateDetails={newComment =>
+                            updateComment(i, newComment)
+                        }
                         details={comment}
                     />
                 ))}
