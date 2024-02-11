@@ -28,7 +28,9 @@ function Comment({
 }) {
     const [isEditing, setIsEditing] = useState(!!editImmediately)
     const author = details.author
-    const isLikedByMe = details.likes.includes(currentUser)
+    const isLikedByMe = details.likes.some(
+        user => user.username === currentUser.username,
+    )
     const newCommentTextRef = createRef()
 
     function updateCommentText() {

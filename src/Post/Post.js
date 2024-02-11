@@ -22,10 +22,12 @@ import whatsappIcon from '../img/whatsapp-icon.svg'
  * @param {User} props.currentUser
  */
 function Post({ currentUser, details, updateDetails }) {
-    const isLikedByMe = details.likes.includes(currentUser)
+    const author = details.author
+    const isLikedByMe = details.likes.some(
+        user => user.username === currentUser.username,
+    )
     const likesNameList = usernamesToStr(details.likes, currentUser)
     const sharesNameList = usernamesToStr(details.shares, currentUser)
-    const author = details.author
 
     const [isCommenting, setIsCommenting] = useState(false)
     const [isCommentListOpen, setIsCommentListOpen] = useState(false)
