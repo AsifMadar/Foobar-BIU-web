@@ -1,0 +1,12 @@
+.post-edit {
+	textarea {
+		width: 100%;
+	}
+
+	.delete-img {
+		float: left;
+		position: absolute;
+		margin: 0.25em;
+		backdrop-filter: invert(30%) blur(5px);
+	}
+}

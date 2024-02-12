@@ -97,6 +97,11 @@
 	}
 }
 
+.post-images img {
+	max-width: 600px;
+	max-height: 600px;
+}
+
 /* Theme */
 body.light-theme {
 	--post-border-color: #dee2e6;
