@@ -7,8 +7,7 @@ export function timestampToStr(timestamp) {
     return (
         date.getDate() +
         '/' +
-        date.getMonth() +
-        1 +
+        (date.getMonth() + 1) +
         '/' +
         date.getFullYear() +
         ' ' +

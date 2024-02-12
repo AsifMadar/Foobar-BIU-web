@@ -10,6 +10,9 @@ import { useState } from 'react'
  */
 function PostList({ currentUser }) {
     const [postsDetails, setPostsDetails] = useState(posts)
+    const sortedPostsDetails = postsDetails
+        .sort((a, b) => a.timestamp - b.timestamp)
+        .reverse()
 
     const addPost = () => {
         setPostsDetails([
@@ -38,7 +41,7 @@ function PostList({ currentUser }) {
     return (
         <div id="post-list" className="container mt-3">
             <button onClick={addPost}>Add post</button>
-            {postsDetails.map((details, i) => (
+            {sortedPostsDetails.map((details, i) => (
                 <Post
                     key={i}
                     currentUser={currentUser}

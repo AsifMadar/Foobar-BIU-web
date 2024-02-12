@@ -1,68 +1,258 @@
 [
 	{
 		"author": {
-			"displayName": "Test User",
-			"imageURL": "/favicon.png",
-			"username": "testuser"
+			"displayName": "Georg C.",
+			"imageURL": "/sampleImages/user1.jpg",
+			"username": "gcantor"
 		},
 		"comments": [
 			{
 				"author": {
 					"displayName": "Eliyah Alias",
-					"imageURL": "/favicon.png",
+					"imageURL": "/sampleImages/user2.jpg",
 					"username": "alias.el"
 				},
 				"contents": "Hi & welcome! Do you feel like meeting tomorrow?",
 				"likes": [
 					{
-						"displayName": "Test User",
-						"imageURL": "/favicon.png",
-						"username": "testuser"
+						"displayName": "Georg C.",
+						"imageURL": "/sampleImages/user1.jpg",
+						"username": "gcantor"
 					}
 				],
-				"timestamp": 1706572233917
+				"timestamp": 1707404921000
 			},
 			{
 				"author": {
-					"displayName": "Test User",
-					"imageURL": "/favicon.png",
-					"username": "testuser"
+					"displayName": "Georg C.",
+					"imageURL": "/sampleImages/user1.jpg",
+					"username": "gcantor"
 				},
 				"contents": "@Eliyah how about monday?",
 				"likes": [],
-				"timestamp": 1706573233917
+				"timestamp": 1707412712000
 			}
 		],
 		"contents": "hi 👋! This is my first post here 🙂.\nWhat's up?",
+		"images": [],
 		"likes": [
 			{
 				"displayName": "Avi Adar",
-				"imageURL": "/favicon.png",
+				"imageURL": "/sampleImages/user3.jpg",
 				"username": "avi.adar1"
 			},
 			{
 				"displayName": "Eliyah Alias",
-				"imageURL": "/favicon.png",
+				"imageURL": "/sampleImages/user2.jpg",
 				"username": "alias.el"
 			},
 			{
 				"displayName": "Moishe Meivin",
-				"imageURL": "/favicon.png",
+				"imageURL": "/sampleImages/user4.jpg",
 				"username": "moisheM"
 			}
 		],
 		"shares": [
 			{
 				"displayName": "Avi Adar",
-				"imageURL": "/favicon.png",
+				"imageURL": "/sampleImages/user3.jpg",
 				"username": "avi.adar1"
 			},
 			{
 				"displayName": "Moishe Meivin",
-				"imageURL": "/favicon.png",
+				"imageURL": "/sampleImages/user4.jpg",
 				"username": "moisheM"
 			}
 		],
-		"timestamp": 1706570233917
+		"timestamp": 1707400272000
+	},
+	{
+		"author": {
+			"displayName": "Moishe Meivin",
+			"imageURL": "/sampleImages/user4.jpg",
+			"username": "moisheM"
+		},
+		"comments": [
+			{
+				"author": {
+					"displayName": "Avi Adar",
+					"imageURL": "/sampleImages/user3.jpg",
+					"username": "avi.adar1"
+				},
+				"contents": "Wow, must be so fun!",
+				"likes": [],
+				"timestamp": 1707510238000
+			}
+		],
+		"contents": "Enjoying the morning in Hawaii...\nWhat a great view!",
+		"images": ["/sampleImages/hawaii.jpg"],
+		"likes": [
+			{
+				"displayName": "Eliyah Alias",
+				"imageURL": "/sampleImages/user2.jpg",
+				"username": "alias.el"
+			},
+			{
+				"displayName": "Georg C.",
+				"imageURL": "/sampleImages/user1.jpg",
+				"username": "gcantor"
+			}
+			
+		],
+		"shares": [
+			{
+				"displayName": "Avi Adar",
+				"imageURL": "/sampleImages/user3.jpg",
+				"username": "avi.adar1"
+			}
+		],
+		"timestamp": 1707507788000
+	},
+	{
+		"author": {
+			"displayName": "David",
+			"imageURL": "/sampleImages/user5.jpg",
+			"username": "davidR"
+		},
+		"comments": [],
+		"contents": "Hi all, how are you?",
+		"images": [],
+		"likes": [],
+		"shares": [],
+		"timestamp": 1707384226000
+	},
+	{
+		"author": {
+			"displayName": "John G.",
+			"imageURL": "/sampleImages/user6.jpg",
+			"username": "geljohn"
+		},
+		"comments": [],
+		"contents": "You know, working from home can be hard sometimes",
+		"images": [],
+		"likes": [],
+		"shares": [],
+		"timestamp": 1707301332000
+	},
+	{
+		"author": {
+			"displayName": "Happy Goose",
+			"imageURL": "/sampleImages/user7.jpg",
+			"username": "yonatan.sp"
+		},
+		"comments": [],
+		"contents": "It's the migration season! I like watching birds fly :)",
+		"images": ["/sampleImages/migration.jpg"],
+		"likes": [],
+		"shares": [],
+		"timestamp": 1707552999000
+	},
+	{
+		"author": {
+			"displayName": "Eliyah Alias",
+			"imageURL": "/sampleImages/user2.jpg",
+			"username": "alias.el"
+		},
+		"comments": [
+			{
+				"author": {
+					"displayName": "Moishe Meivin",
+					"imageURL": "/sampleImages/user4.jpg",
+					"username": "moisheM"
+				},
+				"contents": "As they say \"fight fire with fire\" 😂",
+				"likes": [
+					{
+						"displayName": "Eliyah Alias",
+						"imageURL": "/sampleImages/user2.jpg",
+						"username": "alias.el"
+					}
+				],
+				"timestamp": 1707321941000
+
+			}
+		],
+		"contents": "Did you ever notice that what we call \"fire trucks\" are really water trucks?",
+		"images": [],
+		"likes": [
+			{
+				"displayName": "Moishe Meivin",
+				"imageURL": "/sampleImages/user4.jpg",
+				"username": "moisheM"
+			}
+		],
+		"shares": [],
+		"timestamp": 1707318750000
+	},
+	{
+		"author": {
+			"displayName": "John G.",
+			"imageURL": "/sampleImages/user6.jpg",
+			"username": "geljohn"
+		},
+		"comments": [
+			
+			{
+				"author": {
+					"displayName": "Eliyah Alias",
+					"imageURL": "/sampleImages/user2.jpg",
+					"username": "alias.el"
+				},
+				"contents": "It's awesome man\nYou will like it for sure",
+				"likes": [],
+				"timestamp": 1707141177000
+
+			}
+		],
+		"contents": "So, what is this new \"FooBar\" app everyone is talking about?",
+		"images": [],
+		"likes": [],
+		"shares": [],
+		"timestamp": 1707139023000
+	},
+	{
+		"author": {
+			"displayName": "David",
+			"imageURL": "/sampleImages/user5.jpg",
+			"username": "davidR"
+		},
+		"comments": [],
+		"contents": "Just created my account, hope this new social platform will be fun.",
+		"images": [],
+		"likes": [
+			{
+				"displayName": "Eliyah Alias",
+				"imageURL": "/sampleImages/user2.jpg",
+				"username": "alias.el"
+			}
+		],
+		"shares": [],
+		"timestamp": 1707126738000
+	},
+	{
+		"author": {
+			"displayName": "Eliyah Alias",
+			"imageURL": "/sampleImages/user2.jpg",
+			"username": "alias.el"
+		},
+		"comments": [],
+		"contents": "So I am officially the second person on this platform?\n\nNice.",
+		"images": [],
+		"likes": [],
+		"shares": [],
+		"timestamp": 1707060222000
+	},
+	{
+		"author": {
+			"displayName": "FooBar Official",
+			"imageURL": "/favicon.png",
+			"username": "foobar"
+		},
+		"comments": [],
+		"contents": "Welcome to FooBar everyone!",
+		"images": ["/favicon.png"],
+		"likes": [],
+		"shares": [],
+		"timestamp": 1707026400000
 	}
 ]

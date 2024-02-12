@@ -110,6 +110,18 @@ function Post({ currentUser, details, updateDetails }) {
                 )}
             </header>
             <article className="text-start p-3">{details.contents}</article>
+            {details.images.length > 0 && (
+                <article className="post-images m-1">
+                    {details.images.map((imageSrc, i) => (
+                        <img
+                            key={i}
+                            src={imageSrc}
+                            className="img-fluid mt-2"
+                            alt=""
+                        />
+                    ))}
+                </article>
+            )}
             <footer className="border-top container">
                 <div className="stats row m-2">
                     <span className="likes-count col text-start ps-3 tooltip-container">

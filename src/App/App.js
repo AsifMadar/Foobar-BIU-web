@@ -4,9 +4,9 @@ import PostList from '../PostList/PostList.js'
 
 function App() {
     const [currentUser] = useState({
-        displayName: 'Test User',
+        displayName: 'Georg C.',
         imageURL: '/favicon.png',
-        username: 'testuser',
+        username: 'gcantor',
     })
 
     return (

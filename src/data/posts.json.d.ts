@@ -15,6 +15,7 @@ export interface Post {
     author: User
     comments: Comment[]
     contents: string
+    images: string[]
     likes: User[]
     shares: User[]
     timestamp: number
