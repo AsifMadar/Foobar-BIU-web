@@ -8,10 +8,11 @@ import addImageIcon from '../img/add-image-icon.svg'
 
 /**
  * @param {object} props
- * @param {Post} props.details
- * @param {(newDetails: Post) => void} props.updateDetails Will be called when the post data has to be changed
  * @param {User} props.currentUser
+ * @param {Post} props.details
+ * @param {(newPost: Post) => void} props.updateDetails Will be called when the post data has to be changed
  */
+
 function PostEditor({ currentUser, details, updateDetails }) {
     const newPostTextRef = createRef()
     const fileInputRef = createRef()
@@ -34,6 +35,25 @@ function PostEditor({ currentUser, details, updateDetails }) {
         setNewDetails(newDetailsCopy)
     }
 
+    function updateText() {
+        const newDetailsCopy = structuredClone(newDetails)
+        newDetailsCopy.contents = newPostTextRef.current.value.trim()
+        setNewDetails(newDetailsCopy)
+    }
+
+    function reset() {
+        const newDetailsCopy = structuredClone(newDetails)
+        newDetailsCopy.contents = ''
+        newDetailsCopy.images = []
+        newPostTextRef.current.value = newDetailsCopy.contents
+        setNewDetails(newDetailsCopy)
+    }
+
+    function publishEdit() {
+        updateDetails(newDetails)
+        reset()
+    }
+
     return (
         <div className="post post-edit border rounded mb-3">
             <header className="d-flex flex-row p-2">
@@ -51,9 +71,10 @@ function PostEditor({ currentUser, details, updateDetails }) {
             <article className="text-start p-3">
                 <textarea
                     className="new-comment-text border-0 p-1 rounded"
-                    placeholder="What's on your mind?"
+                    placeholder={`What's on your mind, ${currentUser.displayName.split(' ')[0]}?`}
                     ref={newPostTextRef}
                     defaultValue={newDetails.contents}
+                    onChange={updateText}
                 />
             </article>
             <article className="post-images">
@@ -80,6 +101,15 @@ function PostEditor({ currentUser, details, updateDetails }) {
                     </div>
                 ))}
             </article>
+            <footer className="d-grid gap-2">
+                <button
+                    type="button"
+                    className="btn btn-primary m-2"
+                    onClick={publishEdit}
+                    disabled={newDetails.contents === ''}>
+                    Post
+                </button>
+            </footer>
         </div>
     )
 }

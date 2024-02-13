@@ -18,12 +18,20 @@ import whatsappIcon from '../img/whatsapp-icon.svg'
 /** @typedef {import('../data/posts.json').Post} Post */
 
 /**
- * @param {object} props
- * @param {Post} props.details
- * @param {(newDetails: Post) => void} props.updateDetails Will be called when the post data has to be changed
- * @param {User} props.currentUser
+ * @callback UpdateDetailsCallback
+ * @param {Post | null} newPost
+ * @param {'delete' | 'update'} updateType
+ * @returns {void}
  */
-function Post({ currentUser, details, updateDetails }) {
+
+/**
+ * @param {object} props
+ * @param {User} props.currentUser
+ * @param {Post} props.details
+ * @param {() => void} props.editRequested Will be called when the user clicked "edit" on the post
+ * @param {UpdateDetailsCallback} props.updateDetails Will be called when the post data has to be changed
+ */
+function Post({ currentUser, editRequested, details, updateDetails }) {
     const author = details.author
     const isLikedByMe = details.likes.some(
         user => user.username === currentUser.username,
@@ -43,7 +51,7 @@ function Post({ currentUser, details, updateDetails }) {
         } else {
             detailsCopy.likes.push(currentUser)
         }
-        updateDetails(detailsCopy)
+        updateDetails(detailsCopy, 'update')
     }
 
     function updateComment(i, newComment) {
@@ -55,7 +63,7 @@ function Post({ currentUser, details, updateDetails }) {
             newArray.splice(i, 1)
         }
         detailsCopy.comments = newArray
-        updateDetails(detailsCopy)
+        updateDetails(detailsCopy, 'update')
     }
 
     function postNewComment(commentDetails) {
@@ -64,7 +72,7 @@ function Post({ currentUser, details, updateDetails }) {
             commentDetails.timestamp = Date.now()
             const detailsCopy = structuredClone(details)
             detailsCopy.comments.push(commentDetails)
-            updateDetails(detailsCopy)
+            updateDetails(detailsCopy, 'update')
         }
         setIsCommenting(false)
     }
@@ -95,13 +103,15 @@ function Post({ currentUser, details, updateDetails }) {
                         className="post-edit-delete-section flex-column"
                         role="group">
                         <div className="btn-group align-middle">
-                            <button className="btn icon-link">
+                            <button
+                                className="btn icon-link"
+                                onClick={editRequested}>
                                 <img src={editIcon} alt="" />
                                 Edit
                             </button>
                             <button
                                 className="btn icon-link"
-                                onClick={() => updateDetails(null)}>
+                                onClick={() => updateDetails(null, 'delete')}>
                                 <img src={deleteIcon} alt="" />
                                 Delete
                             </button>

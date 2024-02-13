@@ -5,7 +5,7 @@ import PostList from '../PostList/PostList.js'
 function App() {
     const [currentUser] = useState({
         displayName: 'Georg C.',
-        imageURL: '/favicon.png',
+        imageURL: '/sampleImages/user1.jpg',
         username: 'gcantor',
     })
 
