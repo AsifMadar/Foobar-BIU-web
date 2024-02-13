@@ -70,11 +70,12 @@ function PostEditor({ currentUser, details, updateDetails }) {
             </header>
             <article className="text-start p-3">
                 <textarea
+                    autoFocus={true}
                     className="new-comment-text border-0 p-1 rounded"
-                    placeholder={`What's on your mind, ${currentUser.displayName.split(' ')[0]}?`}
-                    ref={newPostTextRef}
                     defaultValue={newDetails.contents}
                     onChange={updateText}
+                    placeholder={`What's on your mind, ${currentUser.displayName.split(' ')[0]}?`}
+                    ref={newPostTextRef}
                 />
             </article>
             <article className="post-images">
