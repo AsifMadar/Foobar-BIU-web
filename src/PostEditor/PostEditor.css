@@ -4,9 +4,11 @@
 	}
 
 	.delete-img {
+		backdrop-filter: invert(100%) blur(5px);
+		background-color: var(--bs-gray-100);
+		filter: invert(20%);
 		float: left;
-		position: absolute;
 		margin: 0.25em;
-		backdrop-filter: invert(30%) blur(5px);
+		position: absolute;
 	}
 }

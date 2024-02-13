@@ -1,16 +1,14 @@
 .post {
-	border-color: var(--post-border-color) !important;
-
 	article {
 		white-space: break-spaces;
 	}
 
 	footer {
-		border-top-color: var(--post-border-color) !important;
+		border-top-color: var(--bs-border-color) !important;
 
 		.post-actions-row {
-			border-top-color: var(--post-border-color) !important;
-			border-bottom-color: var(--post-border-color) !important;
+			border-top-color: var(--bs-border-color) !important;
+			border-bottom-color: var(--bs-border-color) !important;
 		}
 	}
 	
@@ -103,10 +101,10 @@
 }
 
 /* Theme */
-body.light-theme {
-	--post-border-color: #dee2e6;
 
+[data-bs-theme="light"] {
 	.post {
+		--bs-border-color: var(--bs-gray-300);
 		background: var(--bs-light-bg-subtle);
 	}
 
@@ -125,6 +123,40 @@ body.light-theme {
 
 	.new-comment textarea {
 		background: var(--bs-gray-100);
+	}
+}
+
+[data-bs-theme="dark"] {
+	.post {
+		--bs-border-color: var(--bs-gray-700);
+		background: var(--bs-light-bg-subtle);
+	}
+
+	.post-author-name {
+		color: var(--bs-primary-text-emphasis);
+	}
+
+	.post-time, .stats {
+		color: var(--bs-secondary);
+	}
+
+	.tooltip-text {
+		color: var(--bs-light-text-emphasis);
+		--background-color: var(--bs-secondary-bg-subtle);
+	}
+
+	.new-comment textarea {
+		background: var(--bs-gray-100);
+	}
+
+	.edit-btn, .reply-btn, .share-buttons, .shared-btn {
+		img {
+			filter: invert(80%);
+		}
+	}
+
+	.share-dialog {
+		border-color: var(--bs-gray-600);
 	}
 }
 

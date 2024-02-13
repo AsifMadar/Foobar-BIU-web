@@ -104,7 +104,7 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
                         role="group">
                         <div className="btn-group align-middle">
                             <button
-                                className="btn icon-link"
+                                className="btn icon-link edit-btn"
                                 onClick={editRequested}>
                                 <img src={editIcon} alt="" />
                                 Edit
@@ -179,7 +179,7 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
                     </span>
                     <span className="col">
                         <button
-                            className="btn icon-link"
+                            className="reply-btn btn icon-link"
                             onClick={() => {
                                 if (isCommentListOpen) {
                                     setIsCommenting(!isCommenting)
@@ -194,7 +194,7 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
                     </span>
                     <span className="col">
                         <button
-                            className="btn icon-link"
+                            className="shared-btn btn icon-link"
                             onClick={() => modalRef.current.showModal()}>
                             <img src={shareBtn} alt="Share the post" />
                             Share

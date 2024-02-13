@@ -71,7 +71,7 @@ function PostEditor({ currentUser, details, updateDetails }) {
             <article className="text-start p-3">
                 <textarea
                     autoFocus={true}
-                    className="new-comment-text border-0 p-1 rounded"
+                    className="border p-1 rounded"
                     defaultValue={newDetails.contents}
                     onChange={updateText}
                     placeholder={`What's on your mind, ${currentUser.displayName.split(' ')[0]}?`}
