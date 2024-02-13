@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom'
 import SignInPage from '../SignIn/SignInPage.js'
 import SignUpPage from '../SignUpPage/SignUpPage.js'
+import UserFeed from '../Feed/UserFeed.js'
 import { useNavigate } from 'react-router-dom'
 
 export const UserContent = React.createContext(null)
@@ -46,7 +47,7 @@ function App() {
                         {/* If user is logged in go to feed */}
                         {user.signIn ? (
                             <>
-                                <Route path="/feed" element={<GoToFeed />} />
+                                <Route path="/feed" element={<UserFeed />} />
                                 <Route
                                     path="/"
                                     element={<Navigate to="/feed" replace />}
