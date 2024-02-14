@@ -44,6 +44,7 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
     const modalRef = createRef()
 
     function handleLike() {
+        console.log(isLikedByMe)
         const detailsCopy = structuredClone(details)
         if (isLikedByMe) {
             const currentUserIndex = detailsCopy.likes.indexOf(currentUser)
@@ -88,7 +89,7 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
                 <img
                     className="post-author-img"
                     alt={'Profile picture of ' + author.displayName}
-                    src={author.imageURL}
+                    src={author.profileImage}
                 />
                 <div className="d-flex flex-column text-start ms-3">
                     <span className="post-author-name h5">

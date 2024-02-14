@@ -68,7 +68,7 @@ function Comment({
             <img
                 className="comment-author-img"
                 alt={'Profile picture of ' + author.displayName}
-                src={author.imageURL}
+                src={author.profileImage}
             />
             <div className="comment-body ms-2 ps-2 pb-1 pe-2 rounded-3">
                 <div className="text-start align-middle">

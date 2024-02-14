@@ -60,7 +60,7 @@ function PostEditor({ currentUser, details, updateDetails }) {
                 <img
                     className="post-author-img"
                     alt={'Profile picture of ' + currentUser.displayName}
-                    src={currentUser.imageURL}
+                    src={currentUser.profileImage}
                 />
                 <div className="d-flex flex-column text-start ms-3">
                     <span className="post-author-name h5">

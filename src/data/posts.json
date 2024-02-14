@@ -2,21 +2,21 @@
 	{
 		"author": {
 			"displayName": "Georg C.",
-			"imageURL": "/sampleImages/user1.jpg",
+			"profileImage": "/sampleImages/user1.jpg",
 			"username": "gcantor"
 		},
 		"comments": [
 			{
 				"author": {
 					"displayName": "Eliyah Alias",
-					"imageURL": "/sampleImages/user2.jpg",
+					"profileImage": "/sampleImages/user2.jpg",
 					"username": "alias.el"
 				},
 				"contents": "Hi & welcome! Do you feel like meeting tomorrow?",
 				"likes": [
 					{
 						"displayName": "Georg C.",
-						"imageURL": "/sampleImages/user1.jpg",
+						"profileImage": "/sampleImages/user1.jpg",
 						"username": "gcantor"
 					}
 				],
@@ -25,7 +25,7 @@
 			{
 				"author": {
 					"displayName": "Georg C.",
-					"imageURL": "/sampleImages/user1.jpg",
+					"profileImage": "/sampleImages/user1.jpg",
 					"username": "gcantor"
 				},
 				"contents": "@Eliyah how about monday?",
@@ -38,29 +38,29 @@
 		"likes": [
 			{
 				"displayName": "Avi Adar",
-				"imageURL": "/sampleImages/user3.jpg",
+				"profileImage": "/sampleImages/user3.jpg",
 				"username": "avi.adar1"
 			},
 			{
 				"displayName": "Eliyah Alias",
-				"imageURL": "/sampleImages/user2.jpg",
+				"profileImage": "/sampleImages/user2.jpg",
 				"username": "alias.el"
 			},
 			{
 				"displayName": "Moishe Meivin",
-				"imageURL": "/sampleImages/user4.jpg",
+				"profileImage": "/sampleImages/user4.jpg",
 				"username": "moisheM"
 			}
 		],
 		"shares": [
 			{
 				"displayName": "Avi Adar",
-				"imageURL": "/sampleImages/user3.jpg",
+				"profileImage": "/sampleImages/user3.jpg",
 				"username": "avi.adar1"
 			},
 			{
 				"displayName": "Moishe Meivin",
-				"imageURL": "/sampleImages/user4.jpg",
+				"profileImage": "/sampleImages/user4.jpg",
 				"username": "moisheM"
 			}
 		],
@@ -69,14 +69,14 @@
 	{
 		"author": {
 			"displayName": "Moishe Meivin",
-			"imageURL": "/sampleImages/user4.jpg",
+			"profileImage": "/sampleImages/user4.jpg",
 			"username": "moisheM"
 		},
 		"comments": [
 			{
 				"author": {
 					"displayName": "Avi Adar",
-					"imageURL": "/sampleImages/user3.jpg",
+					"profileImage": "/sampleImages/user3.jpg",
 					"username": "avi.adar1"
 				},
 				"contents": "Wow, must be so fun!",
@@ -89,12 +89,12 @@
 		"likes": [
 			{
 				"displayName": "Eliyah Alias",
-				"imageURL": "/sampleImages/user2.jpg",
+				"profileImage": "/sampleImages/user2.jpg",
 				"username": "alias.el"
 			},
 			{
 				"displayName": "Georg C.",
-				"imageURL": "/sampleImages/user1.jpg",
+				"profileImage": "/sampleImages/user1.jpg",
 				"username": "gcantor"
 			}
 			
@@ -102,7 +102,7 @@
 		"shares": [
 			{
 				"displayName": "Avi Adar",
-				"imageURL": "/sampleImages/user3.jpg",
+				"profileImage": "/sampleImages/user3.jpg",
 				"username": "avi.adar1"
 			}
 		],
@@ -111,7 +111,7 @@
 	{
 		"author": {
 			"displayName": "David",
-			"imageURL": "/sampleImages/user5.jpg",
+			"profileImage": "/sampleImages/user5.jpg",
 			"username": "davidR"
 		},
 		"comments": [],
@@ -124,7 +124,7 @@
 	{
 		"author": {
 			"displayName": "John G.",
-			"imageURL": "/sampleImages/user6.jpg",
+			"profileImage": "/sampleImages/user6.jpg",
 			"username": "geljohn"
 		},
 		"comments": [],
@@ -137,7 +137,7 @@
 	{
 		"author": {
 			"displayName": "Happy Goose",
-			"imageURL": "/sampleImages/user7.jpg",
+			"profileImage": "/sampleImages/user7.jpg",
 			"username": "yonatan.sp"
 		},
 		"comments": [],
@@ -150,21 +150,21 @@
 	{
 		"author": {
 			"displayName": "Eliyah Alias",
-			"imageURL": "/sampleImages/user2.jpg",
+			"profileImage": "/sampleImages/user2.jpg",
 			"username": "alias.el"
 		},
 		"comments": [
 			{
 				"author": {
 					"displayName": "Moishe Meivin",
-					"imageURL": "/sampleImages/user4.jpg",
+					"profileImage": "/sampleImages/user4.jpg",
 					"username": "moisheM"
 				},
 				"contents": "As they say \"fight fire with fire\" 😂",
 				"likes": [
 					{
 						"displayName": "Eliyah Alias",
-						"imageURL": "/sampleImages/user2.jpg",
+						"profileImage": "/sampleImages/user2.jpg",
 						"username": "alias.el"
 					}
 				],
@@ -177,7 +177,7 @@
 		"likes": [
 			{
 				"displayName": "Moishe Meivin",
-				"imageURL": "/sampleImages/user4.jpg",
+				"profileImage": "/sampleImages/user4.jpg",
 				"username": "moisheM"
 			}
 		],
@@ -187,7 +187,7 @@
 	{
 		"author": {
 			"displayName": "John G.",
-			"imageURL": "/sampleImages/user6.jpg",
+			"profileImage": "/sampleImages/user6.jpg",
 			"username": "geljohn"
 		},
 		"comments": [
@@ -195,7 +195,7 @@
 			{
 				"author": {
 					"displayName": "Eliyah Alias",
-					"imageURL": "/sampleImages/user2.jpg",
+					"profileImage": "/sampleImages/user2.jpg",
 					"username": "alias.el"
 				},
 				"contents": "It's awesome man\nYou will like it for sure",
@@ -213,7 +213,7 @@
 	{
 		"author": {
 			"displayName": "David",
-			"imageURL": "/sampleImages/user5.jpg",
+			"profileImage": "/sampleImages/user5.jpg",
 			"username": "davidR"
 		},
 		"comments": [],
@@ -222,7 +222,7 @@
 		"likes": [
 			{
 				"displayName": "Eliyah Alias",
-				"imageURL": "/sampleImages/user2.jpg",
+				"profileImage": "/sampleImages/user2.jpg",
 				"username": "alias.el"
 			}
 		],
@@ -232,7 +232,7 @@
 	{
 		"author": {
 			"displayName": "Eliyah Alias",
-			"imageURL": "/sampleImages/user2.jpg",
+			"profileImage": "/sampleImages/user2.jpg",
 			"username": "alias.el"
 		},
 		"comments": [],
@@ -245,7 +245,7 @@
 	{
 		"author": {
 			"displayName": "FooBar Official",
-			"imageURL": "/favicon.png",
+			"profileImage": "/favicon.png",
 			"username": "foobar"
 		},
 		"comments": [],

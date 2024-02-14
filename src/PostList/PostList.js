@@ -1,21 +1,19 @@
+import { useContext, useState } from 'react'
+import { UserContent } from '../App/App.js'
 import Post from '../Post/Post.js'
 import PostEditor from '../PostEditor/PostEditor.js'
-import posts from '../data/posts.json'
-import { useState } from 'react'
 
-/** @typedef {import('../data/posts.json').User} User */
 /** @typedef {import('../data/posts.json').Post} Post */
 
 /**
  * @param {object} props
- * @param {User} props.currentUser
+ * @param {Post[]} props.posts
+ * @param {(newPosts: Post[]) => void} props.updatePosts
  */
-function PostList({ currentUser }) {
+function PostList({ posts, updatePosts }) {
+    const { user: currentUser } = useContext(UserContent)
     const [isEditingIndex, setIsEditingIndex] = useState(-1)
-    const [postsDetails, setPostsDetails] = useState(
-        /** @type {Post[]} */ (posts),
-    )
-    const sortedPostsDetails = postsDetails
+    const sortedPostsDetails = posts
         .sort((a, b) => a.timestamp - b.timestamp)
         .reverse()
 
@@ -25,7 +23,7 @@ function PostList({ currentUser }) {
      * @param {'delete' | 'edit' | 'update'} updateType
      */
     function updatePost(i, newPost, updateType) {
-        const newArray = [...postsDetails]
+        const newArray = [...posts]
 
         if (!newPost || updateType === 'delete') {
             newArray.splice(i, 1)
@@ -37,32 +35,11 @@ function PostList({ currentUser }) {
             setIsEditingIndex(-1)
         }
 
-        setPostsDetails(newArray)
-    }
-
-    const dummyDetails = {
-        author: currentUser,
-        comments: [],
-        contents: '',
-        images: [],
-        likes: [],
-        shares: [],
-        timestamp: Date.now(),
-    }
-
-    function publishPost(/** @type {Post}*/ postDetails) {
-        postDetails.timestamp = Date.now()
-        setPostsDetails([...postsDetails, postDetails])
+        updatePosts(newArray)
     }
 
     return (
-        <div id="post-list" className="container mt-3">
-            <PostEditor
-                id="create-post-area"
-                currentUser={currentUser}
-                details={dummyDetails}
-                updateDetails={publishPost}
-            />
+        <div className="post-list">
             {sortedPostsDetails.map((details, i) =>
                 isEditingIndex === i ? (
                     <PostEditor

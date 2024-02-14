@@ -1,6 +1,6 @@
 export interface User {
     displayName: string
-    imageURL: string
+    profileImage: string
     username: string
 }
 

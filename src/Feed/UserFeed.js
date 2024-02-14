@@ -1,25 +1,33 @@
-import React, { useContext, useState } from 'react'
-import MenuTop from './MenuTop.js'
-import MenuSide from './MenuSide.js'
+import '../Feed/UserFeed.css'
+import { useContext, useState } from 'react'
 import { UserContent } from '../App/App.js'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './UserFeed.css'
+import MenuSide from './MenuSide.js'
+import MenuTop from './MenuTop.js'
+import PostEditor from '../PostEditor/PostEditor.js'
+import PostList from '../PostList/PostList.js'
+import posts from '../data/posts.json'
+
+/** @typedef {import('../data/posts.json').Post} Post */
 
 function UserFeed() {
     const { user } = useContext(UserContent)
-    const [posts, setPosts] = useState([])
-    const [newPostContent, setNewPostContent] = useState('')
+    const [postsDetails, setPostsDetails] = useState(
+        /** @type {Post[]} */ (posts),
+    )
 
-    const handleAddPost = () => {
-        if (newPostContent.trim() !== '') {
-            const newPost = {
-                id: posts.length + 1,
-                user: user.username,
-                content: newPostContent,
-            }
-            setPosts([...posts, newPost])
-            setNewPostContent('')
-        }
+    const dummyDetails = {
+        author: user,
+        comments: [],
+        contents: '',
+        images: [],
+        likes: [],
+        shares: [],
+        timestamp: Date.now(),
+    }
+
+    function publishPost(/** @type {Post}*/ postDetails) {
+        postDetails.timestamp = Date.now()
+        setPostsDetails([...postsDetails, postDetails])
     }
 
     return (
@@ -27,35 +35,17 @@ function UserFeed() {
             <MenuTop user={user} />
             <div className="wrapper">
                 <MenuSide user={user} />
-                <div className="content-container">
-                    <div className="post-input-section">
-                        <img
-                            src={user.profileImage}
-                            alt=" "
-                            className="profile-image"
-                        />
-                        <input
-                            type="text"
-                            id="postContent"
-                            className="form-control mb-3"
-                            placeholder="What's on your mind?"
-                            value={newPostContent}
-                            onChange={e => setNewPostContent(e.target.value)}
-                        />
-                        <button
-                            className="add-post-button"
-                            onClick={handleAddPost}>
-                            Post
-                        </button>
-                    </div>
-                    <div className="posts">
-                        {posts.map(post => (
-                            <div key={post.id} className="post">
-                                <p>{post.user}</p>
-                                <p>{post.content}</p>
-                            </div>
-                        ))}
-                    </div>
+                <div className="container mt-3">
+                    <PostEditor
+                        id="create-post-area"
+                        currentUser={user}
+                        details={dummyDetails}
+                        updateDetails={publishPost}
+                    />
+                    <PostList
+                        posts={postsDetails}
+                        updatePosts={setPostsDetails}
+                    />
                 </div>
             </div>
         </div>
