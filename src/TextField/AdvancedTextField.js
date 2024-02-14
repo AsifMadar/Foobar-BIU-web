@@ -9,7 +9,7 @@ function AdvancedTextField({
     valid, //The boolean to know if the text is valid
     inValidationErrorMessage, //which message to show if invalid input
     instruction, // instruction to the given textfield showed to user
-    isMasked, //a boolean which use asterisk if true
+    isMasked, //a boolean to mark if to mask the given text
 }) {
     const [inputValue, setInputValue] = useState('')
 
@@ -44,7 +44,10 @@ function AdvancedTextField({
 
     return (
         <div className="textFieldComp" style={{ textAlign: 'center' }}>
-            <label htmlFor="textField" className="form-label">
+            <label
+                htmlFor="textField"
+                className="form-label"
+                style={{ fontSize: '20px' }}>
                 {label}
             </label>
             {instruction && (
