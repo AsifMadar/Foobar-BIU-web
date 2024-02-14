@@ -1,0 +1,36 @@
+.menuside{
+   display: flex;
+  flex: 0.2;
+  margin-top: 20px;
+  flex-direction: column;
+  width:200px;
+}
+
+.menuside .hr{
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 8px;
+    border-top: 2px solid #d8dfe6;
+}
+
+.policies{
+display: flex;
+flex-direction: row;
+color: #a3a6ac;
+width:260px;
+flex-wrap: wrap;
+margin-right:16px;
+margin-left:16px ;
+}
+
+.policies p{
+  font-weight: 400;
+  font-size: 13px;
+  color: #b0b3b8;
+}
+
+@media screen and(max-width: 600px){
+  .menuside{
+    display: none;
+  }
+}
