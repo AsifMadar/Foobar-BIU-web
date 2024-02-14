@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+  [data-bs-theme=dark]{
+    
+    .btn-info{
+      --bs-btn-bg:rgb(47, 49, 75);
+      --bs-hover-bg:rgb(223, 233, 247);
+    }
+  }
+  [data-bs-theme=light]{
+    
+    .btn-info{
+      --bs-btn-bg:rgb(124, 171, 233);
+      --bs-btn-hover-bg:rgb(223, 233, 247);
+    }
+  }
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

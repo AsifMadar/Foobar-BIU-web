@@ -2,10 +2,17 @@ body {
     margin: 0;
     padding: 0;
 }
+.dark-mode-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+}
 
 .top-section {
     display: flex;
-    background-color: rgb(255, 255, 255);
+    
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -18,14 +25,6 @@ body {
     border-radius: 15px;
     margin-right: 10px;
     border-color: aliceblue; 
-}
-.search-button {
-    background-color: #85aaf3;
-    color: white;
-    border: none;
-    border-radius: 5%;
-    padding: 8px;
-    cursor: pointer;
 }
 .icon {
     width: 40px;

@@ -1,10 +1,16 @@
 // MenuTop.js
-import React from 'react'
+import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './MenuTop.css'
 import PropTypes from 'prop-types'
 
 function MenuTop({ user }) {
+    const [isDarkMode, setIsDarkMode] = useState(false)
+
+    const toggleColorMode = () => {
+        setIsDarkMode(prevMode => !prevMode)
+        document.body.dataset.bsTheme = isDarkMode ? 'light' : 'dark'
+    }
     return (
         <div className="top-section">
             <img
@@ -14,7 +20,7 @@ function MenuTop({ user }) {
             />
             <input type="text" placeholder="Search" className="search-bar" />
             <div className="user-info">
-                <button className="search-button"> Search</button>
+                <button className="search-button btn btn-info">Search</button>
             </div>
             <div className="feedpages">
                 <img
@@ -37,6 +43,23 @@ function MenuTop({ user }) {
                     alt=""
                     className="marketplaceIcon"
                 />
+            </div>
+            <div className="dark-mode-switcher">
+                <div className="form-check form-switch">
+                    <input
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                        checked={isDarkMode}
+                        onChange={toggleColorMode}
+                    />
+                    <label
+                        className="form-check-label"
+                        htmlFor="flexSwitchCheckDefault">
+                        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+                    </label>
+                </div>
             </div>
         </div>
     )
