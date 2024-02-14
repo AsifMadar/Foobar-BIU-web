@@ -13,6 +13,6 @@
 	}
 
 	.image-container {
-		max-width: fit-content;
+		max-width: var(--max-img-width);
 	}
 }

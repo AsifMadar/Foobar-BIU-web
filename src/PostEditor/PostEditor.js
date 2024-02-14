@@ -6,13 +6,14 @@ import addImageIcon from '../img/add-image-icon.svg'
 /** @typedef {import('../data/posts.json.js').User} User */
 /** @typedef {import('../data/posts.json.js').Post} Post */
 
+const MAX_IMAGES_NUM = 2
+
 /**
  * @param {object} props
  * @param {User} props.currentUser
  * @param {Post} props.details
  * @param {(newPost: Post) => void} props.updateDetails Will be called when the post data has to be changed
  */
-
 function PostEditor({ currentUser, details, updateDetails }) {
     const newPostTextRef = createRef()
     const fileInputRef = createRef()
@@ -78,22 +79,24 @@ function PostEditor({ currentUser, details, updateDetails }) {
                     ref={newPostTextRef}
                 />
             </article>
-            <article className="post-images">
-                <button
-                    className="add-image btn icon-link"
-                    onClick={() => fileInputRef.current.click()}>
-                    <img src={addImageIcon} alt="" />
-                    Add an image...
-                    <input
-                        className="d-none"
-                        type="file"
-                        ref={fileInputRef}
-                        onChange={addImage}
-                        accept="image/*"
-                    />
-                </button>
+            <article className="post-images d-flex flex-column align-items-center">
+                {newDetails.images.length < MAX_IMAGES_NUM && (
+                    <button
+                        className="add-image btn icon-link border mb-2"
+                        onClick={() => fileInputRef.current.click()}>
+                        <img src={addImageIcon} alt="" />
+                        Add an image...
+                        <input
+                            className="d-none"
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={addImage}
+                            accept="image/*"
+                        />
+                    </button>
+                )}
                 {newDetails.images.map((imageSrc, i) => (
-                    <div key={i} className="image-container m-1 mx-auto">
+                    <div key={i} className="image-container m-1">
                         <button
                             className="btn btn-close delete-img"
                             onClick={() => deleteImage(i)}

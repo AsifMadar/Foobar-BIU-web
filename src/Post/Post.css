@@ -1,4 +1,6 @@
 .post {
+	max-width: 50em;
+	
 	article {
 		white-space: break-spaces;
 	}
@@ -95,9 +97,12 @@
 	}
 }
 
-.post-images img {
-	max-width: min(100%, 600px);
-	max-height: min(100%, 600px);
+.post-images {
+	--max-img-width: min(100%, 600px);
+	img {
+		max-width: var(--max-img-width);
+		max-height: var(--max-img-width);
+	}
 }
 
 /* Theme */
