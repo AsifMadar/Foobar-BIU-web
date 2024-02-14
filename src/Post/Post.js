@@ -44,7 +44,6 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
     const modalRef = createRef()
 
     function handleLike() {
-        console.log(isLikedByMe)
         const detailsCopy = structuredClone(details)
         if (isLikedByMe) {
             const currentUserIndex = detailsCopy.likes.indexOf(currentUser)
