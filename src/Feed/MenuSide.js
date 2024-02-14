@@ -6,21 +6,24 @@ import SideBarRow from './SideBarRow.js'
 import { useNavigate } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
 
-function MenuSide({ user }) {
-    const username = user.username.toString()
-    const { setUser } = useContext(UserContent)
+function MenuSide() {
+    const { user, setUser } = useContext(UserContent)
     const navigate = useNavigate()
 
     const logout = () => {
         setUser(prevUser => ({
             ...prevUser,
-            signIn: false,
+            isSignedIn: false,
         }))
         navigate('/signin')
     }
     return (
         <div className="menuside">
-            <SideBarRow avatar ImageLink={user.profileImage} title={username} />
+            <SideBarRow
+                avatar
+                ImageLink={user.profileImage}
+                title={user.displayName}
+            />
             <SideBarRow
                 ImageLink="https://cdn-icons-gif.flaticon.com/12198/12198847.gif"
                 title="Messeges"
@@ -66,7 +69,7 @@ function MenuSide({ user }) {
                     <p className="dot">.</p>
                     <p>more</p>
                     <p className="dot">.</p>
-                    <p>Facebook 2024</p>
+                    <p>FooBar 2024</p>
                     <p className="dot">.</p>
                 </div>
             </div>

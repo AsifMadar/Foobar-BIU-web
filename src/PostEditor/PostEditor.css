@@ -1,0 +1,18 @@
+.post-edit {
+	textarea {
+		width: 100%;
+	}
+
+	.delete-img {
+		backdrop-filter: invert(100%) blur(5px);
+		background-color: var(--bs-gray-100);
+		filter: invert(20%);
+		float: left;
+		margin: 0.25em;
+		position: absolute;
+	}
+
+	.image-container {
+		max-width: var(--max-img-width);
+	}
+}

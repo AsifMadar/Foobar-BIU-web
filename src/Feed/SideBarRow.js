@@ -10,12 +10,8 @@ function SideBarRow({ ImageLink, title, avatar, onClick }) {
     }
     return (
         <div className="sideBarRow" onClick={handleClick}>
-            <img
-                src={ImageLink}
-                alt=""
-                className={`sidebarRow__icon ${avatar ? 'avatar' : ''}`}
-            />
-            <h2 className="sideBarRow_title">{title}</h2>
+            <img src={ImageLink} alt="" className={avatar ? 'avatar' : ''} />
+            <h2>{title}</h2>
         </div>
     )
 }

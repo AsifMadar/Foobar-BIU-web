@@ -1,5 +1,5 @@
 // MenuTop.js
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './MenuTop.css'
 import PropTypes from 'prop-types'
@@ -21,6 +21,7 @@ function MenuTop({ user }) {
     const toggleColorMode = () => {
         setIsDarkMode(prevMode => !prevMode)
     }
+
     return (
         <div className="top-section">
             <img

@@ -18,7 +18,7 @@ function SignUpPage() {
         if (checkAllValid()) {
             //Setting user
             setUser({
-                signIn: true,
+                isSignedIn: true,
                 username,
                 password,
                 displayName,

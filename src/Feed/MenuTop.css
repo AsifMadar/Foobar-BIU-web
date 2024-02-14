@@ -1,22 +1,23 @@
-body {
-    margin: 0;
-    padding: 0;
-}
 .dark-mode-switcher {
-    position: fixed;
-    top: 20px;
     right: 20px;
-    cursor: pointer;
-    z-index: 1000;
+    top: 20px;
+
+    input, label {
+        cursor: pointer;
+    }
 }
 
 .top-section {
-    display: flex;
-    
-    padding: 10px;
+    background: var(--bs-light-bg-subtle);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    display: flex;
     height: 120%;
+    opacity: .99;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 99;
 }
 
 .search-bar {
@@ -24,14 +25,16 @@ body {
     height: 40px;
     border-radius: 15px;
     margin-right: 10px;
-    border-color: aliceblue; 
+    border-color: aliceblue;
 }
+
 .icon {
     width: 40px;
     height: 40px;
     border-radius: 4%;
     margin-right: 10px;
 }
+
 .profile-image2 {
     width: 40px;
     border-radius: 100%;
@@ -39,11 +42,13 @@ body {
     border-radius: 4%;
     margin-right: 10px;
 }
-img{
+
+.top-section img {
     width: 40px;
     height: 40px;
 }
-.feedpages{
+
+.feedpages {
     width: 50%;
     display: flex;
     justify-content: space-evenly;
