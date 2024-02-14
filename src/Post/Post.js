@@ -127,7 +127,7 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
                         <img
                             key={i}
                             src={imageSrc}
-                            className="img-fluid mt-2"
+                            className="img-fluid mt-2 mx-auto d-block"
                             alt=""
                         />
                     ))}

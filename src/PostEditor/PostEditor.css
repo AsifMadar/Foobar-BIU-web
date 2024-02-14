@@ -11,4 +11,8 @@
 		margin: 0.25em;
 		position: absolute;
 	}
+
+	.image-container {
+		max-width: fit-content;
+	}
 }

@@ -93,7 +93,7 @@ function PostEditor({ currentUser, details, updateDetails }) {
                     />
                 </button>
                 {newDetails.images.map((imageSrc, i) => (
-                    <div key={i} className="m-1">
+                    <div key={i} className="image-container m-1 mx-auto">
                         <button
                             className="btn btn-close delete-img"
                             onClick={() => deleteImage(i)}
