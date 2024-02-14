@@ -99,9 +99,11 @@
 
 .post-images {
 	--max-img-width: min(100%, 600px);
+	--max-img-height: 500px;
+
 	img {
 		max-width: var(--max-img-width);
-		max-height: var(--max-img-width);
+		max-height: var(--max-img-height);
 	}
 }
 
