@@ -1,16 +1,27 @@
 // MenuTop.js
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './MenuTop.css'
 import PropTypes from 'prop-types'
 
 function MenuTop({ user }) {
-    const [isDarkMode, setIsDarkMode] = useState(false)
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        // Initialize isDarkMode state with the value from local storage
+        const storedMode = localStorage.getItem('darkMode')
+        return storedMode ? JSON.parse(storedMode) : false
+    })
+
+    useEffect(() => {
+        // Update body dataset attribute when isDarkMode changes
+        document.body.dataset.bsTheme = isDarkMode ? 'dark' : 'light'
+        // Update local storage with the current isDarkMode value
+        localStorage.setItem('darkMode', JSON.stringify(isDarkMode))
+    }, [isDarkMode])
 
     const toggleColorMode = () => {
         setIsDarkMode(prevMode => !prevMode)
-        document.body.dataset.bsTheme = isDarkMode ? 'light' : 'dark'
     }
+
     return (
         <div className="top-section">
             <img
