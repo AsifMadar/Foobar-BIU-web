@@ -20,7 +20,7 @@ function MenuSide({ user }) {
     }
     return (
         <div className="menuside">
-            <SideBarRow avatar ImageLink={user.img} title={username} />
+            <SideBarRow avatar ImageLink={user.profileImage} title={username} />
             <SideBarRow
                 ImageLink="https://cdn-icons-gif.flaticon.com/12198/12198847.gif"
                 title="Messeges"
