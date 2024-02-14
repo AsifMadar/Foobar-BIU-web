@@ -29,11 +29,7 @@ function UserFeed() {
                 <MenuSide user={user} />
                 <div className="content-container">
                     <div className="post-input-section">
-                        <img
-                            src={user.profileImage}
-                            alt=" "
-                            className="profile-image"
-                        />
+                        <img src={user.img} alt=" " className="profile-image" />
                         <input
                             type="text"
                             id="postContent"
