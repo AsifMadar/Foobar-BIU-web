@@ -98,7 +98,8 @@ function SignUpPage() {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'flex-start', // Adjust this as needed
-                minHeight: '80vh', // Now it's a minimum height, allowing growth
+                minHeight: '80vh',
+                marginTop: '50px', // Now it's a minimum height, allowing growth
             }}>
             <header className="bg-primary text-white p-3">
                 <h1>Sign Up</h1>
