@@ -10,11 +10,7 @@ import UserFeed from '../Feed/UserFeed.js'
 
 /** @type {UserDetails} */
 const defaultUser = {
-    displayName: 'Georg C.',
-    profileImage: '/sampleImages/user1.jpg',
-    isSignedIn: true,
-    password: '12345678',
-    username: 'gcantor',
+    isSignedIn: false,
 }
 export const UserContent = createContext({
     user: defaultUser,
