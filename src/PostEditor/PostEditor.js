@@ -6,7 +6,7 @@ import addImageIcon from '../img/add-image-icon.svg'
 /** @typedef {import('../data/posts.json.js').User} User */
 /** @typedef {import('../data/posts.json.js').Post} Post */
 
-const MAX_IMAGES_NUM = 2
+const MAX_IMAGES_NUM = 1
 
 /**
  * @param {object} props
