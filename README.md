@@ -1,6 +1,12 @@
 # Foobar-BIU-web
 
+## Running the project
+
 To run the project, first install the dependencies using `npm install`, then execute the command `npm start`
+
+When the app first loads, you will be taken to the login page. Since you don't have an account yet, click the "Sign-Up" button to go to the sign up page. After filling the fields in the sign up page (the exact requirement for each field is listed next to the field), click the "Sign-Up" button. You wil be taken to the feed screen, where you can scroll over the existing posts, create new posts and edit/delete your existing posts. Additionaly, each post has a comment section, which you can access either by clicking the "N comments" link bellow the post, or by clicking the "Reply" button (which will also open the comment creator).
+
+In the top-right corner, there is a dark-mode toggle you can switch on or off. In the bottom of the left-side menu you can log out of your account, which will take you back to the login scree.
 
 ## Workflow
 At the start of the project, we sat down and planned the application structure, splitted the work between the three of us (Asif and Hodaya, and Michael) and created a sprint with the appropriate tasks on Jira. Afterwords we started working on the project, starting with the web application, and later moving on to the android application.
