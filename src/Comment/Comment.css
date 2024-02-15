@@ -75,4 +75,10 @@
 	.comment-time, .comment-likes {
 		color: var(--bs-secondary);
 	}
+
+	.edit-comment {
+		img {
+			filter: invert(80%);
+		}
+	}
 }

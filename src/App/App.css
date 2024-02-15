@@ -2,6 +2,7 @@
   .btn-info{
     --bs-btn-bg: rgb(47, 49, 75);
     --bs-hover-bg: rgb(223, 233, 247);
+    --bs-btn-color: white;
   }
 }
 

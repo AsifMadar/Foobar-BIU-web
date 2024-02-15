@@ -1,6 +1,5 @@
 // MenuTop.js
 import React, { useEffect, useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './MenuTop.css'
 import PropTypes from 'prop-types'
 
@@ -68,7 +67,7 @@ function MenuTop({ user }) {
                     <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault">
-                        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+                        Dark Mode
                     </label>
                 </div>
             </div>

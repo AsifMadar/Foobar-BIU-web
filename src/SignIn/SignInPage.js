@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react'
+import './SignInPage.css'
 import { useNavigate } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import AdvancedTextField from '../TextField/AdvancedTextField.js'
 import { UserContent } from '../App/App.js'
+import AdvancedTextField from '../TextField/AdvancedTextField.js'
+import React, { useContext, useState } from 'react'
 
 function SignInPage() {
     const [username, setUsername] = useState('')
@@ -29,39 +29,33 @@ function SignInPage() {
 
     return (
         <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '80vh',
-            }}>
+            id="sign-in-container"
+            className="d-flex flex-column justify-content-center align-items-center">
             <header className="bg-primary text-white p-3">
                 <h1>Sign in</h1>
             </header>
-            {/* Username textField */}
-            <AdvancedTextField
-                label="Username"
-                onInputChange={inputValue => setUsername(inputValue)}
-                textFieldId={'loginUsername'}
-            />
-            {/* Password textField */}
-            <AdvancedTextField
-                label="Password"
-                onInputChange={inputValue => setPassword(inputValue)}
-                textFieldId={'loginPassword'}
-                isMasked={true}
-            />
-            <div style={{ margin: '5px 0' }}>
-                {/* Sign in button */}
-                <button className="btn btn-primary" onClick={handleSignInClick}>
-                    Sign-In
+            <form className="d-flex flex-column" action="">
+                <AdvancedTextField
+                    label="Username"
+                    onInputChange={inputValue => setUsername(inputValue)}
+                />
+                <AdvancedTextField
+                    label="Password"
+                    onInputChange={inputValue => setPassword(inputValue)}
+                    isMasked={true}
+                />
+                <button
+                    className="btn btn-primary mt-3 mx-auto mb-1"
+                    onClick={handleSignInClick}
+                    type="submit">
+                    Sign In
                 </button>
-            </div>
-            <div style={{ margin: '5px 0' }}>
-                {/* Sign up button */}
-                <button className="btn btn-danger" onClick={handleSignUpClick}>
-                    Sign-up
+            </form>
+            <div className="m-1">
+                <button
+                    className="btn btn-danger m-1 mx-auto"
+                    onClick={handleSignUpClick}>
+                    Sign Up Page
                 </button>
             </div>
         </div>

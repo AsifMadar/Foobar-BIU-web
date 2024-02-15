@@ -1,4 +1,4 @@
-import '../Feed/UserFeed.css'
+import './UserFeed.css'
 import { useContext, useState } from 'react'
 import { UserContent } from '../App/App.js'
 import MenuSide from './MenuSide.js'
