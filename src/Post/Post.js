@@ -7,6 +7,7 @@ import Comment from '../Comment/Comment.js'
 import commentIcon from '../img/comment-icon.svg'
 import deleteIcon from '../img/trash-icon.svg'
 import editIcon from '../img/pencil-icon.svg'
+import instance from '../utils/axios.js'
 import likeBtnBlue from '../img/like-btn-blue.svg'
 import likeBtnWhite from '../img/like-btn-white.svg'
 import likeIcon from '../img/like-icon.svg'
@@ -44,6 +45,8 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
     const modalRef = createRef()
 
     function handleLike() {
+        instance.post('/likes', { postId: details.id })
+
         const detailsCopy = structuredClone(details)
         if (isLikedByMe) {
             const currentUserIndex = detailsCopy.likes.indexOf(currentUser)

@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import { UserContent } from '../App/App.js'
+import instance from '../utils/axios.js'
 import Post from '../Post/Post.js'
 import PostEditor from '../PostEditor/PostEditor.js'
 
@@ -26,8 +27,16 @@ function PostList({ posts, updatePosts }) {
         const newArray = [...posts]
 
         if (!newPost || updateType === 'delete') {
+            instance.delete(
+                `/users/${currentUser.username}/posts/${newPost.id}`,
+            )
             newArray.splice(i, 1)
         } else if (newPost) {
+            instance.put(
+                `/users/${currentUser.username}/posts/${newPost.id}`,
+                newPost,
+            )
+
             newArray.splice(i, 1, newPost)
         }
 

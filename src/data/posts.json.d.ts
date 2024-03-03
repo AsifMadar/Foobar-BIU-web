@@ -11,6 +11,7 @@ export interface Comment {
 }
 
 export interface Post {
+    id: string
     author: User
     comments: Comment[]
     contents: string
