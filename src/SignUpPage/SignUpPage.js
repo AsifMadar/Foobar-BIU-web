@@ -16,7 +16,10 @@ function SignUpPage() {
     const { setUser } = useContext(UserContent)
 
     const handleSignUpClick = async () => {
-        if (checkAllValid()) {
+        if (!checkAllValid())
+            return alert('One or more of the fields are invalid')
+
+        try {
             const res = await axios.post('/users', {
                 username,
                 password,
@@ -48,18 +51,18 @@ function SignUpPage() {
                     localStorage.setItem('jwtToken', token)
 
                     //moves the user to the feed page
-                    return navigate('/feed')
+                    navigate('/feed')
                 }
-            } else if (res.status === 422) {
-                return alert(
+            }
+        } catch (e) {
+            if (e.response.status === 409) {
+                alert(
                     'This user already exists; please choose a different username',
                 )
+            } else if (e.response.status === 422) {
+                alert('One or more of the fields are invalid')
             }
-        } else {
-            //if one of the fields are invalid alerting the user
-            return alert('One or more of the fields are invalid')
         }
-        alert('An internal error has occurred.')
     }
 
     const handleSignInPageClick = () => {
