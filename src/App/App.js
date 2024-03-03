@@ -6,7 +6,7 @@ import SignUpPage from '../SignUpPage/SignUpPage.js'
 import UserFeed from '../Feed/UserFeed.js'
 
 /** @typedef {import('../data/posts.json').User} User */
-/** @typedef {User & { isSignedIn: boolean, password: string}} UserDetails */
+/** @typedef {User & { isSignedIn: boolean, jwtToken: string}} UserDetails */
 
 /** @type {UserDetails} */
 const defaultUser = {
