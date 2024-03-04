@@ -20,13 +20,17 @@ function SignUpPage() {
             return alert('One or more of the fields are invalid')
 
         try {
+            const reader = new FileReader()
+            reader.readAsDataURL(profileImage)
+            await new Promise(resolve => {
+                reader.onload = resolve
+            })
+
             const res = await axios.post('/users', {
                 username,
                 password,
                 displayName,
-                profileImage: profileImage
-                    ? new FileReader().readAsDataURL(profileImage)
-                    : '',
+                profileImage: reader.result ?? '',
             })
 
             if (res.status === 200) {

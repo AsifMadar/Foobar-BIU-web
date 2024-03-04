@@ -35,8 +35,7 @@ function UserFeed() {
     function publishPost(/** @type {Post}*/ postDetails) {
         instance
             .post(`/users/${user.username}/posts`, postDetails)
-            .then(createdPost => {
-                postDetails.timestamp = Date.now()
+            .then(({ data: createdPost }) => {
                 setPostsDetails([...postsDetails, createdPost])
             })
     }

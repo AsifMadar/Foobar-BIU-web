@@ -32,8 +32,6 @@ function SignInPage() {
                     isSignedIn: true,
                 })
 
-                console.log(userRes.data)
-
                 navigate('/feed')
             }
         } catch (error) {

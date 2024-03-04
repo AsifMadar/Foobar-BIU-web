@@ -20,22 +20,24 @@ function PostList({ posts, updatePosts }) {
 
     /**
      * @param {number} i
-     * @param {Post | null} newPost
+     * @param {Post} newPost
      * @param {'delete' | 'edit' | 'update'} updateType
      */
     function updatePost(i, newPost, updateType) {
         const newArray = [...posts]
 
-        if (!newPost || updateType === 'delete') {
+        if (updateType === 'delete') {
             instance.delete(
                 `/users/${currentUser.username}/posts/${newPost.id}`,
             )
             newArray.splice(i, 1)
         } else if (newPost) {
-            instance.put(
-                `/users/${currentUser.username}/posts/${newPost.id}`,
-                newPost,
-            )
+            if (updateType === 'edit') {
+                instance.put(
+                    `/users/${currentUser.username}/posts/${newPost.id}`,
+                    newPost,
+                )
+            }
 
             newArray.splice(i, 1, newPost)
         }

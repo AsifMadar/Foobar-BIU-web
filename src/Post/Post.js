@@ -1,7 +1,7 @@
 import './Post.css'
 import { createRef } from 'react'
 import { timestampToStr } from '../utils/timestampToStr.js'
-import { usernamesToStr } from '../utils/usernamesToStr.js'
+import { listToStr } from '../utils/listToStr.js'
 import { useState } from 'react'
 import Comment from '../Comment/Comment.js'
 import commentIcon from '../img/comment-icon.svg'
@@ -20,10 +20,13 @@ import whatsappIcon from '../img/whatsapp-icon.svg'
 
 /**
  * @callback UpdateDetailsCallback
- * @param {Post | null} newPost
+ * @param {Post} newPost
  * @param {'delete' | 'update'} updateType
  * @returns {void}
  */
+
+const selectMe = (usernames, me) =>
+    usernames.map(username => (username === me ? 'You' : username))
 
 /**
  * @param {object} props
@@ -34,11 +37,13 @@ import whatsappIcon from '../img/whatsapp-icon.svg'
  */
 function Post({ currentUser, editRequested, details, updateDetails }) {
     const author = details.author
-    const isLikedByMe = details.likes.some(
-        user => user.username === currentUser.username,
+    const isLikedByMe = details.likes.includes(currentUser.username)
+    const likesNameList = listToStr(
+        selectMe(details.likes, currentUser.username),
     )
-    const likesNameList = usernamesToStr(details.likes, currentUser)
-    const sharesNameList = usernamesToStr(details.shares, currentUser)
+    const sharesNameList = listToStr(
+        selectMe(details.shares, currentUser.username),
+    )
 
     const [isCommenting, setIsCommenting] = useState(false)
     const [isCommentListOpen, setIsCommentListOpen] = useState(false)
@@ -49,10 +54,10 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
 
         const detailsCopy = structuredClone(details)
         if (isLikedByMe) {
-            const currentUserIndex = detailsCopy.likes.indexOf(currentUser)
-            detailsCopy.likes.splice(currentUserIndex, 1)
+            const authorIndex = detailsCopy.likes.indexOf(author.username)
+            detailsCopy.likes.splice(authorIndex, 1)
         } else {
-            detailsCopy.likes.push(currentUser)
+            detailsCopy.likes.push(author.username)
         }
         updateDetails(detailsCopy, 'update')
     }
@@ -114,7 +119,9 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
                             </button>
                             <button
                                 className="btn icon-link"
-                                onClick={() => updateDetails(null, 'delete')}>
+                                onClick={() =>
+                                    updateDetails(details, 'delete')
+                                }>
                                 <img src={deleteIcon} alt="" />
                                 Delete
                             </button>
