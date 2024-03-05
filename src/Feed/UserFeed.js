@@ -32,7 +32,6 @@ function UserFeed() {
 
     return (
         <div className="user-feed-container">
-            <MenuTop user={user} />
             <div className="wrapper">
                 <MenuSide user={user} />
                 <div className="container mt-3">

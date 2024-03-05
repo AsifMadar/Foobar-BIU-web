@@ -19,7 +19,7 @@
     width: 100%;
     z-index: 99;
 }
-
+.active{background-color: gray !important}
 .search-bar {
     flex: 0.4;
     height: 40px;

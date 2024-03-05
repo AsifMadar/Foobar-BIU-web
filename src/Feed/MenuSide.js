@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import './MenuSide.css'
 import PropTypes from 'prop-types'
 import SideBarRow from './SideBarRow.js'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
 
 function MenuSide() {
@@ -19,11 +19,13 @@ function MenuSide() {
     }
     return (
         <div className="menuside">
-            <SideBarRow
-                avatar
-                ImageLink={user.profileImage}
-                title={user.displayName}
-            />
+            <Link to="/profile">
+                <SideBarRow
+                    avatar
+                    ImageLink={user.profileImage}
+                    title={user.displayName}
+                />
+            </Link>
             <SideBarRow
                 ImageLink="https://cdn-icons-gif.flaticon.com/12198/12198847.gif"
                 title="Messeges"
@@ -31,7 +33,7 @@ function MenuSide() {
 
             <SideBarRow
                 ImageLink="https://cdn-icons-gif.flaticon.com/10182/10182258.gif"
-                title="Find Friends"
+                title="Friends"
             />
             <SideBarRow
                 ImageLink="https://cdn-icons-gif.flaticon.com/9822/9822027.gif"

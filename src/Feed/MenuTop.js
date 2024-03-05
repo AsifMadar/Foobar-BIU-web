@@ -1,9 +1,15 @@
 // MenuTop.js
 import React, { useEffect, useState } from 'react'
 import './MenuTop.css'
+import { Link, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-function MenuTop({ user }) {
+function MenuTop() {
+    const { pathname } = useLocation()
+    const isActive = pn => {
+        if (pn === pathname) return 'active'
+    }
+
     const [isDarkMode, setIsDarkMode] = useState(() => {
         // Initialize isDarkMode state with the value from local storage
         const storedMode = localStorage.getItem('darkMode')
@@ -33,26 +39,41 @@ function MenuTop({ user }) {
                 <button className="search-button btn btn-info">Search</button>
             </div>
             <div className="feedpages">
-                <img
-                    src="https://cdn-icons-png.flaticon.com/128/14035/14035666.png"
-                    alt=""
-                    className="homeIcon"
-                />
-                <img
-                    src="https://cdn-icons-png.flaticon.com/128/880/880441.png"
-                    alt=""
-                    className="friendsIcon"
-                />
-                <img
-                    src="https://cdn-icons-png.flaticon.com/128/4406/4406124.png"
-                    alt=""
-                    className="videosIcon"
-                />
-                <img
-                    src="https://cdn-icons-png.flaticon.com/128/4141/4141968.png"
-                    alt=""
-                    className="marketplaceIcon"
-                />
+                <Link to="/">
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/128/14035/14035666.png"
+                        alt=""
+                        className={`${isActive('/')}`}
+                    />
+                </Link>
+                <Link to="/friends">
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/128/880/880441.png"
+                        alt=""
+                        className={`${isActive('/friends')}`}
+                    />
+                </Link>
+                <Link to="/profile">
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/128/1177/1177568.png"
+                        alt=""
+                        className={`${isActive('/profile')}`}
+                    />
+                </Link>
+                <Link to="/videos">
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/128/4406/4406124.png"
+                        alt=""
+                        className={`${isActive('/videos')}`}
+                    />
+                </Link>
+                <Link to="/marketplace">
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/128/4141/4141968.png"
+                        alt=""
+                        className={`${isActive('/marketplace')}`}
+                    />
+                </Link>
             </div>
             <div className="dark-mode-switcher">
                 <div className="form-check form-switch">

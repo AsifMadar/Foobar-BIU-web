@@ -4,6 +4,9 @@ import { createContext, useState } from 'react'
 import SignInPage from '../SignIn/SignInPage.js'
 import SignUpPage from '../SignUpPage/SignUpPage.js'
 import UserFeed from '../Feed/UserFeed.js'
+import MenuTop from '../Feed/MenuTop.js'
+import Profile from '../Feed/Profile.js'
+import Friends from '../Feed/Friends.js'
 
 /** @typedef {import('../data/posts.json').User} User */
 /** @typedef {User & { isSignedIn: boolean, password: string}} UserDetails */
@@ -25,11 +28,14 @@ function App() {
         <BrowserRouter>
             <div className="Fakebook">
                 <UserContent.Provider value={{ user, setUser }}>
+                    {user.isSignedIn && <MenuTop />}
                     <Routes>
                         {/* If user is logged in go to feed */}
                         {user.isSignedIn ? (
                             <>
                                 <Route path="/*" element={<UserFeed />} />
+                                <Route path="/profile" element={<Profile />} />
+                                <Route path="/friends" element={<Friends />} />
                             </>
                         ) : (
                             <>
