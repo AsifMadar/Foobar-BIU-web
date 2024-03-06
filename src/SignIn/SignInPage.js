@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
 import AdvancedTextField from '../TextField/AdvancedTextField.js'
 import axios, { jwt } from '../utils/axios.js'
-import React, { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 
 function SignInPage() {
     const [username, setUsername] = useState('')
@@ -22,10 +22,12 @@ function SignInPage() {
         }
     }
 
-    const existingUsername = localStorage.getItem('username')
-    if (jwt.get() && existingUsername) {
-        getUserInfoAndGoToFeed(existingUsername)
-    }
+    useEffect(() => {
+        const existingUsername = localStorage.getItem('username')
+        if (jwt.get() && existingUsername) {
+            getUserInfoAndGoToFeed(existingUsername)
+        }
+    })
 
     const navigate = useNavigate()
     const { setUser } = useContext(UserContent)
