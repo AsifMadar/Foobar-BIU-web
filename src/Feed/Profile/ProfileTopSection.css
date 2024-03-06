@@ -1,0 +1,57 @@
+.profileHeader__left ul {
+    display: flex;
+    flex-direction: row;
+    padding-top: 30px;
+    padding-left: 10px;
+    list-style-type: none;
+}
+
+.profileHeader__left ul li {
+    margin: 0;
+    font-size: 15px;
+    color: #b0b3b8;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px; /* Adjust padding for better spacing */
+    cursor: pointer;
+}
+
+
+
+.profileHeader__options a p {
+    display: inline;
+    margin-left: 5px; /* Optional: Add some space between the image and text */
+}
+/* Profile.css */
+
+/* Style links to remove underlines and make them black */
+.profileHeader__options a {
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none; /* Remove underlines */
+    color: black; /* Make links black */
+    
+}
+
+/* Style links when hovered to change color */
+.profileHeader__options a:hover {
+    color: #8b7d7d; /* Change color on hover */
+}
+
+
+.profileHeader__left li:hover {
+    background-color: #b9b9b9 !important;
+}
+
+.profileHeader__left ul .selected {
+    color: #2E89FF;
+    border-radius: 0px !important;
+    border-bottom: 3px solid #2E89FF;
+    margin-left: 45%;
+    margin-bottom: 0px !important;
+}
+
+.profileHeader__left ul .selected:hover {
+    background-color: transparent !important;
+}

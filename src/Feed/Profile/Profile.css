@@ -81,8 +81,8 @@
     display: flex;
     flex-direction: row;
     padding-top: 30px;
-    padding-left: 10px;
-    list-style-type: none;
+    padding-left: 10px; /* Add padding to the left */
+    list-style-type: none; /* Remove default list style */
 }
 .profileHeader__right  {
     display: flex;
@@ -90,16 +90,14 @@
     padding-left: 10px; /* Add padding to the left */
     list-style-type: none; /* Remove default list style */
 }
-
 .profileHeader__left ul li {
     margin: 0;
     font-size: 15px;
     color: #b0b3b8;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 5px !important;
     margin-bottom: 10px;
-    padding: 10px; /* Adjust padding for better spacing */
-    cursor: pointer;
+    padding-right: 10px; /* Add padding to the right */
 }
 
 .progress {
@@ -286,13 +284,5 @@
 }
 .friend-item {
     padding: 20px 10px; /* Adjust padding as needed */
-    margin-bottom: 10px; /* Add margin at the bottom */
-}
-.profileHeader__left ul li.selected {
-    color: #2E89FF;
-    border-bottom: 3px solid #2E89FF;
-}
-
-.profileHeader__left ul li.selected:hover {
-    background-color: transparent;
+    margin-bottom: 100px; /* Add margin at the bottom */
 }

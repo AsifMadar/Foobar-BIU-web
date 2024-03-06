@@ -48,7 +48,7 @@ function App() {
                                     element={<FriendsRequest />}
                                 />
                                 <Route
-                                    path="/profile/:username"
+                                    path="/profile/:username/timeline"
                                     element={<TimeLine />}
                                 />
                                 <Route

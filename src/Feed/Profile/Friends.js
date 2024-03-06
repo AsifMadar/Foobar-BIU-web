@@ -9,11 +9,6 @@ const Friends = () => {
     const { user } = useContext(UserContent)
     const [bio, setBio] = useState('')
     const [bioPresent, setBioPresent] = useState(false)
-    const [selectedLink, setSelectedLink] = useState('')
-
-    const handleLinkClick = link => {
-        setSelectedLink(link)
-    }
 
     useEffect(() => {
         // Fetch bio from database or any other source
@@ -31,6 +26,7 @@ const Friends = () => {
         { id: 1, name: 'Friend 1' },
         { id: 2, name: 'Friend 2' },
         { id: 3, name: 'Friend 3' },
+        { id: 4, name: 'Friend 4' },
         // Add more friends as needed
     ]
 
@@ -41,9 +37,8 @@ const Friends = () => {
                 bio={bio}
                 bioPresent={bioPresent}
                 addBio={addBio}
-                handleLinkClick={handleLinkClick}
-                selectedLink={selectedLink}
             />
+
             <Container className="friends-grid-container">
                 <Row>
                     <Col xs={9}>
@@ -55,7 +50,13 @@ const Friends = () => {
                 </Row>
                 <Row>
                     {friends.map(friend => (
-                        <Col key={friend.id} xs={6} sm={6} md={4} lg={3} xl={2}>
+                        <Col
+                            key={friend.id}
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            lg={4}
+                            xl={4}>
                             {/* Display friend details with padding */}
                             <div className="friend-item">{friend.name}</div>
                         </Col>

@@ -8,11 +8,6 @@ const TimeLine = () => {
     const { user } = useContext(UserContent)
     const [bio, setBio] = useState('')
     const [bioPresent, setBioPresent] = useState(false)
-    const [selectedLink, setSelectedLink] = useState('')
-
-    const handleLinkClick = link => {
-        setSelectedLink(link)
-    }
 
     useEffect(() => {
         // Fetch bio from database or any other source
@@ -32,8 +27,6 @@ const TimeLine = () => {
                 bio={bio}
                 bioPresent={bioPresent}
                 addBio={addBio}
-                handleLinkClick={handleLinkClick}
-                selectedLink={selectedLink}
             />
             <div className="postsAndIntro">
                 <ProfileSidebar username={user.username} />

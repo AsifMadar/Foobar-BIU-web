@@ -1,17 +1,8 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import './Profile.css'
+import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import './ProfileTopSection.css'
 
-const ProfileTopSection = ({
-    user,
-    bio,
-    bioPresent,
-    addBio,
-    handleLinkClick,
-    selectedLink,
-}) => {
-    // No need to define handleLinkClick here since it's being passed as a prop
-
+const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
     return (
         <div className="profile__topSection">
             <div className="profile__coverPhoto">
@@ -31,65 +22,53 @@ const ProfileTopSection = ({
             <div className="profileHeader__options">
                 <div className="profileHeader__left">
                     <ul>
-                        <li
-                            className={
-                                selectedLink === 'timeline' ? 'selected' : ''
-                            }>
-                            <Link
-                                to={`/profile/${user.username}`}
-                                onClick={() => handleLinkClick('timeline')}>
+                        <li>
+                            <NavLink
+                                to={`/profile/${user.username}/timeline`}
+                                activeClassName="selected"
+                                className="nav-link">
                                 Timeline
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li
-                            className={
-                                selectedLink === 'about' ? 'selected' : ''
-                            }>
-                            <Link
+                        <li>
+                            <NavLink
                                 to={`/profile/${user.username}/about`}
-                                onClick={() => handleLinkClick('about')}>
+                                activeClassName="selected"
+                                className="nav-link">
                                 About
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li
-                            className={
-                                selectedLink === 'friends' ? 'selected' : ''
-                            }>
-                            <Link
+                        <li>
+                            <NavLink
                                 to={`/profile/${user.username}/friends`}
-                                onClick={() => handleLinkClick('friends')}>
+                                activeClassName="selected"
+                                className="nav-link">
                                 Friends
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li
-                            className={
-                                selectedLink === 'photos' ? 'selected' : ''
-                            }>
-                            <Link
+                        <li>
+                            <NavLink
                                 to={`/profile/${user.username}/photos`}
-                                onClick={() => handleLinkClick('photos')}>
+                                activeClassName="selected"
+                                className="nav-link">
                                 Photos
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li
-                            className={
-                                selectedLink === 'archive' ? 'selected' : ''
-                            }>
-                            <Link
+                        <li>
+                            <NavLink
                                 to={`/profile/${user.username}/archive`}
-                                onClick={() => handleLinkClick('archive')}>
+                                activeClassName="selected"
+                                className="nav-link">
                                 Archive
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li
-                            className={
-                                selectedLink === 'more' ? 'selected' : ''
-                            }>
-                            <Link
+                        <li>
+                            <NavLink
                                 to={`/profile/${user.username}/more`}
-                                onClick={() => handleLinkClick('more')}>
+                                activeClassName="selected"
+                                className="nav-link">
                                 More
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </div>
