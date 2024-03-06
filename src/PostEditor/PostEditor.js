@@ -30,10 +30,14 @@ function PostEditor({ currentUser, details, updateDetails }) {
         if (fileList.length !== 1) return
 
         const img = fileList.item(0)
-        const imgSrc = URL.createObjectURL(img)
-        const newDetailsCopy = structuredClone(newDetails)
-        newDetailsCopy.images.push(imgSrc)
-        setNewDetails(newDetailsCopy)
+        const reader = new FileReader()
+
+        reader.readAsDataURL(img)
+        reader.onload = () => {
+            const newDetailsCopy = structuredClone(newDetails)
+            newDetailsCopy.images.push(reader.result)
+            setNewDetails(newDetailsCopy)
+        }
     }
 
     function updateText() {

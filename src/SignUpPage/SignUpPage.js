@@ -2,6 +2,7 @@ import './SignUpPage.css'
 import { useNavigate } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
 import AdvancedTextField from '../TextField/AdvancedTextField.js'
+import axios from '../utils/axios.js'
 import React, { useContext, useState, useRef } from 'react'
 
 function SignUpPage() {
@@ -14,23 +15,57 @@ function SignUpPage() {
     const navigate = useNavigate()
     const { setUser } = useContext(UserContent)
 
-    const handleSignUpClick = () => {
-        if (checkAllValid()) {
-            //Setting user
-            setUser({
-                isSignedIn: true,
+    const handleSignUpClick = async () => {
+        if (!checkAllValid())
+            return alert('One or more of the fields are invalid')
+
+        try {
+            const reader = new FileReader()
+            reader.readAsDataURL(profileImage)
+            await new Promise(resolve => {
+                reader.onload = resolve
+            })
+
+            const res = await axios.post('/users', {
                 username,
                 password,
                 displayName,
-                profileImage: profileImage
-                    ? URL.createObjectURL(profileImage)
-                    : null, //saves the img via url, if there's no image saves null
+                profileImage: reader.result ?? '',
             })
-            //moves the user to the feed page
-            navigate('/feed')
-        } else {
-            //if one of the fields are invalid alerting the user
-            alert('One or more of the fields are invalid')
+
+            if (res.status === 200) {
+                // The user was created; log in
+                const res = await axios.post('/tokens', {
+                    username,
+                    password,
+                })
+
+                if (res.status === 200) {
+                    const token = res.data
+                    setUser({
+                        displayName,
+                        isSignedIn: true,
+                        password,
+                        username,
+                        profileImage: profileImage
+                            ? URL.createObjectURL(profileImage)
+                            : null, //saves the img via url, if there's no image saves null
+                    })
+
+                    localStorage.setItem('jwtToken', token)
+
+                    //moves the user to the feed page
+                    navigate('/feed')
+                }
+            }
+        } catch (e) {
+            if (e.response.status === 409) {
+                alert(
+                    'This user already exists; please choose a different username',
+                )
+            } else if (e.response.status === 422) {
+                alert('One or more of the fields are invalid')
+            }
         }
     }
 

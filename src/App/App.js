@@ -16,6 +16,10 @@ import Friends from '../Feed/Profile/Friends.js' // Import FriendsRequests compo
 import TimeLine from '../Feed/Profile/TimeLine.js'
 import FriendsRequest from '../Feed/FriendRequestPage/FriendsRequest.js'
 
+/** @typedef {import('../data/posts.json').User} User */
+/** @typedef {User & { isSignedIn: boolean, jwtToken: string}} UserDetails */
+
+/** @type {UserDetails} */
 const defaultUser = {
     isSignedIn: false,
 }

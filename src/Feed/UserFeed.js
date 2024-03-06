@@ -1,19 +1,26 @@
 import './UserFeed.css'
 import { useContext, useState } from 'react'
 import { UserContent } from '../App/App.js'
+import instance from '../utils/axios.js'
 import MenuSide from './MenuSide.js'
 import MenuTop from './MenuTop.js'
 import PostEditor from '../PostEditor/PostEditor.js'
 import PostList from '../PostList/PostList.js'
-import posts from '../data/posts.json'
 
 /** @typedef {import('../data/posts.json').Post} Post */
 
 function UserFeed() {
     const { user } = useContext(UserContent)
-    const [postsDetails, setPostsDetails] = useState(
-        /** @type {Post[]} */ (posts),
-    )
+    const [postsDetails, setPostsDetails] = useState(() => {
+        instance
+            .get('/posts')
+            .then(postList =>
+                setPostsDetails(
+                    postList.data.map(post => ({ ...post, comments: [] })),
+                ),
+            ) // Will happen at some later point
+        return []
+    })
 
     const dummyDetails = {
         author: user,
@@ -26,8 +33,11 @@ function UserFeed() {
     }
 
     function publishPost(/** @type {Post}*/ postDetails) {
-        postDetails.timestamp = Date.now()
-        setPostsDetails([...postsDetails, postDetails])
+        instance
+            .post(`/users/${user.username}/posts`, postDetails)
+            .then(({ data: createdPost }) => {
+                setPostsDetails([...postsDetails, createdPost])
+            })
     }
 
     return (

@@ -1,7 +1,6 @@
 export interface User {
     displayName: string
     profileImage: string
-    username: string
 }
 
 export interface Comment {
@@ -12,6 +11,7 @@ export interface Comment {
 }
 
 export interface Post {
+    id: string
     author: User
     comments: Comment[]
     contents: string
