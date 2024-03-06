@@ -5,7 +5,7 @@ import SignInPage from '../SignIn/SignInPage.js'
 import SignUpPage from '../SignUpPage/SignUpPage.js'
 import UserFeed from '../Feed/UserFeed.js'
 import MenuTop from '../Feed/MenuTop.js'
-import Profile from '../Feed/Profile.js'
+import Profile from '../Feed/Profile/Profile.js'
 import Friends from '../Feed/Friends.js'
 
 /** @typedef {import('../data/posts.json').User} User */
@@ -36,6 +36,10 @@ function App() {
                                 <Route path="/*" element={<UserFeed />} />
                                 <Route path="/profile" element={<Profile />} />
                                 <Route path="/friends" element={<Friends />} />
+                                <Route
+                                    path="/profile/:username/friends"
+                                    element={<Friends />}
+                                />
                             </>
                         ) : (
                             <>
