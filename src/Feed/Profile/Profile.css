@@ -81,8 +81,8 @@
     display: flex;
     flex-direction: row;
     padding-top: 30px;
-    padding-left: 10px; /* Add padding to the left */
-    list-style-type: none; /* Remove default list style */
+    padding-left: 10px;
+    list-style-type: none;
 }
 .profileHeader__right  {
     display: flex;
@@ -90,14 +90,16 @@
     padding-left: 10px; /* Add padding to the left */
     list-style-type: none; /* Remove default list style */
 }
+
 .profileHeader__left ul li {
     margin: 0;
     font-size: 15px;
     color: #b0b3b8;
     font-weight: 600;
-    border-radius: 5px !important;
+    border-radius: 5px;
     margin-bottom: 10px;
-    padding-right: 10px; /* Add padding to the right */
+    padding: 10px; /* Adjust padding for better spacing */
+    cursor: pointer;
 }
 
 .progress {
@@ -138,12 +140,19 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.profileHeader__options a p {
+    display: inline;
+    margin-left: 5px; /* Optional: Add some space between the image and text */
+}
 /* Profile.css */
 
 /* Style links to remove underlines and make them black */
 .profileHeader__options a {
+    display: inline-block;
+    vertical-align: middle;
     text-decoration: none; /* Remove underlines */
     color: black; /* Make links black */
+    
 }
 
 /* Style links when hovered to change color */
@@ -152,8 +161,8 @@
 }
 
 
-.profileHeader__left ul li:hover {
-    background-color: #3A3B3C !important;
+.profileHeader__left li:hover {
+    background-color: #b9b9b9 !important;
 }
 
 .profileHeader__left ul .selected {
@@ -180,7 +189,7 @@
     background-color: #c0c1c2;
     padding-right: 5px;
     border-radius: 10px;
-    margin-bottom: 25px !important;
+    margin-bottom: 30px !important;
     margin-left: 10px !important;
 }
 
@@ -272,4 +281,18 @@
     text-align: center;
     color: #AAADB2;
 }
+.friends-grid-container {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Customize shadow styles as needed */
+}
+.friend-item {
+    padding: 20px 10px; /* Adjust padding as needed */
+    margin-bottom: 10px; /* Add margin at the bottom */
+}
+.profileHeader__left ul li.selected {
+    color: #2E89FF;
+    border-bottom: 3px solid #2E89FF;
+}
 
+.profileHeader__left ul li.selected:hover {
+    background-color: transparent;
+}

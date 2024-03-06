@@ -46,11 +46,11 @@ function MenuTop() {
                         className={`${isActive('/')}`}
                     />
                 </Link>
-                <Link to="/friends">
+                <Link to="/friendsrequest">
                     <img
                         src="https://cdn-icons-png.flaticon.com/128/880/880441.png"
                         alt=""
-                        className={`${isActive('/friends')}`}
+                        className={`${isActive('/friendsrequest')}`}
                     />
                 </Link>
                 <Link to="/profile">

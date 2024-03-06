@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './ProfileSidebar.css'
 
 function ProfileSidebar({ username }) {
-    const [nposts, setNPosts] = useState([])
-    const [cuserdata, setCUserdata] = useState()
+    // Log the username prop for debugging
+    useEffect(() => {
+        console.log('Username:', username)
+    }, [username])
 
     return (
         <div className="profileSidebar">
@@ -17,7 +20,14 @@ function ProfileSidebar({ username }) {
             </div>
             <div className="posts2">
                 <h1>Friends</h1>
-                <div className="friends"> </div>
+                {/* Link to the Friends page */}
+                <div className="friends-link">
+                    <Link
+                        to={`/profile/${username}/friends`}
+                        className="link-text">
+                        View Friends
+                    </Link>
+                </div>
             </div>
             <div className="hr profile" />
             <div className="policies profile">

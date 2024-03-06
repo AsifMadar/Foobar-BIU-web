@@ -1,14 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import './Profile.css'
-import { useParams, Outlet, Link, Route, Routes } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { UserContent } from '../../App/App.js'
 import ProfileSidebar from './ProfileSideBar.js'
 import ProfileTopSection from './ProfileTopSection.js'
-import FriendsRequests from './Friends.js'
-import TimeLine from './TimeLine.js'
-
-function Profile() {
-    const { username } = useParams()
+import './Profile.css'
+const TimeLine = () => {
     const { user } = useContext(UserContent)
     const [bio, setBio] = useState('')
     const [bioPresent, setBioPresent] = useState(false)
@@ -16,7 +12,6 @@ function Profile() {
 
     const handleLinkClick = link => {
         setSelectedLink(link)
-        console.log('Selected Link:', link) // Add this line for debugging
     }
 
     useEffect(() => {
@@ -40,8 +35,14 @@ function Profile() {
                 handleLinkClick={handleLinkClick}
                 selectedLink={selectedLink}
             />
+            <div className="postsAndIntro">
+                <ProfileSidebar username={user.username} />
+            </div>
+            <div className="profileContent">
+                <Outlet /> {/* Render children components */}
+            </div>
         </div>
     )
 }
 
-export default Profile
+export default TimeLine
