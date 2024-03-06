@@ -1,17 +1,27 @@
 import axios from 'axios'
 
 const BASE_URL = 'http://localhost:8080/api'
+const JWT_KEY = 'jwtToken'
 
-const getJWT = () => {
-    const token = localStorage.getItem('jwtToken')
-    return 'Bearer ' + token
+export const jwt = {
+    get() {
+        const token = localStorage.getItem(JWT_KEY)
+        return token
+    },
+    set(val) {
+        val
+            ? localStorage.setItem(JWT_KEY, val)
+            : localStorage.removeItem(JWT_KEY)
+    },
 }
 
 const instance = axios.create({
     baseURL: BASE_URL,
-    headers: {
-        Authorization: getJWT(),
-    },
+})
+
+instance.interceptors.request.use(config => {
+    config.headers.Authorization = 'Bearer ' + jwt.get()
+    return config
 })
 
 export default instance
