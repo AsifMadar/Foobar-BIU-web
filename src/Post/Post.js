@@ -54,10 +54,10 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
 
         const detailsCopy = structuredClone(details)
         if (isLikedByMe) {
-            const authorIndex = detailsCopy.likes.indexOf(author.username)
-            detailsCopy.likes.splice(authorIndex, 1)
+            const likeIndex = detailsCopy.likes.indexOf(currentUser.username)
+            detailsCopy.likes.splice(likeIndex, 1)
         } else {
-            detailsCopy.likes.push(author.username)
+            detailsCopy.likes.push(currentUser.username)
         }
         updateDetails(detailsCopy, 'update')
     }
