@@ -1,21 +1,11 @@
-import React, { useContext } from 'react'
-import SideBarRow from '../SideBarRow.js'
 import '../MenuSide.css'
-
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { UserContent } from '../../App/App.js'
+import React from 'react'
+import SideBarRow from '../SideBarRow.js'
 
 function FriendsRequestSide() {
-    const { user, setUser } = useContext(UserContent)
-    const navigate = useNavigate()
-
-    const logout = () => {
-        setUser(prevUser => ({
-            ...prevUser,
-            isSignedIn: false,
-        }))
-        navigate('/signin')
-    }
+    const { user } = React.useContext(UserContent)
 
     return (
         <div className="menuside">

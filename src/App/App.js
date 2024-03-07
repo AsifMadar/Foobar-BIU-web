@@ -1,25 +1,17 @@
-import React, { createContext, useState } from 'react'
 import './App.css'
-import {
-    BrowserRouter,
-    Navigate,
-    Route,
-    Routes,
-    useRouteMatch,
-} from 'react-router-dom'
-import SignInPage from '../SignIn/SignInPage.js'
-import SignUpPage from '../SignUpPage/SignUpPage.js'
-import UserFeed from '../Feed/UserFeed.js'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import Friends from '../Feed/Profile/Friends.js' // Import FriendsRequests component
+import FriendsRequest from '../Feed/FriendRequestPage/FriendsRequest.js'
 import MenuTop from '../Feed/MenuTop.js'
 import Profile from '../Feed/Profile/Profile.js'
-import Friends from '../Feed/Profile/Friends.js' // Import FriendsRequests component
+import React, { createContext, useState } from 'react'
+import SignInPage from '../SignIn/SignInPage.js'
+import SignUpPage from '../SignUpPage/SignUpPage.js'
 import TimeLine from '../Feed/Profile/TimeLine.js'
-import FriendsRequest from '../Feed/FriendRequestPage/FriendsRequest.js'
+import UserFeed from '../Feed/UserFeed.js'
 
-/** @typedef {import('../data/posts.json').User} User */
-/** @typedef {User & { isSignedIn: boolean, jwtToken: string}} UserDetails */
-
-/** @type {UserDetails} */
+/** @typedef {import('../data/posts.json').CurrentUser} CurrentUser */
+/** @type {CurrentUser} */
 const defaultUser = {
     isSignedIn: false,
 }

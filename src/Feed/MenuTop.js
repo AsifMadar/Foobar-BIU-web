@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import './MenuTop.css'
 import { Link, useLocation } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
 function MenuTop() {
     const { pathname } = useLocation()
@@ -95,7 +94,5 @@ function MenuTop() {
         </div>
     )
 }
-MenuTop.propTypes = {
-    user: PropTypes.object.isRequired,
-}
+
 export default MenuTop

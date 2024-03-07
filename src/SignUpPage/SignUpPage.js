@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
 import AdvancedTextField from '../TextField/AdvancedTextField.js'
 import axios, { jwt } from '../utils/axios.js'
-import React, { useContext, useState, useRef, useEffect } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 
 function SignUpPage() {
     const [username, setUsername] = useState('')
@@ -11,9 +11,6 @@ function SignUpPage() {
     const [rePassword, setRePassword] = useState('')
     const [profileImage, setImg] = useState(null)
     const [displayName, setDisplayName] = useState('')
-
-    const [friends, setFriends] = useState('')
-    const [friendsRequests, setFriendsRequests] = useState()
 
     const navigate = useNavigate()
     const { setUser } = useContext(UserContent)
@@ -29,48 +26,35 @@ function SignUpPage() {
                 reader.onload = resolve
             })
 
-            const res = await axios.post('/users', {
+            const resSignup = await axios.post('/users', {
                 username,
                 password,
                 displayName,
                 profileImage: reader.result ?? '',
             })
 
-            if (res.status === 200) {
+            if (resSignup.status === 200) {
                 // The user was created; log in
-                const res = await axios.post('/tokens', {
+                const resSignIn = await axios.post('/tokens', {
                     username,
                     password,
                 })
 
-                if (res.status === 200) {
-                    const token = res.data
+                if (resSignIn.status === 200) {
+                    const token = resSignIn.data
                     jwt.set(token)
                     localStorage.setItem('username', username)
 
-                    setUser({
-                        displayName,
-                        isSignedIn: true,
-                        password,
-                        username,
-                        friends,
-                        friendRequests: [
-                            {
-                                id: '65e0ff21e82d3cf848f07a8a',
-                                username: 'user3',
-                            },
-                            {
-                                id: '65e0ff16e82d3cf848f07a85',
-                                username: 'user1',
-                            },
-                        ],
-                        profileImage: profileImage
-                            ? URL.createObjectURL(profileImage)
-                            : null, //saves the img via url, if there's no image saves null
-                    })
+                    const resDetails = await axios.get('/users/' + username)
 
-                    //moves the user to the feed page
-                    navigate('/feed')
+                    if (resDetails.status === 200) {
+                        setUser({
+                            ...resDetails.data,
+                            isSignedIn: true,
+                        })
+
+                        navigate('/feed')
+                    }
                 }
             }
         } catch (e) {

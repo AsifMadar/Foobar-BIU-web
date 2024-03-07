@@ -3,6 +3,13 @@ export interface User {
     profileImage: string
 }
 
+export interface CurrentUser extends User {
+    friendRequests: string[]
+    friends: string[]
+    isSignedIn: boolean
+    jwtToken: string
+}
+
 export interface Comment {
     author: User
     contents: string

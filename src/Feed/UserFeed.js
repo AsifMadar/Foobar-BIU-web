@@ -3,7 +3,6 @@ import { useContext, useState } from 'react'
 import { UserContent } from '../App/App.js'
 import instance from '../utils/axios.js'
 import MenuSide from './MenuSide.js'
-import MenuTop from './MenuTop.js'
 import PostEditor from '../PostEditor/PostEditor.js'
 import PostList from '../PostList/PostList.js'
 

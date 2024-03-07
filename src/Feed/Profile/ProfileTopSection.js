@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-import { Link, NavLink } from 'react-router-dom'
 import './ProfileTopSection.css'
+import { Link, NavLink } from 'react-router-dom'
 import { UserContent } from '../../App/App.js'
+import React, { useContext } from 'react'
 
 const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
     const { setUser } = useContext(UserContent)
@@ -86,7 +86,7 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                         <li>
                             <NavLink
                                 to={`/profile/${user.username}/more`}
-                                activeClassName="selected"
+                                activeclassname="selected"
                                 className="nav-link">
                                 More
                             </NavLink>
@@ -97,16 +97,12 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                     <Link
                         to={`/profile/${user.username}/edit`}
                         className="rect editProfile">
-                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yl/r/tmaz0VO75BB.png" />
-                        <p>Edit Profile</p>
+                        Edit Profile
                     </Link>
                     <button
                         className="rect addFriend"
                         onClick={() => handleAddFriendRequest('dummyFriend')}>
-                        <img
-                            src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/33EToHSZ94f.png"
-                            alt="Add Friend"
-                        />
+                        Add Friend
                     </button>
                 </div>
             </div>

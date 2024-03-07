@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import './ProfileSidebar.css'
+import { Link } from 'react-router-dom'
+import React from 'react'
 
 function ProfileSidebar({ username }) {
-    // Log the username prop for debugging
-    useEffect(() => {
-        console.log('Username:', username)
-    }, [username])
-
     return (
         <div className="profileSidebar">
             <div className="posts2">
