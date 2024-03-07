@@ -17,7 +17,7 @@ const Friends = () => {
     }
 
     return (
-        <div className="profile">
+        <div className="profile d-flex flex-column">
             <ProfileTopSection user={user} />
 
             <Container className="shadow">

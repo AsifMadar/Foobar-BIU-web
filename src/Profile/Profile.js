@@ -1,4 +1,3 @@
-import './Profile.css'
 import { UserContent } from '../App/App.js'
 import ProfileTopSection from './ProfileTopSection.js'
 import React, { useContext, useState } from 'react'
@@ -13,7 +12,7 @@ function Profile() {
     }
 
     return (
-        <div className="profile">
+        <div className="profile d-flex">
             <MenuSideBar />
             <ProfileTopSection
                 user={user}

@@ -1,29 +1,17 @@
 .menu-sidebar {
-    display: flex;
-    flex-direction: column;
-    flex: 0.2;
-    margin-top: 20px;
-    top: 0;
-    width: 200px;
+    margin-top: 2em;
+    width: min(20%, 250px);
 
     .hr {
-        margin-left: 16px;
-        margin-right: 16px;
-        margin-top: 8px;
         border-top: 2px solid #d8dfe6;
     }
 }
 
 .policies {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     gap: 0.25em;
-    margin-left: 16px;
-    margin-right: 16px;
 
     p {
-        font-weight: 400;
+        margin: 0;
         font-size: 13px;
         color: #b0b3b8;
     }

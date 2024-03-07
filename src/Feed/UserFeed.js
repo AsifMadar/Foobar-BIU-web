@@ -42,7 +42,7 @@ function UserFeed() {
     return (
         <div className="user-feed-container">
             <MenuSideBar />
-            <div className="container mt-3">
+            <div className="container m-3">
                 <PostEditor
                     id="create-post-area"
                     currentUser={user}

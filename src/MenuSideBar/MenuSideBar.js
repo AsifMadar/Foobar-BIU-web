@@ -31,7 +31,6 @@ function MenuSideBar() {
                 ImageLink="https://cdn-icons-gif.flaticon.com/12198/12198847.gif"
                 title="Messeges"
             />
-
             <SideBarRow
                 ImageLink="https://cdn-icons-gif.flaticon.com/10182/10182258.gif"
                 title="Friends"
@@ -57,23 +56,21 @@ function MenuSideBar() {
                 title="Log out"
                 onClick={logout}
             />
-            <div className="hr">
-                <div className="policies">
+            <div className="hr m-4">
+                <div className="policies mt-3 d-flex flex-row flex-wrap">
                     <p>Privacy</p>
-                    <p className="dot">.</p>
+                    <p>.</p>
                     <p>Terms</p>
-                    <p className="dot">.</p>
+                    <p>.</p>
                     <p>Advertising</p>
-                    <p className="dot">.</p>
+                    <p>.</p>
                     <p>Ad choices</p>
-                    <i className="ads" />
-                    <p className="dot">.</p>
+                    <p>.</p>
                     <p>Cookies</p>
-                    <p className="dot">.</p>
+                    <p>.</p>
                     <p>more</p>
-                    <p className="dot">.</p>
+                    <p>.</p>
                     <p>FooBar 2024</p>
-                    <p className="dot">.</p>
                 </div>
             </div>
         </div>

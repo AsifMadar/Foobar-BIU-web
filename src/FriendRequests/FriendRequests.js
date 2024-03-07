@@ -1,5 +1,5 @@
 import './FriendRequests.css'
-import { Button, Container, Row, Col } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { UserContent } from '../App/App.js'
 import React, { useContext } from 'react'
 import MenuSideBar from '../MenuSideBar/MenuSideBar.js'
@@ -33,36 +33,34 @@ const FriendRequests = () => {
     }
 
     return (
-        <div className="friends-request-container">
+        <div className="friend-requests-container">
             <MenuSideBar />
-            <Container className="friend-requests-grid">
+            <div className="container">
                 <h4>Friend Requests</h4>
-                <Row>
-                    {user.friendRequests.map(request => (
-                        <Col key={request.id} xs={12} md={6}>
-                            <div className="friend-request-item d-flex align-items-center justify-content-between p-3 shadow mb-3">
-                                <span>{request.username}</span>
-                                <div>
-                                    <Button
-                                        variant="success"
-                                        onClick={() =>
-                                            handleAddFriend(request.username)
-                                        }>
-                                        Add
-                                    </Button>{' '}
-                                    <Button
-                                        variant="danger"
-                                        onClick={() =>
-                                            handleRejectFriend(request.username)
-                                        }>
-                                        Reject
-                                    </Button>
-                                </div>
-                            </div>
-                        </Col>
-                    ))}
-                </Row>
-            </Container>
+                {user.friendRequests.map(request => (
+                    <div
+                        key={request.id}
+                        className="col col-md-6 d-flex align-items-center justify-content-between p-3 shadow mb-3">
+                        <span>{request.username}</span>
+                        <div>
+                            <Button
+                                variant="success"
+                                onClick={() =>
+                                    handleAddFriend(request.username)
+                                }>
+                                Add
+                            </Button>{' '}
+                            <Button
+                                variant="danger"
+                                onClick={() =>
+                                    handleRejectFriend(request.username)
+                                }>
+                                Reject
+                            </Button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

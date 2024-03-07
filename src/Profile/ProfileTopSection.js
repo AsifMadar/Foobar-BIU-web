@@ -1,5 +1,5 @@
 import './ProfileTopSection.css'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
 import React, { useContext } from 'react'
 
@@ -19,75 +19,67 @@ const ProfileTopSection = ({ user }) => {
     }
 
     return (
-        <div className="profile__topSection">
-            <div className="profile__coverPhoto">
+        <div className="profile-top-section">
+            <div className="image-container">
                 <img
                     src={user.profileImage}
                     className="profileAvatar"
                     alt="Profile"
                 />
             </div>
-            <h1 id="documentUsername">{user.username}</h1>
+            <h1 className="mt-3">{user.username}</h1>
 
-            <div className="profileHeader__options">
-                <div className="profileHeader__left">
-                    <ul>
-                        <li>
-                            <NavLink
-                                to={`/profile/${user.username}/timeline`}
-                                activeclassname="selected"
-                                className="nav-link">
-                                Timeline
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to={`/profile/${user.username}/about`}
-                                activeclassname="selected"
-                                className="nav-link">
-                                About
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to={`/profile/${user.username}/friends`}
-                                activeclassname="selected"
-                                className="nav-link">
-                                Friends
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to={`/profile/${user.username}/photos`}
-                                activeclassname="selected"
-                                className="nav-link">
-                                Photos
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to={`/profile/${user.username}/archive`}
-                                activeclassname="selected"
-                                className="nav-link">
-                                Archive
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to={`/profile/${user.username}/more`}
-                                activeclassname="selected"
-                                className="nav-link">
-                                More
-                            </NavLink>
-                        </li>
-                    </ul>
+            <div className="profile-header">
+                <div className="nav-links d-flex m-3">
+                    <NavLink
+                        to={`/profile/${user.username}/timeline`}
+                        className={({ isActive }) =>
+                            isActive ? 'selected' : ''
+                        }>
+                        Timeline
+                    </NavLink>
+                    <NavLink
+                        to={`/profile/${user.username}/about`}
+                        className={({ isActive }) =>
+                            isActive ? 'selected' : ''
+                        }>
+                        About
+                    </NavLink>
+                    <NavLink
+                        to={`/profile/${user.username}/friends`}
+                        className={({ isActive }) =>
+                            isActive ? 'selected' : ''
+                        }>
+                        Friends
+                    </NavLink>
+                    <NavLink
+                        to={`/profile/${user.username}/photos`}
+                        className={({ isActive }) =>
+                            isActive ? 'selected' : ''
+                        }>
+                        Photos
+                    </NavLink>
+                    <NavLink
+                        to={`/profile/${user.username}/archive`}
+                        className={({ isActive }) =>
+                            isActive ? 'selected' : ''
+                        }>
+                        Archive
+                    </NavLink>
+                    <NavLink
+                        to={`/profile/${user.username}/more`}
+                        className={({ isActive }) =>
+                            isActive ? 'selected' : ''
+                        }>
+                        More
+                    </NavLink>
                 </div>
-                <div className="profileHeader__right">
-                    <Link
+                <div className="d-flex p-2">
+                    <button
                         to={`/profile/${user.username}/edit`}
                         className="rect editProfile">
                         Edit Profile
-                    </Link>
+                    </button>
                     <button
                         className="rect addFriend"
                         onClick={() => handleAddFriendRequest('dummyFriend')}>

@@ -1,53 +1,77 @@
-.profileHeader__left ul {
-    display: flex;
-    flex-direction: row;
-    padding-top: 30px;
-    padding-left: 10px;
-    list-style-type: none;
-}
+.profile-top-section {
+    background: var(--bs-secondary-bg-subtle);
+    width: 100%;
 
-.profileHeader__left ul li {
-    margin: 0;
-    font-size: 15px;
-    color: #b0b3b8;
-    font-weight: 600;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-
-
-.profileHeader__options a p {
-    display: inline;
-    margin-left: 5px;
-}
-
-/* Style links to remove underlines and make them black */
-.profileHeader__options a {
-    display: inline-block;
-    vertical-align: middle;
-    text-decoration: none;
-    color: black;
-    &:hover {
-        color: #8b7d7d;
+    h1 {
+        text-align: center;
     }
 }
 
+.image-container {
+    background: var(--bs-primary-bg-subtle);
+    border-radius: 0 0 10px 10px;
+    margin: 0 15%;
+    padding-top: 190px;
 
-.profileHeader__left li:hover {
-    background-color: #b9b9b9 !important;
+    img {
+        border-radius: 100%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        height: 160px !important;
+        margin-bottom: -20px;
+        margin-left: calc(50% - 160px / 2);
+        width: 160px !important;
+    }
 }
 
-.profileHeader__left ul .selected {
-    color: #2E89FF;
-    border-radius: 0px !important;
-    border-bottom: 3px solid #2E89FF;
-    margin-left: 45%;
-    margin-bottom: 0px !important;
+.nav-links {
+    gap: 2em;
+
+    a {
+        border-radius: 5px;
+        color: var(--bs-secondary-color);
+        padding: 5px;
+
+        &:hover {
+            background: var(--bs-tertiary-bg);
+        }
+
+        &.selected {
+            color: var(--bs-primary-text-emphasis);            border-radius: 0px !important;
+            border-bottom: 3px solid var(--bs-focus-ring-color);
+        }
+    }
 }
 
-.profileHeader__left ul .selected:hover {
-    background-color: transparent !important;
+.profile-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    /* Style links to remove underlines and make them black */
+    a {
+        display: inline-block;
+        vertical-align: middle;
+        text-decoration: none;
+    }
+
+}
+
+.rect {
+    background-color: #c0c1c2;
+    border-radius: 10px;
+    border: none;
+    padding: 0.5em 1em;
+    margin: 0.5em;
+
+    img {
+        height: 20px;
+        width: 20px;
+        margin-right: 10px;
+        filter: invert(100%);
+    }
+}
+
+.friend-item {
+    padding: 20px 10px;
+    margin-bottom: 100px;
 }
