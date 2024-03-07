@@ -1,7 +1,6 @@
-
 .friends-request-container {
     display: flex;
-    background-color: white; /* Set background color to a slightly darker shade than white */
+    background-color: white;
 
 }
 .friend-requests-grid {
@@ -10,5 +9,3 @@
     padding: 20px;
     flex-grow: 1;
 }
-
-/* Adjust styling as needed */

@@ -38,7 +38,6 @@ const Friends = () => {
                             md={4}
                             lg={3}
                             xl={3}>
-                            {/* Display friend details with shadow and padding */}
                             <div className="friend-item shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
                                 <div className="friend-name">{friend.name}</div>
                                 <Button

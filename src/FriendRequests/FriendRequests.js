@@ -24,8 +24,6 @@ const FriendRequests = () => {
     }
 
     const handleRejectFriend = friendUsername => {
-        // Logic to handle rejecting friend request
-
         // Update user's friend requests list
         const updatedUser = { ...user }
         updatedUser.friendRequests = user.friendRequests.filter(

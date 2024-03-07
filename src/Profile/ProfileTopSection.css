@@ -13,7 +13,7 @@
     font-weight: 600;
     border-radius: 5px;
     margin-bottom: 10px;
-    padding: 10px; /* Adjust padding for better spacing */
+    padding: 10px;
     cursor: pointer;
 }
 
@@ -21,22 +21,18 @@
 
 .profileHeader__options a p {
     display: inline;
-    margin-left: 5px; /* Optional: Add some space between the image and text */
+    margin-left: 5px;
 }
-/* Profile.css */
 
 /* Style links to remove underlines and make them black */
 .profileHeader__options a {
     display: inline-block;
     vertical-align: middle;
-    text-decoration: none; /* Remove underlines */
-    color: black; /* Make links black */
-    
-}
-
-/* Style links when hovered to change color */
-.profileHeader__options a:hover {
-    color: #8b7d7d; /* Change color on hover */
+    text-decoration: none;
+    color: black;
+    &:hover {
+        color: #8b7d7d;
+    }
 }
 
 

@@ -2,6 +2,7 @@ import './Profile.css'
 import { UserContent } from '../App/App.js'
 import ProfileTopSection from './ProfileTopSection.js'
 import React, { useContext, useState } from 'react'
+import MenuSideBar from '../MenuSideBar/MenuSideBar.js'
 
 function Profile() {
     const [selectedLink, setSelectedLink] = useState('')
@@ -13,6 +14,7 @@ function Profile() {
 
     return (
         <div className="profile">
+            <MenuSideBar />
             <ProfileTopSection
                 user={user}
                 handleLinkClick={handleLinkClick}
