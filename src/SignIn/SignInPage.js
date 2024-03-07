@@ -31,8 +31,14 @@ function SignInPage() {
                     ...userRes.data, //using the same fields as before
                     isSignedIn: true,
                     friendRequests: [
-                        { id: 1, username: 'Friend 1' },
-                        { id: 2, username: 'Friend 2' },
+                        {
+                            id: '65e0ff21e82d3cf848f07a8a',
+                            username: 'user3',
+                        },
+                        {
+                            id: '65e0ff16e82d3cf848f07a85',
+                            username: 'user1',
+                        },
                     ],
                 })
 

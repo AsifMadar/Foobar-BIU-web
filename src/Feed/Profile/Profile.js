@@ -9,10 +9,10 @@ import TimeLine from './TimeLine.js'
 
 function Profile() {
     const { username } = useParams()
-    const { user } = useContext(UserContent)
     const [bio, setBio] = useState('')
     const [bioPresent, setBioPresent] = useState(false)
     const [selectedLink, setSelectedLink] = useState('')
+    const { user, setUser } = useContext(UserContent)
 
     const handleLinkClick = link => {
         setSelectedLink(link)

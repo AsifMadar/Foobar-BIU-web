@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col, Container, Button } from 'react-bootstrap'
 import { UserContent } from '../../App/App.js'
 import ProfileTopSection from './ProfileTopSection.js'
 import { Link } from 'react-router-dom'
 import './Profile.css'
 
 const Friends = () => {
-    const { user } = useContext(UserContent)
+    const { user, setUser } = useContext(UserContent)
     const [bio, setBio] = useState('')
     const [bioPresent, setBioPresent] = useState(false)
     const [friends, setFriends] = useState([]) // Initialize friends as an empty array
@@ -25,6 +25,13 @@ const Friends = () => {
         // Handle adding bio functionality
     }
 
+    const handleRemoveFriend = friendUsername => {
+        const updatedUser = { ...user }
+        updatedUser.friends = user.friends.filter(
+            friend => friend.username !== friendUsername,
+        )
+        setUser(updatedUser)
+    }
     return (
         <div className="profile">
             <ProfileTopSection
@@ -34,7 +41,7 @@ const Friends = () => {
                 addBio={addBio}
             />
 
-            <Container className="friends-grid-container">
+            <Container className="shadow">
                 <Row>
                     <Col xs={9}>
                         <h3>Friends</h3>
@@ -50,10 +57,19 @@ const Friends = () => {
                             xs={12}
                             sm={6}
                             md={4}
-                            lg={4}
-                            xl={4}>
-                            {/* Display friend details with padding */}
-                            <div className="friend-item">{friend.name}</div>
+                            lg={3}
+                            xl={3}>
+                            {/* Display friend details with shadow and padding */}
+                            <div className="friend-item shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
+                                <div className="friend-name">{friend.name}</div>
+                                <Button
+                                    variant="outline-danger"
+                                    onClick={() =>
+                                        handleRemoveFriend(friend.username)
+                                    }>
+                                    Remove
+                                </Button>
+                            </div>
                         </Col>
                     ))}
                 </Row>

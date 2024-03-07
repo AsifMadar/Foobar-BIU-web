@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './ProfileTopSection.css'
+import { UserContent } from '../../App/App.js'
 
 const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
+    const { setUser } = useContext(UserContent)
+
+    const handleAddFriendRequest = friendUsername => {
+        // Logic to handle adding friend
+        console.log(`Added friend with username: ${friendUsername}`)
+
+        // Update user's friends list
+        const updatedUser = { ...user }
+        updatedUser.friendRequests = [
+            ...updatedUser.friendRequests,
+            { username: friendUsername, name: friendUsername },
+        ]
+        setUser(updatedUser)
+
+        // Remove friend from friend requests
+    }
+
     return (
         <div className="profile__topSection">
+            {/* Profile top section content */}
+            {/* Add Friend button */}
+
             <div className="profile__coverPhoto">
                 <img
                     src={user.profileImage}
@@ -65,7 +86,7 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                         <li>
                             <NavLink
                                 to={`/profile/${user.username}/more`}
-                                activeclassname="selected"
+                                activeClassName="selected"
                                 className="nav-link">
                                 More
                             </NavLink>
@@ -79,12 +100,14 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                         <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yl/r/tmaz0VO75BB.png" />
                         <p>Edit Profile</p>
                     </Link>
-                    <Link
-                        to={`/profile/${user.username}/add-friend`}
-                        className="rect addFriend">
-                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/33EToHSZ94f.png" />
-                        <p>Add Friend</p>
-                    </Link>
+                    <button
+                        className="rect addFriend"
+                        onClick={() => handleAddFriendRequest('dummyFriend')}>
+                        <img
+                            src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/33EToHSZ94f.png"
+                            alt="Add Friend"
+                        />
+                    </button>
                 </div>
             </div>
         </div>

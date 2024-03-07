@@ -7,32 +7,32 @@ import FriendsRequestSide from './FriendRequestsSide.js'
 const FriendsRequest = () => {
     const { user, setUser } = useContext(UserContent)
 
-    const handleAddFriend = friendId => {
+    const handleAddFriend = friendUsername => {
         // Logic to handle adding friend
-        console.log(`Added friend with ID: ${friendId}`)
+        console.log(`Added friend with username: ${friendUsername}`)
 
         // Update user's friends list
         const updatedUser = { ...user }
         updatedUser.friends = [
             ...updatedUser.friends,
-            { id: friendId, name: `Friend ${friendId}` },
+            { username: friendUsername, name: friendUsername },
         ]
         setUser(updatedUser)
 
         // Remove friend from friend requests
         updatedUser.friendRequests = user.friendRequests.filter(
-            request => request.id !== friendId,
+            request => request.username !== friendUsername,
         )
         setUser(updatedUser)
     }
 
-    const handleRejectFriend = friendId => {
+    const handleRejectFriend = friendUsername => {
         // Logic to handle rejecting friend request
 
         // Update user's friend requests list
         const updatedUser = { ...user }
         updatedUser.friendRequests = user.friendRequests.filter(
-            request => request.id !== friendId,
+            request => request.username !== friendUsername,
         )
         setUser(updatedUser)
     }
@@ -51,14 +51,14 @@ const FriendsRequest = () => {
                                     <Button
                                         variant="success"
                                         onClick={() =>
-                                            handleAddFriend(request.id)
+                                            handleAddFriend(request.username)
                                         }>
                                         Add
                                     </Button>{' '}
                                     <Button
                                         variant="danger"
                                         onClick={() =>
-                                            handleRejectFriend(request.id)
+                                            handleRejectFriend(request.username)
                                         }>
                                         Reject
                                     </Button>
