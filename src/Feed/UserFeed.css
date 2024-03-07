@@ -1,6 +1,6 @@
-.wrapper {
+.user-feed-container {
     display: flex;
-    flex: 1;
+    flex-direction: row;
 }
 
 .profile-image {
@@ -10,19 +10,9 @@
     margin-right: 10px;
 }
 
-.user-feed-container {
-    display: flex;
-    flex-direction: column;
-}
-
 .menu-top {
     background-color: #3b5998;
-    color: whi
-    
-    
-    
-    
-    te;
+    color: white;
     padding: 10px;
     text-align: center;
 }

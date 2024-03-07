@@ -1,7 +1,6 @@
-// MenuTop.js
-import React, { useEffect, useState } from 'react'
 import './MenuTop.css'
 import { Link, useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 
 function MenuTop() {
     const { pathname } = useLocation()
@@ -45,11 +44,11 @@ function MenuTop() {
                         className={`${isActive('/feed')}`}
                     />
                 </Link>
-                <Link to="/friendsrequest">
+                <Link to="/friendrequests">
                     <img
                         src="https://cdn-icons-png.flaticon.com/128/880/880441.png"
                         alt=""
-                        className={`${isActive('/friendsrequest')}`}
+                        className={`${isActive('/friendrequests')}`}
                     />
                 </Link>
                 <Link to="/profile">

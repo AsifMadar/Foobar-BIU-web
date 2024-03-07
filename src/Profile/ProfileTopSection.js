@@ -1,15 +1,12 @@
 import './ProfileTopSection.css'
 import { Link, NavLink } from 'react-router-dom'
-import { UserContent } from '../../App/App.js'
+import { UserContent } from '../App/App.js'
 import React, { useContext } from 'react'
 
-const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
+const ProfileTopSection = ({ user }) => {
     const { setUser } = useContext(UserContent)
 
     const handleAddFriendRequest = friendUsername => {
-        // Logic to handle adding friend
-        console.log(`Added friend with username: ${friendUsername}`)
-
         // Update user's friends list
         const updatedUser = { ...user }
         updatedUser.friendRequests = [
@@ -23,9 +20,6 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
 
     return (
         <div className="profile__topSection">
-            {/* Profile top section content */}
-            {/* Add Friend button */}
-
             <div className="profile__coverPhoto">
                 <img
                     src={user.profileImage}
@@ -34,12 +28,7 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                 />
             </div>
             <h1 id="documentUsername">{user.username}</h1>
-            <p className="bioText">{bio}</p>
-            {bioPresent ? null : (
-                <p onClick={addBio} className="bio">
-                    Add Bio
-                </p>
-            )}
+
             <div className="profileHeader__options">
                 <div className="profileHeader__left">
                     <ul>

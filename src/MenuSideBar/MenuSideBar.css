@@ -1,4 +1,4 @@
-.menuside {
+.menu-sidebar {
     display: flex;
     flex-direction: column;
     flex: 0.2;
@@ -30,7 +30,7 @@
 }
 
 @media screen and(max-width: 600px) {
-    .menuside {
+    .menu-sidebar {
         display: none;
     }
 }

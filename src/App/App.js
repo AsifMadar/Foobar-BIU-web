@@ -1,13 +1,13 @@
 import './App.css'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import Friends from '../Feed/Profile/Friends.js' // Import FriendsRequests component
-import FriendsRequest from '../Feed/FriendRequestPage/FriendsRequest.js'
+import Friends from '../Profile/Friends.js'
+import FriendRequests from '../FriendRequests/FriendRequests.js'
 import MenuTop from '../Feed/MenuTop.js'
-import Profile from '../Feed/Profile/Profile.js'
+import Profile from '../Profile/Profile.js'
 import React, { createContext, useState } from 'react'
 import SignInPage from '../SignIn/SignInPage.js'
 import SignUpPage from '../SignUpPage/SignUpPage.js'
-import TimeLine from '../Feed/Profile/TimeLine.js'
+import TimeLine from '../Profile/TimeLine.js'
 import UserFeed from '../Feed/UserFeed.js'
 
 /** @typedef {import('../data/posts.json').CurrentUser} CurrentUser */
@@ -40,8 +40,8 @@ function App() {
                                 <Route path="/feed" element={<UserFeed />} />
                                 <Route path="/profile" element={<Profile />} />
                                 <Route
-                                    path="/friendsrequest"
-                                    element={<FriendsRequest />}
+                                    path="/friendrequests"
+                                    element={<FriendRequests />}
                                 />
                                 <Route
                                     path="/profile/:username/timeline"
@@ -50,8 +50,7 @@ function App() {
                                 <Route
                                     path="/profile/:username/friends"
                                     element={<Friends />}
-                                />{' '}
-                                {/* Add route for FriendsRequests */}
+                                />
                             </>
                         ) : (
                             <>

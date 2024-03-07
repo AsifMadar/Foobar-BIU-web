@@ -1,22 +1,19 @@
-import React, { useContext } from 'react'
-import { UserContent } from '../../App/App.js'
+import './FriendRequests.css'
 import { Button, Container, Row, Col } from 'react-bootstrap'
-import './FriendsRequest.css' // Import CSS file for custom styling
-import FriendsRequestSide from './FriendRequestsSide.js'
+import { UserContent } from '../App/App.js'
+import React, { useContext } from 'react'
+import MenuSideBar from '../MenuSideBar/MenuSideBar.js'
 
-const FriendsRequest = () => {
+const FriendRequests = () => {
     const { user, setUser } = useContext(UserContent)
 
     const handleAddFriend = friendUsername => {
-        // Logic to handle adding friend
-        console.log(`Added friend with username: ${friendUsername}`)
-
         // Update user's friends list
         const updatedUser = { ...user }
-        updatedUser.friends = [
-            ...updatedUser.friends,
-            { username: friendUsername, name: friendUsername },
-        ]
+        updatedUser.friends.push({
+            username: friendUsername,
+            name: friendUsername,
+        })
         setUser(updatedUser)
 
         // Remove friend from friend requests
@@ -39,7 +36,7 @@ const FriendsRequest = () => {
 
     return (
         <div className="friends-request-container">
-            <FriendsRequestSide />
+            <MenuSideBar />
             <Container className="friend-requests-grid">
                 <h4>Friend Requests</h4>
                 <Row>
@@ -72,4 +69,4 @@ const FriendsRequest = () => {
     )
 }
 
-export default FriendsRequest
+export default FriendRequests

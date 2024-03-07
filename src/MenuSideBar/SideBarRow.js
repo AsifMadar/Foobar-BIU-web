@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import './SideBarRow.css'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 function SideBarRow({ ImageLink, title, avatar, onClick }) {
     const handleClick = () => {

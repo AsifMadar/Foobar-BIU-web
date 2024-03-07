@@ -1,12 +1,11 @@
-import './MenuSide.css'
+import './MenuSideBar.css'
 import { jwt } from '../utils/axios.js'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
-import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
 import SideBarRow from './SideBarRow.js'
 
-function MenuSide() {
+function MenuSideBar() {
     const { user, setUser } = useContext(UserContent)
     const navigate = useNavigate()
 
@@ -18,8 +17,9 @@ function MenuSide() {
         }))
         navigate('/signin')
     }
+
     return (
-        <div className="menuside">
+        <div className="menu-sidebar">
             <Link to="/profile">
                 <SideBarRow
                     avatar
@@ -79,12 +79,5 @@ function MenuSide() {
         </div>
     )
 }
-MenuSide.propTypes = {
-    user: PropTypes.shape({
-        img: PropTypes.string,
-        username: PropTypes.string.isRequired,
-        // Add other properties of the user object as needed
-    }).isRequired,
-}
 
-export default MenuSide
+export default MenuSideBar
