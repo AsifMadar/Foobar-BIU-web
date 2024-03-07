@@ -25,7 +25,7 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                         <li>
                             <NavLink
                                 to={`/profile/${user.username}/timeline`}
-                                activeClassName="selected"
+                                activeclassname="selected"
                                 className="nav-link">
                                 Timeline
                             </NavLink>
@@ -33,7 +33,7 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                         <li>
                             <NavLink
                                 to={`/profile/${user.username}/about`}
-                                activeClassName="selected"
+                                activeclassname="selected"
                                 className="nav-link">
                                 About
                             </NavLink>
@@ -41,7 +41,7 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                         <li>
                             <NavLink
                                 to={`/profile/${user.username}/friends`}
-                                activeClassName="selected"
+                                activeclassname="selected"
                                 className="nav-link">
                                 Friends
                             </NavLink>
@@ -49,7 +49,7 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                         <li>
                             <NavLink
                                 to={`/profile/${user.username}/photos`}
-                                activeClassName="selected"
+                                activeclassname="selected"
                                 className="nav-link">
                                 Photos
                             </NavLink>
@@ -57,7 +57,7 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                         <li>
                             <NavLink
                                 to={`/profile/${user.username}/archive`}
-                                activeClassName="selected"
+                                activeclassname="selected"
                                 className="nav-link">
                                 Archive
                             </NavLink>
@@ -65,7 +65,7 @@ const ProfileTopSection = ({ user, bio, bioPresent, addBio }) => {
                         <li>
                             <NavLink
                                 to={`/profile/${user.username}/more`}
-                                activeClassName="selected"
+                                activeclassname="selected"
                                 className="nav-link">
                                 More
                             </NavLink>

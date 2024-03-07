@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
 import AdvancedTextField from '../TextField/AdvancedTextField.js'
 import axios from '../utils/axios.js'
-import React, { useContext, useState, useRef } from 'react'
+import React, { useContext, useState, useRef, useEffect } from 'react'
 
 function SignUpPage() {
     const [username, setUsername] = useState('')
@@ -11,6 +11,9 @@ function SignUpPage() {
     const [rePassword, setRePassword] = useState('')
     const [profileImage, setImg] = useState(null)
     const [displayName, setDisplayName] = useState('')
+
+    const [friends, setFriends] = useState('')
+    const [friendsRequests, setFriendsRequests] = useState()
 
     const navigate = useNavigate()
     const { setUser } = useContext(UserContent)
@@ -47,6 +50,11 @@ function SignUpPage() {
                         isSignedIn: true,
                         password,
                         username,
+                        friends,
+                        friendRequests: [
+                            { id: 1, username: 'Friend 1' },
+                            { id: 2, username: 'Friend 2' },
+                        ],
                         profileImage: profileImage
                             ? URL.createObjectURL(profileImage)
                             : null, //saves the img via url, if there's no image saves null

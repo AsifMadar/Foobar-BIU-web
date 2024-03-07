@@ -1,4 +1,14 @@
+
 .friends-request-container {
-    background-color: #f8f9fa; /* Set background color to a slightly darker shade than white */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add shadow to container */
+    display: flex;
+    background-color: white; /* Set background color to a slightly darker shade than white */
+
 }
+.friend-requests-grid {
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex-grow: 1;
+}
+
+/* Adjust styling as needed */

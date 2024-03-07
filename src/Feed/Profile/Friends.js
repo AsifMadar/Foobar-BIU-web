@@ -9,26 +9,21 @@ const Friends = () => {
     const { user } = useContext(UserContent)
     const [bio, setBio] = useState('')
     const [bioPresent, setBioPresent] = useState(false)
+    const [friends, setFriends] = useState([]) // Initialize friends as an empty array
 
     useEffect(() => {
         // Fetch bio from database or any other source
         // For demonstration, setting a dummy bio
         setBio('This is a sample bio')
         setBioPresent(true)
-    }, [])
+
+        // Set friends from user context
+        setFriends(user.friends || [])
+    }, [user]) // Update friends when user context changes
 
     const addBio = () => {
         // Handle adding bio functionality
     }
-
-    // Sample friends data
-    const friends = [
-        { id: 1, name: 'Friend 1' },
-        { id: 2, name: 'Friend 2' },
-        { id: 3, name: 'Friend 3' },
-        { id: 4, name: 'Friend 4' },
-        // Add more friends as needed
-    ]
 
     return (
         <div className="profile">

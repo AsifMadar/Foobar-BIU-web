@@ -43,7 +43,7 @@ function MenuTop() {
                     <img
                         src="https://cdn-icons-png.flaticon.com/128/14035/14035666.png"
                         alt=""
-                        className={`${isActive('/')}`}
+                        className={`${isActive('/feed')}`}
                     />
                 </Link>
                 <Link to="/friendsrequest">

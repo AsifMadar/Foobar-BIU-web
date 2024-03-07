@@ -30,6 +30,10 @@ function SignInPage() {
                 setUser({
                     ...userRes.data, //using the same fields as before
                     isSignedIn: true,
+                    friendRequests: [
+                        { id: 1, username: 'Friend 1' },
+                        { id: 2, username: 'Friend 2' },
+                    ],
                 })
 
                 navigate('/feed')
