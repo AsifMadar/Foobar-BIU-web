@@ -1,16 +1,17 @@
-import React, { useContext } from 'react'
-
 import './MenuSide.css'
-import PropTypes from 'prop-types'
-import SideBarRow from './SideBarRow.js'
+import { jwt } from '../utils/axios.js'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
+import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
+import SideBarRow from './SideBarRow.js'
 
 function MenuSide() {
     const { user, setUser } = useContext(UserContent)
     const navigate = useNavigate()
 
     const logout = () => {
+        jwt.set(null)
         setUser(prevUser => ({
             ...prevUser,
             isSignedIn: false,

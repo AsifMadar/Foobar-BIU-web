@@ -2,18 +2,39 @@ import './SignInPage.css'
 import { useNavigate } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
 import AdvancedTextField from '../TextField/AdvancedTextField.js'
-import React, { useContext, useState } from 'react'
-import axios from '../utils/axios.js'
+import axios, { jwt } from '../utils/axios.js'
+import { useContext, useState, useEffect } from 'react'
 
 function SignInPage() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
+    const getUserInfoAndGoToFeed = async myUsername => {
+        const res = await axios.get('/users/' + myUsername)
+
+        if (res.status === 200) {
+            setUser({
+                ...res.data,
+                isSignedIn: true,
+            })
+
+            navigate('/feed')
+        }
+    }
+
+    useEffect(() => {
+        const existingUsername = localStorage.getItem('username')
+        if (jwt.get() && existingUsername) {
+            getUserInfoAndGoToFeed(existingUsername)
+        }
+    })
 
     const navigate = useNavigate()
     const { setUser } = useContext(UserContent)
     //if the given input is valid connect the user, else, alert him
     const handleSignInClick = async event => {
         event.preventDefault()
+
         // Use the instance to make a GET request to the `/users` endpoint
         try {
             const res = await axios.post('/tokens', {
@@ -21,29 +42,9 @@ function SignInPage() {
                 password,
             })
 
-            localStorage.setItem('jwtToken', res.data)
-
-            const userRes = await axios.get('/users/' + username)
-
-            // correct info
-            if (res.status === 200 && userRes.status === 200) {
-                setUser({
-                    ...userRes.data, //using the same fields as before
-                    isSignedIn: true,
-                    friendRequests: [
-                        {
-                            id: '65e0ff21e82d3cf848f07a8a',
-                            username: 'user3',
-                        },
-                        {
-                            id: '65e0ff16e82d3cf848f07a85',
-                            username: 'user1',
-                        },
-                    ],
-                })
-
-                navigate('/feed')
-            }
+            jwt.set(res.data)
+            localStorage.setItem('username', username)
+            if (res.status === 200) getUserInfoAndGoToFeed(username)
         } catch (error) {
             //invalid info
             if (error.response && error.response.status === 404) {
