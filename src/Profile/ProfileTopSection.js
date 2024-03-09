@@ -27,47 +27,26 @@ const ProfileTopSection = ({ user }) => {
                     alt="Profile"
                 />
             </div>
-            <h1 className="mt-3">{user.username}</h1>
+            <h1 className="mt-3">{user.displayName}</h1>
 
             <div className="profile-header">
                 <div className="nav-links d-flex m-3">
                     <NavLink
-                        to={`/profile/${user.username}/timeline`}
+                        to={`./timeline`}
                         className={({ isActive }) =>
                             isActive ? 'selected' : ''
                         }>
                         Timeline
                     </NavLink>
                     <NavLink
-                        to={`/profile/${user.username}/about`}
-                        className={({ isActive }) =>
-                            isActive ? 'selected' : ''
-                        }>
-                        About
-                    </NavLink>
-                    <NavLink
-                        to={`/profile/${user.username}/friends`}
+                        to={`./friends`}
                         className={({ isActive }) =>
                             isActive ? 'selected' : ''
                         }>
                         Friends
                     </NavLink>
                     <NavLink
-                        to={`/profile/${user.username}/photos`}
-                        className={({ isActive }) =>
-                            isActive ? 'selected' : ''
-                        }>
-                        Photos
-                    </NavLink>
-                    <NavLink
-                        to={`/profile/${user.username}/archive`}
-                        className={({ isActive }) =>
-                            isActive ? 'selected' : ''
-                        }>
-                        Archive
-                    </NavLink>
-                    <NavLink
-                        to={`/profile/${user.username}/more`}
+                        to={`./more`}
                         className={({ isActive }) =>
                             isActive ? 'selected' : ''
                         }>
@@ -75,9 +54,7 @@ const ProfileTopSection = ({ user }) => {
                     </NavLink>
                 </div>
                 <div className="d-flex p-2">
-                    <button
-                        to={`/profile/${user.username}/edit`}
-                        className="rect editProfile">
+                    <button to={`./edit`} className="rect editProfile">
                         Edit Profile
                     </button>
                     <button
