@@ -1,6 +1,7 @@
 import './MenuTop.css'
 import { Link, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { UserContent } from '../App/App.js'
 
 function MenuTop() {
     const { pathname } = useLocation()
@@ -9,6 +10,8 @@ function MenuTop() {
         const storedMode = localStorage.getItem('darkMode')
         return storedMode ? JSON.parse(storedMode) : false
     })
+
+    const { user } = useContext(UserContent)
 
     useEffect(() => {
         // Update body dataset attribute when isDarkMode changes
@@ -21,14 +24,20 @@ function MenuTop() {
         setIsDarkMode(prevMode => !prevMode)
     }
 
-    const isActive = pn => pathname.startsWith(pn)
+    const isActive = pn => {
+        if (pathname.endsWith('friendrequests')) {
+            return pathname.startsWith(pn) && pn.endsWith('friendrequests')
+        }
+        return pathname.startsWith(pn)
+    }
+
     const links = [
         {
             to: '/feed',
             imgSrc: 'https://cdn-icons-png.flaticon.com/128/14035/14035666.png',
         },
         {
-            to: '/friendrequests',
+            to: `/profile/${user.username}/friendrequests`,
             imgSrc: 'https://cdn-icons-png.flaticon.com/128/880/880441.png',
         },
         {

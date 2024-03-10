@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
+import FriendRequests from './FriendRequests.js'
 import Friends from './Friends.js'
 import instance from '../utils/axios.js'
 import ManageUser from './ManageUser.js'
@@ -35,12 +36,13 @@ function Profile() {
     /** @param {User} newUserDetails */
     function updateUser(newUserDetails) {
         setUser(newUserDetails)
-        if (isMe) setLoggedInUser(newUserDetails)
+        if (isMe) setLoggedInUser({ ...loggedInUser, newUserDetails })
     }
 
     return (
         <div className="profile d-flex">
             <MenuSideBar />
+
             <div className="profile-container">
                 <ProfileTopSection
                     user={user}
@@ -57,15 +59,26 @@ function Profile() {
                         }
                     />
                     {isMe && (
-                        <Route
-                            path="more"
-                            element={
-                                <ManageUser
-                                    user={user}
-                                    updateUser={updateUser}
-                                />
-                            }
-                        />
+                        <>
+                            <Route
+                                path="friendrequests"
+                                element={
+                                    <FriendRequests
+                                        user={user}
+                                        updateUser={updateUser}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="more"
+                                element={
+                                    <ManageUser
+                                        user={user}
+                                        updateUser={updateUser}
+                                    />
+                                }
+                            />
+                        </>
                     )}
 
                     <Route

@@ -49,6 +49,15 @@ const ProfileTopSection = ({ isMe, user, updateUser }) => {
                         }>
                         Friends
                     </NavLink>
+                    {isMe && (
+                        <NavLink
+                            to={`./friendrequests`}
+                            className={({ isActive }) =>
+                                isActive ? 'selected' : ''
+                            }>
+                            Friend Requests
+                        </NavLink>
+                    )}
                     <NavLink
                         to={`./more`}
                         className={({ isActive }) =>

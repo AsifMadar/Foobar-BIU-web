@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContent } from '../App/App.js'
 import instance from '../utils/axios.js'
@@ -13,7 +12,7 @@ import instance from '../utils/axios.js'
 const Friends = ({ user, updateUser }) => {
     const { user: loggedInUser } = useContext(UserContent)
 
-    const handleRemoveFriend = friendUsername => {
+    const handleRemoveFriend = () => {
         instance.delete(
             `/users/${loggedInUser.username}/friends/${user.username}`,
         )
@@ -29,25 +28,15 @@ const Friends = ({ user, updateUser }) => {
     }
 
     return (
-        <div className="container shadow">
+        <div className="container">
             <div className="row">
-                <div className="col">
-                    <h3>Friends</h3>
-                </div>
-                <div className="col text-right">
-                    <Link to="/friendsrequest">Friend Requests</Link>
-                </div>
-            </div>
-            <div className="row">
-                {user.friends.map(friend => (
-                    <div className="col" key={friend.id}>
-                        <div className="friend-item shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
-                            <div className="friend-name">{friend.name}</div>
+                {user.friends.map(username => (
+                    <div className="col" key={username}>
+                        <div className="friend-item col col-md-6 d-flex rounded align-items-center justify-content-between p-3 shadow my-3">
+                            <div className="friend-name">{username}</div>
                             <button
                                 className="btn btn-danger"
-                                onClick={() =>
-                                    handleRemoveFriend(friend.username)
-                                }>
+                                onClick={handleRemoveFriend}>
                                 Remove
                             </button>
                         </div>

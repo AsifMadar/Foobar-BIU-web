@@ -1,6 +1,5 @@
 import './App.css'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import FriendRequests from '../FriendRequests/FriendRequests.js'
 import MenuTop from '../MenuTop/MenuTop.js'
 import Profile from '../Profile/Profile.js'
 import React, { createContext, useState } from 'react'
@@ -35,10 +34,6 @@ function App() {
                                     element={<Navigate to="/feed" />}
                                 />
                                 <Route path="/feed" element={<UserFeed />} />
-                                <Route
-                                    path="/friendrequests"
-                                    element={<FriendRequests />}
-                                />
                                 <Route
                                     path="/profile"
                                     element={
