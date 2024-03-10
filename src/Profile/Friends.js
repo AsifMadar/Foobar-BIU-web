@@ -12,8 +12,6 @@ import instance from '../utils/axios.js'
 const Friends = ({ user, updateUser }) => {
     const { user: loggedInUser } = useContext(UserContent)
 
-    const isMe = user.username === loggedInUser.username
-
     const handleRemoveFriend = () => {
         instance.delete(
             `/users/${loggedInUser.username}/friends/${user.username}`,
@@ -28,6 +26,9 @@ const Friends = ({ user, updateUser }) => {
         if (index > -1) updatedUser.friendRequests.splice(index, 1)
         updateUser(updatedUser)
     }
+
+    const isMe = user.username === loggedInUser.username
+    const isFriend = isMe || user.friends?.includes(loggedInUser.username)
 
     return (
         <div className="container">
@@ -46,6 +47,16 @@ const Friends = ({ user, updateUser }) => {
                         </div>
                     </div>
                 ))}
+                {user.friends.length === 0 && (
+                    <p>
+                        {isFriend
+                            ? (isMe
+                                  ? "You don't"
+                                  : `${user.displayName} doesn't`) +
+                              'have any friends yet'
+                            : `You have to befriend ${user.displayName} to see their friends list`}
+                    </p>
+                )}
             </div>
         </div>
     )

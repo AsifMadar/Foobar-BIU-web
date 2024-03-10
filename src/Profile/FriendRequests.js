@@ -58,6 +58,9 @@ const FriendRequests = ({ user, updateUser }) => {
                     </div>
                 </div>
             ))}
+            {user.friendRequests.length === 0 && (
+                <p>There are no pending friend requests</p>
+            )}
         </div>
     )
 }

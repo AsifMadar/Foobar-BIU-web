@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { useEffect, useState } from 'react'
+import { UserContent } from '../App/App.js'
 import instance from '../utils/axios.js'
 import PostList from '../PostList/PostList.js'
 
@@ -10,6 +12,7 @@ import PostList from '../PostList/PostList.js'
  * @param {User} props.user
  */
 const TimeLine = ({ user }) => {
+    const { user: loggedInUser } = useContext(UserContent)
     const [postsDetails, setPostsDetails] = useState(/** @type {Post[]} */ ([]))
 
     useEffect(() => {
@@ -26,7 +29,23 @@ const TimeLine = ({ user }) => {
             })
     }, [user])
 
-    return <PostList posts={postsDetails} updatePosts={() => {}} />
+    const isMe = user.username === loggedInUser.username
+    const isFriend = isMe || user.friends?.includes(loggedInUser.username)
+
+    return (
+        <div className="container">
+            <PostList posts={postsDetails} updatePosts={() => {}} />
+
+            {postsDetails.length === 0 && (
+                <div className="row">
+                    {isFriend
+                        ? (isMe ? 'You' : user.displayName) +
+                          " haven't posted anything yet"
+                        : `You have to befriend ${user.displayName} to view their timeline`}
+                </div>
+            )}
+        </div>
+    )
 }
 
 export default TimeLine
