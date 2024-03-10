@@ -1,6 +1,8 @@
 export interface User {
     displayName: string
+    friends?: string[]
     profileImage: string
+    username: string
 }
 
 export interface CurrentUser extends User {

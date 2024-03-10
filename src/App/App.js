@@ -40,6 +40,15 @@ function App() {
                                     element={<FriendRequests />}
                                 />
                                 <Route
+                                    path="/profile"
+                                    element={
+                                        <Navigate
+                                            to={'/profile/' + user.username}
+                                            replace
+                                        />
+                                    }
+                                />
+                                <Route
                                     path="/profile/:username/*"
                                     element={<Profile />}
                                 />

@@ -1,46 +1,60 @@
 import { Link } from 'react-router-dom'
-import { Row, Col, Container, Button } from 'react-bootstrap'
+import { useContext } from 'react'
 import { UserContent } from '../App/App.js'
-import React, { useContext } from 'react'
+import instance from '../utils/axios.js'
 
-const Friends = () => {
-    const { user, setUser } = useContext(UserContent)
+/** @typedef {import('../data/posts.json').User} User */
+
+/**
+ * @param {object} props
+ * @param {User} props.user
+ * @param {(newUserDetails: User) => void} props.updatedUser
+ */
+const Friends = ({ user, updateUser }) => {
+    const { user: loggedInUser } = useContext(UserContent)
 
     const handleRemoveFriend = friendUsername => {
-        const updatedUser = { ...user }
-        updatedUser.friends = user.friends.filter(
-            friend => friend.username !== friendUsername,
+        instance.delete(
+            `/users/${loggedInUser.username}/friends/${user.username}`,
         )
-        setUser(updatedUser)
+
+        if (!user.friendRequests) return
+
+        // Update the local copy
+        const updatedUser = structuredClone(user)
+        // Remove friend from friend requests
+        const index = updatedUser.friendRequests.indexOf(user.username)
+        if (index > -1) updatedUser.friendRequests.splice(index, 1)
+        updateUser(updatedUser)
     }
 
     return (
-        <Container className="shadow">
-            <Row>
-                <Col xs={9}>
+        <div className="container shadow">
+            <div className="row">
+                <div className="col">
                     <h3>Friends</h3>
-                </Col>
-                <Col xs={3} className="text-right">
+                </div>
+                <div className="col text-right">
                     <Link to="/friendsrequest">Friend Requests</Link>
-                </Col>
-            </Row>
-            <Row>
+                </div>
+            </div>
+            <div className="row">
                 {user.friends.map(friend => (
-                    <Col key={friend.id} xs={12} sm={6} md={4} lg={3} xl={3}>
+                    <div className="col" key={friend.id}>
                         <div className="friend-item shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
                             <div className="friend-name">{friend.name}</div>
-                            <Button
-                                variant="outline-danger"
+                            <button
+                                className="btn btn-danger"
                                 onClick={() =>
                                     handleRemoveFriend(friend.username)
                                 }>
                                 Remove
-                            </Button>
+                            </button>
                         </div>
-                    </Col>
+                    </div>
                 ))}
-            </Row>
-        </Container>
+            </div>
+        </div>
     )
 }
 

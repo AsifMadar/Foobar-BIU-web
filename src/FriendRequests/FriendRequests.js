@@ -1,5 +1,4 @@
 import './FriendRequests.css'
-import { Button } from 'react-bootstrap'
 import { UserContent } from '../App/App.js'
 import React, { useContext } from 'react'
 import MenuSideBar from '../MenuSideBar/MenuSideBar.js'
@@ -43,20 +42,20 @@ const FriendRequests = () => {
                         className="col col-md-6 d-flex align-items-center justify-content-between p-3 shadow mb-3">
                         <span>{request.username}</span>
                         <div>
-                            <Button
-                                variant="success"
+                            <button
+                                className="btn btn-success"
                                 onClick={() =>
                                     handleAddFriend(request.username)
                                 }>
                                 Add
-                            </Button>{' '}
-                            <Button
-                                variant="danger"
+                            </button>{' '}
+                            <button
+                                className="btn btn-danger"
                                 onClick={() =>
                                     handleRejectFriend(request.username)
                                 }>
                                 Reject
-                            </Button>
+                            </button>
                         </div>
                     </div>
                 ))}

@@ -1,21 +1,25 @@
 import './ProfileTopSection.css'
 import { NavLink } from 'react-router-dom'
-import { UserContent } from '../App/App.js'
-import React, { useContext } from 'react'
+import instance from '../utils/axios.js'
 
-const ProfileTopSection = ({ user }) => {
-    const { setUser } = useContext(UserContent)
+/** @typedef {import('../data/posts.json').User} User */
 
-    const handleAddFriendRequest = friendUsername => {
-        // Update user's friends list
-        const updatedUser = { ...user }
-        updatedUser.friendRequests = [
-            ...updatedUser.friendRequests,
-            { username: friendUsername, name: friendUsername },
-        ]
-        setUser(updatedUser)
+/**
+ * @param {object} props
+ * @param {boolean} props.isMe Is the provided user also the currently logged in user
+ * @param {User} props.user
+ * @param {(newUserDetails: User) => void} props.updatedUser
+ */
+const ProfileTopSection = ({ isMe, user, updateUser }) => {
+    const handleRequestFriendship = () => {
+        instance.post(`/users/${user.username}/friends`, {})
 
-        // Remove friend from friend requests
+        if (!user.friendRequests) return
+
+        // Update the local copy
+        const updatedUser = structuredClone(user)
+        updatedUser.friendRequests.push(user.username)
+        updateUser(updatedUser)
     }
 
     return (
@@ -54,14 +58,17 @@ const ProfileTopSection = ({ user }) => {
                     </NavLink>
                 </div>
                 <div className="d-flex p-2">
-                    <button to={`./edit`} className="rect editProfile">
-                        Edit Profile
-                    </button>
-                    <button
-                        className="rect addFriend"
-                        onClick={() => handleAddFriendRequest('dummyFriend')}>
-                        Add Friend
-                    </button>
+                    {isMe ? (
+                        <button to={`./edit`} className="rect editProfile">
+                            Edit Profile
+                        </button>
+                    ) : (
+                        <button
+                            className="rect addFriend"
+                            onClick={handleRequestFriendship}>
+                            Send friend request
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
