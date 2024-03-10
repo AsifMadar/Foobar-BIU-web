@@ -1,7 +1,8 @@
 import './Post.css'
 import { createRef } from 'react'
-import { timestampToStr } from '../utils/timestampToStr.js'
 import { listToStr } from '../utils/listToStr.js'
+import { timestampToStr } from '../utils/timestampToStr.js'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Comment from '../Comment/Comment.js'
 import commentIcon from '../img/comment-icon.svg'
@@ -93,15 +94,21 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
     return (
         <div className="post border rounded mb-3">
             <header className="d-flex flex-row p-2">
-                <img
-                    className="post-author-img"
-                    alt={'Profile picture of ' + author.displayName}
-                    src={author.profileImage}
-                />
+                <Link to={`/profile/${author.username}`}>
+                    <img
+                        className="post-author-img"
+                        alt={'Profile picture of ' + author.displayName}
+                        src={author.profileImage}
+                    />
+                </Link>
                 <div className="d-flex flex-column text-start ms-3">
-                    <span className="post-author-name h5">
-                        {author.displayName}
-                    </span>
+                    <Link
+                        to={`/profile/${author.username}`}
+                        style={{ textDecoration: 'none' }}>
+                        <span className="post-author-name h5">
+                            {author.displayName}
+                        </span>
+                    </Link>
                     <span className="post-time">
                         Published on {timestampToStr(details.timestamp)}
                     </span>

@@ -68,7 +68,10 @@ function Profile() {
                         />
                     )}
 
-                    <Route path="*" element={<Navigate to="./timeline" />} />
+                    <Route
+                        path="*"
+                        element={<Navigate to="./timeline" replace />}
+                    />
                 </Routes>
             </div>
         </div>
