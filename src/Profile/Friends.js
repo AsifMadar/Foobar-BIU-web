@@ -12,6 +12,8 @@ import instance from '../utils/axios.js'
 const Friends = ({ user, updateUser }) => {
     const { user: loggedInUser } = useContext(UserContent)
 
+    const isMe = user.username === loggedInUser.username
+
     const handleRemoveFriend = () => {
         instance.delete(
             `/users/${loggedInUser.username}/friends/${user.username}`,
@@ -34,11 +36,13 @@ const Friends = ({ user, updateUser }) => {
                     <div className="col" key={username}>
                         <div className="friend-item col col-md-6 d-flex rounded align-items-center justify-content-between p-3 shadow my-3">
                             <div className="friend-name">{username}</div>
-                            <button
-                                className="btn btn-danger"
-                                onClick={handleRemoveFriend}>
-                                Remove
-                            </button>
+                            {isMe && (
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={handleRemoveFriend}>
+                                    Remove
+                                </button>
+                            )}
                         </div>
                     </div>
                 ))}

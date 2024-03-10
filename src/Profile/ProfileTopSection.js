@@ -1,5 +1,7 @@
 import './ProfileTopSection.css'
 import { NavLink } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { UserContent } from '../App/App.js'
 import instance from '../utils/axios.js'
 
 /** @typedef {import('../data/posts.json').User} User */
@@ -11,10 +13,27 @@ import instance from '../utils/axios.js'
  * @param {(newUserDetails: User) => void} props.updatedUser
  */
 const ProfileTopSection = ({ isMe, user, updateUser }) => {
-    const handleRequestFriendship = () => {
-        instance.post(`/users/${user.username}/friends`, {})
+    const { user: loggedInUser } = useContext(UserContent)
+    const loggedInUsername = loggedInUser.username
 
-        if (!user.friendRequests) return
+    const [isFriend, setIsFriend] = useState(false)
+    useEffect(() => {
+        setIsFriend(isMe || user.friends?.includes(loggedInUsername))
+    }, [isMe, loggedInUsername, user])
+
+    const [hasRequestedFriendship, setHasRequestedFriendship] = useState(false)
+    useEffect(() => {
+        setHasRequestedFriendship(false)
+    }, [user])
+
+    const handleRequestFriendship = () => {
+        setHasRequestedFriendship(true)
+        instance.post(`/users/${user.username}/friends`, {}).catch(e => {
+            if (e.response.status === 409) return // Happens when sending a request twice
+            throw e
+        })
+
+        if (!isMe) return
 
         // Update the local copy
         const updatedUser = structuredClone(user)
@@ -67,17 +86,23 @@ const ProfileTopSection = ({ isMe, user, updateUser }) => {
                     </NavLink>
                 </div>
                 <div className="d-flex p-2">
-                    {isMe ? (
+                    {isMe && (
                         <button to={`./edit`} className="rect editProfile">
                             Edit Profile
                         </button>
-                    ) : (
-                        <button
-                            className="rect addFriend"
-                            onClick={handleRequestFriendship}>
-                            Send friend request
-                        </button>
                     )}
+                    {!isFriend &&
+                        (hasRequestedFriendship ? (
+                            <button className="rect addFriend" disabled={true}>
+                                Sent!
+                            </button>
+                        ) : (
+                            <button
+                                className="rect addFriend"
+                                onClick={handleRequestFriendship}>
+                                Send friend request
+                            </button>
+                        ))}
                 </div>
             </div>
         </div>

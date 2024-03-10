@@ -1,4 +1,3 @@
-import './FriendRequests.css'
 import instance from '../utils/axios.js'
 
 /** @typedef {import('../data/posts.json').User} User */
