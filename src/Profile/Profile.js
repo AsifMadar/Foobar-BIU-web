@@ -20,12 +20,15 @@ function Profile() {
     const [user, setUser] = useState(
         /** @type {User} */ ({
             displayName: '',
+            friendRequests: [],
+            friends: [],
             profileImage: '',
         }),
     )
 
     const { username } = useParams()
     useEffect(() => {
+        if (!username) return
         instance.get('/users/' + username).then(res => {
             if (res.status === 200) setUser(res.data)
         })

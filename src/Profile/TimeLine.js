@@ -16,6 +16,7 @@ const TimeLine = ({ user }) => {
     const [postsDetails, setPostsDetails] = useState(/** @type {Post[]} */ ([]))
 
     useEffect(() => {
+        if (!user?.username) return
         instance
             .get(`/users/${user.username}/posts`)
             .then(postList =>
