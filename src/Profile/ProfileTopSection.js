@@ -77,28 +77,21 @@ const ProfileTopSection = ({ isMe, user, updateUser }) => {
                             Friend Requests
                         </NavLink>
                     )}
-                    <NavLink
-                        to={`./more`}
-                        className={({ isActive }) =>
-                            isActive ? 'selected' : ''
-                        }>
-                        More
-                    </NavLink>
                 </div>
                 <div className="d-flex p-2">
                     {isMe && (
-                        <button to={`./edit`} className="rect editProfile">
+                        <NavLink to={`./edit`} className="profile-button">
                             Edit Profile
-                        </button>
+                        </NavLink>
                     )}
                     {!isFriend &&
                         (hasRequestedFriendship ? (
-                            <button className="rect addFriend" disabled={true}>
+                            <button className="profile-button" disabled={true}>
                                 Sent!
                             </button>
                         ) : (
                             <button
-                                className="rect addFriend"
+                                className="profile-button"
                                 onClick={handleRequestFriendship}>
                                 Send friend request
                             </button>

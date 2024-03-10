@@ -70,7 +70,7 @@ function Profile() {
                                 }
                             />
                             <Route
-                                path="more"
+                                path="edit"
                                 element={
                                     <ManageUser
                                         user={user}

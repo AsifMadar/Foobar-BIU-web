@@ -26,7 +26,6 @@
 
         a {
             border-radius: 5px;
-            color: var(--bs-secondary-color);
             padding: 5px;
 
             &:hover {
@@ -46,8 +45,8 @@
         flex-direction: row;
         justify-content: space-between;
 
-        /* Style links to remove underlines and make them black */
         a {
+            color: var(--bs-secondary-color);
             display: inline-block;
             vertical-align: middle;
             text-decoration: none;
@@ -55,19 +54,12 @@
 
     }
 
-    .rect {
-        background-color: #c0c1c2;
+    .profile-button {
+        background: var(--bs-tertiary-bg);
         border-radius: 10px;
         border: none;
-        padding: 0.5em 1em;
         margin: 0.5em;
-
-        img {
-            height: 20px;
-            width: 20px;
-            margin-right: 10px;
-            filter: invert(100%);
-        }
+        padding: 0.5em 1em;
     }
 
     .friend-item {
