@@ -1,13 +1,12 @@
 import './MenuSideBar.css'
 import { jwt } from '../utils/axios.js'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useContext } from 'react'
 import { UserContent } from '../App/App.js'
-import React, { useContext } from 'react'
 import SideBarRow from './SideBarRow.js'
 
 function MenuSideBar() {
     const { user, setUser } = useContext(UserContent)
-    const navigate = useNavigate()
 
     const logout = () => {
         jwt.set(null)
@@ -15,7 +14,6 @@ function MenuSideBar() {
             ...prevUser,
             isSignedIn: false,
         }))
-        navigate('/signin')
     }
 
     return (

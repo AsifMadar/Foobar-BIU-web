@@ -39,7 +39,7 @@ function Profile() {
     /** @param {User} newUserDetails */
     function updateUser(newUserDetails) {
         setUser(newUserDetails)
-        if (isMe) setLoggedInUser({ ...loggedInUser, newUserDetails })
+        if (isMe) setLoggedInUser(newUserDetails)
     }
 
     return (

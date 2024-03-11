@@ -53,7 +53,7 @@ const Friends = ({ user, updateUser }) => {
                             ? (isMe
                                   ? "You don't"
                                   : `${user.displayName} doesn't`) +
-                              'have any friends yet'
+                              ' have any friends yet'
                             : `You have to befriend ${user.displayName} to see their friends list`}
                     </p>
                 )}
