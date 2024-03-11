@@ -20,7 +20,6 @@ const ManageUser = ({ user, updateUser }) => {
         name.length <= 16
 
     const updateImg = ([image]) => {
-        console.log(image)
         setImg(image ?? null)
     }
 

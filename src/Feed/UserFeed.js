@@ -1,5 +1,5 @@
 import './UserFeed.css'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { UserContent } from '../App/App.js'
 import instance from '../utils/axios.js'
 import MenuSideBar from '../MenuSideBar/MenuSideBar.js'
@@ -10,7 +10,6 @@ import PostList from '../PostList/PostList.js'
 
 function UserFeed() {
     const { user } = useContext(UserContent)
-    const [prevUser, setPrevUser] = useState(user)
     const [postsDetails, setPostsDetails] = useState(() => {
         instance
             .get('/posts')
@@ -21,16 +20,6 @@ function UserFeed() {
             ) // Will happen at some later point
         return []
     })
-
-    useEffect(() => {
-        if (
-            user.displayName !== prevUser.displayName ||
-            user.profileImage !== prevUser.profileImage
-        ) {
-            // Update "author" fields in relevant posts
-        }
-        setPrevUser(user)
-    }, [user, prevUser])
 
     const dummyDetails = {
         author: user,

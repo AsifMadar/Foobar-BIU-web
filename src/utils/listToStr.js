@@ -8,6 +8,7 @@
 export function listToStr(terms) {
     if (terms.length === 0) return ''
     if (terms.length === 1) return terms[0]
+    if (terms.length === 2) return terms[0] + ' and ' + terms[1]
 
     return terms.slice(0, -1).join(', ') + ', and ' + terms.at(-1)
 }
