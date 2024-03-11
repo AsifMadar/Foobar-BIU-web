@@ -14,8 +14,10 @@ const ManageUser = ({ user, updateUser }) => {
     const [profileImage, setImg] = useState(null)
     const [displayName, setDisplayName] = useState('')
 
-    const isDisplayNameValid = item =>
-        /^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/.test(item)
+    const isDisplayNameValid = name =>
+        /^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/.test(name) &&
+        2 <= name.length &&
+        name.length <= 16
 
     const updateImg = ([image]) => {
         console.log(image)
@@ -33,14 +35,16 @@ const ManageUser = ({ user, updateUser }) => {
             return alert('No profile image, or display name is invalid!')
         }
 
-        instance.patch(`/users/${user.username}`, patchObject)
+        instance.patch(`/users/${user.username}`, patchObject).then(() => {
+            updateUser(Object.assign({}, user, patchObject))
+        })
     }
 
     function deleteUser() {
         if (
             prompt(
                 'Are you sure you want to delete your user? Enter "yes" to confirm',
-            ).toLowerCase() === 'yes'
+            )?.toLowerCase() === 'yes'
         ) {
             instance.delete(`/users/${user.username}`)
 
