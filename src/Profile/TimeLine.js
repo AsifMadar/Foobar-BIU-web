@@ -25,8 +25,8 @@ const TimeLine = ({ user }) => {
                 ),
             )
             .catch(e => {
-                // Ignore 404 errors, which happen for non-friends
-                if (e.response.status !== 404) console.error(e)
+                // Ignore 409 errors, which happen for non-friends
+                if (e.response.status !== 409) console.error(e)
             })
     }, [user])
 
@@ -34,16 +34,16 @@ const TimeLine = ({ user }) => {
     const isFriend = isMe || user.friends?.includes(loggedInUser.username)
 
     return (
-        <div className="container">
+        <div className="container p-3">
             <PostList posts={postsDetails} updatePosts={() => {}} />
 
             {postsDetails.length === 0 && (
-                <div className="row">
+                <p className="text-center">
                     {isFriend
                         ? (isMe ? 'You' : user.displayName) +
                           " haven't posted anything yet"
                         : `You have to befriend ${user.displayName} to view their timeline`}
-                </div>
+                </p>
             )}
         </div>
     )

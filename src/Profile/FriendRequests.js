@@ -38,7 +38,7 @@ const FriendRequests = ({ user, updateUser }) => {
     }
 
     return (
-        <div className="container">
+        <div className="container p-3">
             {user.friendRequests?.map(username => (
                 <div
                     key={username}
@@ -59,7 +59,9 @@ const FriendRequests = ({ user, updateUser }) => {
                 </div>
             ))}
             {user.friendRequests.length === 0 && (
-                <p>There are no pending friend requests</p>
+                <p className="text-center">
+                    There are no pending friend requests
+                </p>
             )}
         </div>
     )

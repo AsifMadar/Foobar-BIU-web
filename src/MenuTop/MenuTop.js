@@ -78,7 +78,7 @@ function MenuTop() {
                             />
                         </Link>
                     ) : (
-                        <a key={i} style={{ pointerEvents: 'none' }} href>
+                        <a key={i} style={{ pointerEvents: 'none' }} href="/">
                             <img
                                 src={linkInfo.imgSrc}
                                 alt=""

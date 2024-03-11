@@ -31,7 +31,7 @@ const Friends = ({ user, updateUser }) => {
     const isFriend = isMe || user.friends?.includes(loggedInUser.username)
 
     return (
-        <div className="container">
+        <div className="container p-3">
             <div className="row">
                 {user.friends.map(username => (
                     <div className="col" key={username}>
@@ -48,7 +48,7 @@ const Friends = ({ user, updateUser }) => {
                     </div>
                 ))}
                 {user.friends.length === 0 && (
-                    <p>
+                    <p className="text-center">
                         {isFriend
                             ? (isMe
                                   ? "You don't"
