@@ -2,14 +2,11 @@ import './SideBarRow.css'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-function SideBarRow({ ImageLink, title, avatar, onClick }) {
-    const handleClick = () => {
-        if (onClick) {
-            onClick()
-        }
-    }
+function SideBarRow({ disabled, ImageLink, title, avatar, onClick }) {
     return (
-        <div className="sideBarRow" onClick={handleClick}>
+        <div
+            className={'sideBarRow' + (disabled ? ' disabled' : '')}
+            onClick={onClick ?? (() => {})}>
             <img src={ImageLink} alt="" className={avatar ? 'avatar' : ''} />
             <h2>{title}</h2>
         </div>

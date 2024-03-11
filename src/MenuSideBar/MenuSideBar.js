@@ -26,26 +26,33 @@ function MenuSideBar() {
                 />
             </Link>
             <SideBarRow
+                disabled
                 ImageLink="https://cdn-icons-gif.flaticon.com/12198/12198847.gif"
                 title="Messeges"
             />
+            <Link to={`/profile/${user.username}/friendrequests`}>
+                <SideBarRow
+                    ImageLink="https://cdn-icons-gif.flaticon.com/10182/10182258.gif"
+                    title="Friends"
+                />
+            </Link>
             <SideBarRow
-                ImageLink="https://cdn-icons-gif.flaticon.com/10182/10182258.gif"
-                title="Friends"
-            />
-            <SideBarRow
+                disabled
                 ImageLink="https://cdn-icons-gif.flaticon.com/9822/9822027.gif"
                 title="Groups"
             />
             <SideBarRow
+                disabled
                 ImageLink="https://cdn-icons-gif.flaticon.com/11095/11095493.gif"
                 title="Marketplace"
             />
             <SideBarRow
+                disabled
                 ImageLink="https://cdn-icons-gif.flaticon.com/14193/14193998.gif"
                 title="Memories"
             />
             <SideBarRow
+                disabled
                 ImageLink="https://cdn-icons-gif.flaticon.com/9818/9818054.gif"
                 title="Events"
             />

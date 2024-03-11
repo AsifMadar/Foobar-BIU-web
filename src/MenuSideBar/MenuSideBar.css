@@ -2,6 +2,10 @@
     margin-top: 2em;
     width: min(20%, 250px);
 
+    a {
+        text-decoration: none;
+    }
+
     .hr {
         border-top: 2px solid #d8dfe6;
     }

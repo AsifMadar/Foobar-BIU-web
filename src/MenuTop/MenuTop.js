@@ -41,15 +41,15 @@ function MenuTop() {
             imgSrc: 'https://cdn-icons-png.flaticon.com/128/880/880441.png',
         },
         {
-            to: '/profile/',
+            to: '/profile',
             imgSrc: 'https://cdn-icons-png.flaticon.com/128/1177/1177568.png',
         },
         {
-            to: '/videos',
+            to: null,
             imgSrc: 'https://cdn-icons-png.flaticon.com/128/4406/4406124.png',
         },
         {
-            to: '/marketplace',
+            to: null,
             imgSrc: 'https://cdn-icons-png.flaticon.com/128/4141/4141968.png',
         },
     ]
@@ -66,15 +66,29 @@ function MenuTop() {
                 <button className="search-button btn btn-info">Search</button>
             </div>
             <div className="feedpages">
-                {links.map((linkInfo, i) => (
-                    <Link key={i} to={linkInfo.to}>
-                        <img
-                            src={linkInfo.imgSrc}
-                            alt=""
-                            className={isActive(linkInfo.to) ? 'active' : ''}
-                        />
-                    </Link>
-                ))}
+                {links.map((linkInfo, i) =>
+                    linkInfo.to ? (
+                        <Link key={i} to={linkInfo.to}>
+                            <img
+                                src={linkInfo.imgSrc}
+                                alt=""
+                                className={
+                                    isActive(linkInfo.to) ? 'active' : ''
+                                }
+                            />
+                        </Link>
+                    ) : (
+                        <a key={i} style={{ pointerEvents: 'none' }} href>
+                            <img
+                                src={linkInfo.imgSrc}
+                                alt=""
+                                className={
+                                    isActive(linkInfo.to) ? 'active' : ''
+                                }
+                            />
+                        </a>
+                    ),
+                )}
             </div>
             <div className="dark-mode-switcher">
                 <div className="form-check form-switch">
