@@ -1,7 +1,7 @@
 import '../Post/Post.css'
 import './PostEditor.css'
 import { createRef, useState } from 'react'
-import addImageIcon from '../img/add-image-icon.svg'
+import ImagesInput from '../ImagesInput/ImagesInput.js'
 
 /** @typedef {import('../data/posts.json.js').User} User */
 /** @typedef {import('../data/posts.json.js').Post} Post */
@@ -16,33 +16,17 @@ const MAX_IMAGES_NUM = 1
  */
 function PostEditor({ currentUser, details, updateDetails }) {
     const newPostTextRef = createRef()
-    const fileInputRef = createRef()
     const [newDetails, setNewDetails] = useState(details)
-
-    function deleteImage(i) {
-        const newDetailsCopy = structuredClone(newDetails)
-        newDetailsCopy.images.splice(i, 1)
-        setNewDetails(newDetailsCopy)
-    }
-
-    function addImage(e) {
-        const fileList = e.target.files
-        if (fileList.length !== 1) return
-
-        const img = fileList.item(0)
-        const reader = new FileReader()
-
-        reader.readAsDataURL(img)
-        reader.onload = () => {
-            const newDetailsCopy = structuredClone(newDetails)
-            newDetailsCopy.images.push(reader.result)
-            setNewDetails(newDetailsCopy)
-        }
-    }
 
     function updateText() {
         const newDetailsCopy = structuredClone(newDetails)
         newDetailsCopy.contents = newPostTextRef.current.value.trim()
+        setNewDetails(newDetailsCopy)
+    }
+
+    function updateImages(newImages) {
+        const newDetailsCopy = structuredClone(newDetails)
+        newDetailsCopy.images = newImages
         setNewDetails(newDetailsCopy)
     }
 
@@ -83,31 +67,11 @@ function PostEditor({ currentUser, details, updateDetails }) {
                     ref={newPostTextRef}
                 />
             </article>
-            <article className="post-images d-flex flex-column align-items-center">
-                {newDetails.images.length < MAX_IMAGES_NUM && (
-                    <button
-                        className="add-image btn icon-link border mb-2"
-                        onClick={() => fileInputRef.current.click()}>
-                        <img src={addImageIcon} alt="" />
-                        Add an image...
-                        <input
-                            className="d-none"
-                            type="file"
-                            ref={fileInputRef}
-                            onChange={addImage}
-                            accept="image/*"
-                        />
-                    </button>
-                )}
-                {newDetails.images.map((imageSrc, i) => (
-                    <div key={i} className="image-container m-1">
-                        <button
-                            className="btn btn-close delete-img"
-                            onClick={() => deleteImage(i)}
-                        />
-                        <img src={imageSrc} className="img-fluid" alt="" />
-                    </div>
-                ))}
+            <article className="post-images">
+                <ImagesInput
+                    maxImagesNum={MAX_IMAGES_NUM}
+                    onUpdate={updateImages}
+                />
             </article>
             <footer className="d-grid gap-2">
                 <button
