@@ -4,7 +4,7 @@
 
 To run the project, first install the dependencies using `npm install`, then execute the command `npm start`
 
-*Note: This code assumes your server is hosted at `localhost:8080`. If your server is hosted on a different url, edit `BASE_URL` in `./utils/axios.js` accordingly.*
+*Note: This code assumes your server is hosted at `localhost:8080`. If your server is hosted on a different url, edit `BASE_URL` in `src/utils/axios.js` accordingly.*
 
 ## Workflow
 At the start of the project, we sat down and planned the application structure, splitted the work between the three of us (Asif and Hodaya, and Michael) and created a sprint with the appropriate tasks on Jira. Afterwords we started working on the project, starting with the web application, and later moving on to the android application.
