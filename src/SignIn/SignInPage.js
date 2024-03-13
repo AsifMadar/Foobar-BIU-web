@@ -2,24 +2,54 @@ import './SignInPage.css'
 import { useNavigate } from 'react-router-dom'
 import { UserContent } from '../App/App.js'
 import AdvancedTextField from '../TextField/AdvancedTextField.js'
-import React, { useContext, useState } from 'react'
+import axios, { jwt } from '../utils/axios.js'
+import { useContext, useState, useEffect } from 'react'
 
 function SignInPage() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const navigate = useNavigate()
-    const { user, setUser } = useContext(UserContent)
-    //if the given input is valid connect the user, else, alert him
-    const handleSignInClick = () => {
-        if (user.username === username && user.password === password) {
-            setUser(prevUser => ({
-                ...prevUser, //using the same fields as before
+    const getUserInfoAndGoToFeed = async myUsername => {
+        const res = await axios.get('/users/' + myUsername)
+
+        if (res.status === 200) {
+            setUser({
+                ...res.data,
                 isSignedIn: true,
-            }))
+            })
+
             navigate('/feed')
-        } else {
-            alert('Invalid username or password')
+        }
+    }
+
+    useEffect(() => {
+        const existingUsername = localStorage.getItem('username')
+        if (jwt.get() && existingUsername) {
+            getUserInfoAndGoToFeed(existingUsername)
+        }
+    })
+
+    const navigate = useNavigate()
+    const { setUser } = useContext(UserContent)
+    //if the given input is valid connect the user, else, alert him
+    const handleSignInClick = async event => {
+        event.preventDefault()
+
+        // Use the instance to make a GET request to the `/users` endpoint
+        try {
+            const res = await axios.post('/tokens', {
+                username,
+                password,
+            })
+
+            jwt.set(res.data)
+            localStorage.setItem('username', username)
+            if (res.status === 200) getUserInfoAndGoToFeed(username)
+        } catch (error) {
+            //invalid info
+            if (error.response && error.response.status === 404) {
+                alert('Invalid username or password')
+            }
         }
     }
     // Use the navigate function to navigate to the "/signup" route

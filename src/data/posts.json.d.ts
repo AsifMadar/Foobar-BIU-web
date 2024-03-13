@@ -1,7 +1,15 @@
 export interface User {
     displayName: string
+    friends?: string[]
     profileImage: string
     username: string
+}
+
+export interface CurrentUser extends User {
+    friendRequests: string[]
+    friends: string[]
+    isSignedIn: boolean
+    jwtToken: string
 }
 
 export interface Comment {
@@ -12,6 +20,7 @@ export interface Comment {
 }
 
 export interface Post {
+    id: string
     author: User
     comments: Comment[]
     contents: string

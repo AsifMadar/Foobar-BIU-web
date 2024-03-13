@@ -1,0 +1,28 @@
+.menu-sidebar {
+    margin-top: 2em;
+    width: min(20%, 250px);
+
+    a {
+        text-decoration: none;
+    }
+
+    .hr {
+        border-top: 2px solid #d8dfe6;
+    }
+}
+
+.policies {
+    gap: 0.25em;
+
+    p {
+        margin: 0;
+        font-size: 13px;
+        color: #b0b3b8;
+    }
+}
+
+@media screen and(max-width: 600px) {
+    .menu-sidebar {
+        display: none;
+    }
+}

@@ -1,12 +1,14 @@
 import './Post.css'
 import { createRef } from 'react'
+import { listToStr } from '../utils/listToStr.js'
 import { timestampToStr } from '../utils/timestampToStr.js'
-import { usernamesToStr } from '../utils/usernamesToStr.js'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Comment from '../Comment/Comment.js'
 import commentIcon from '../img/comment-icon.svg'
 import deleteIcon from '../img/trash-icon.svg'
 import editIcon from '../img/pencil-icon.svg'
+import instance from '../utils/axios.js'
 import likeBtnBlue from '../img/like-btn-blue.svg'
 import likeBtnWhite from '../img/like-btn-white.svg'
 import likeIcon from '../img/like-icon.svg'
@@ -19,10 +21,13 @@ import whatsappIcon from '../img/whatsapp-icon.svg'
 
 /**
  * @callback UpdateDetailsCallback
- * @param {Post | null} newPost
+ * @param {Post} newPost
  * @param {'delete' | 'update'} updateType
  * @returns {void}
  */
+
+const selectMe = (usernames, me) =>
+    usernames.map(username => (username === me ? 'You' : username))
 
 /**
  * @param {object} props
@@ -33,23 +38,27 @@ import whatsappIcon from '../img/whatsapp-icon.svg'
  */
 function Post({ currentUser, editRequested, details, updateDetails }) {
     const author = details.author
-    const isLikedByMe = details.likes.some(
-        user => user.username === currentUser.username,
+    const isLikedByMe = details.likes.includes(currentUser.username)
+    const likesNameList = listToStr(
+        selectMe(details.likes, currentUser.username),
     )
-    const likesNameList = usernamesToStr(details.likes, currentUser)
-    const sharesNameList = usernamesToStr(details.shares, currentUser)
+    const sharesNameList = listToStr(
+        selectMe(details.shares, currentUser.username),
+    )
 
     const [isCommenting, setIsCommenting] = useState(false)
     const [isCommentListOpen, setIsCommentListOpen] = useState(false)
     const modalRef = createRef()
 
     function handleLike() {
+        instance.post('/likes', { postId: details.id })
+
         const detailsCopy = structuredClone(details)
         if (isLikedByMe) {
-            const currentUserIndex = detailsCopy.likes.indexOf(currentUser)
-            detailsCopy.likes.splice(currentUserIndex, 1)
+            const likeIndex = detailsCopy.likes.indexOf(currentUser.username)
+            detailsCopy.likes.splice(likeIndex, 1)
         } else {
-            detailsCopy.likes.push(currentUser)
+            detailsCopy.likes.push(currentUser.username)
         }
         updateDetails(detailsCopy, 'update')
     }
@@ -85,15 +94,21 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
     return (
         <div className="post border rounded mb-3">
             <header className="d-flex flex-row p-2">
-                <img
-                    className="post-author-img"
-                    alt={'Profile picture of ' + author.displayName}
-                    src={author.profileImage}
-                />
+                <Link to={`/profile/${author.username}`}>
+                    <img
+                        className="post-author-img"
+                        alt={'Profile picture of ' + author.displayName}
+                        src={author.profileImage}
+                    />
+                </Link>
                 <div className="d-flex flex-column text-start ms-3">
-                    <span className="post-author-name h5">
-                        {author.displayName}
-                    </span>
+                    <Link
+                        to={`/profile/${author.username}`}
+                        style={{ textDecoration: 'none' }}>
+                        <span className="post-author-name h5">
+                            {author.displayName}
+                        </span>
+                    </Link>
                     <span className="post-time">
                         Published on {timestampToStr(details.timestamp)}
                     </span>
@@ -111,7 +126,9 @@ function Post({ currentUser, editRequested, details, updateDetails }) {
                             </button>
                             <button
                                 className="btn icon-link"
-                                onClick={() => updateDetails(null, 'delete')}>
+                                onClick={() =>
+                                    updateDetails(details, 'delete')
+                                }>
                                 <img src={deleteIcon} alt="" />
                                 Delete
                             </button>
