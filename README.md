@@ -1,5 +1,8 @@
 # Foobar-BIU-web
 
+## Part 3
+This is the branch for part 3 of the project. If you are looking for the branch of **part 2**, please go to the [part2](https://github.com/michaelts1/Foobar-BIU-web/tree/part2) or [main](https://github.com/michaelts1/Foobar-BIU-web/tree/main) branches (they are identical, really).
+
 ## Running the project
 
 To run the project, first install the dependencies using `npm install`, then execute the command `npm start`
