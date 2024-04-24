@@ -31,6 +31,7 @@ function PostList({ posts, updatePosts }) {
                 `/users/${currentUser.username}/posts/${newPost.id}`,
             )
             newArray.splice(i, 1)
+            updatePosts(newArray)
         } else if (newPost) {
             if (updateType === 'edit') {
                 instance
@@ -56,15 +57,11 @@ function PostList({ posts, updatePosts }) {
                         }
                     })
             }
-
-            newArray.splice(i, 1, newPost)
         }
 
         if (updateType !== 'update') {
             setIsEditingIndex(-1)
         }
-
-        updatePosts(newArray)
     }
 
     return (
