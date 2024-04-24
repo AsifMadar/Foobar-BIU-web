@@ -32,28 +32,34 @@ function UserFeed() {
     }
 
     function publishPost(/** @type {Post}*/ postDetails) {
+        console.log('Publishing post with details:', postDetails)
+
         instance
             .post(`/users/${user.username}/posts`, postDetails)
             .then(response => {
                 if (response.status === 200) {
                     // Process the successful response
+                    console.log('Post published successfully:', response.data)
                     setPostsDetails([...postsDetails, response.data])
-                } else if (
-                    response.status === 409 &&
-                    response.data.message === 'Not authorized'
-                ) {
-                    alert('You are not authorized to perform this action.')
-                } else if (
-                    response.status === 451 &&
-                    response.data.message === 'Unavailable For Legal Reasons'
-                ) {
-                    alert(
-                        'The post contains a blacklisted link. Please remove it.',
-                    )
                 }
             })
             .catch(error => {
                 console.error('Error:', error)
+                if (error.response) {
+                    const { status, data } = error.response
+                    console.log('Error response:', status, data)
+                    if (status === 409 && data.message === 'Not authorized') {
+                        alert('You are not authorized to perform this action.')
+                    } else if (status === 451) {
+                        alert(
+                            'The post contains a blacklisted link. Please remove it.',
+                        )
+                    }
+                } else {
+                    alert(
+                        'An unexpected error occurred while publishing the post.',
+                    )
+                }
             })
     }
 

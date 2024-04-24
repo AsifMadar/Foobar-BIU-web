@@ -27,11 +27,16 @@ function PostList({ posts, updatePosts }) {
         const newArray = [...posts]
 
         if (updateType === 'delete') {
-            instance.delete(
-                `/users/${currentUser.username}/posts/${newPost.id}`,
-            )
-            newArray.splice(i, 1)
-            updatePosts(newArray)
+            instance
+                .delete(`/users/${currentUser.username}/posts/${newPost.id}`)
+                .then(() => {
+                    newArray.splice(i, 1)
+                    updatePosts(newArray)
+                })
+                .catch(error => {
+                    console.error('Error:', error)
+                    alert('An error occurred while deleting the post.')
+                })
         } else if (newPost) {
             if (updateType === 'edit') {
                 instance
@@ -43,17 +48,13 @@ function PostList({ posts, updatePosts }) {
                         if (response.status === 200) {
                             newArray.splice(i, 1, newPost)
                             updatePosts(newArray)
-                        } else if (
-                            response.status === 451 &&
-                            response.data.message ===
-                                'Unavailable For Legal Reasons'
-                        ) {
-                            // Handle error message display here
-                            alert('Unavailable For Legal Reasons')
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error)
+                        if (error.response && error.response.status === 451) {
+                            alert('Unavailable For Legal Reasons')
+                        }
                     })
             }
         }
