@@ -37,6 +37,19 @@ function UserFeed() {
             .then(({ data: createdPost }) => {
                 setPostsDetails([...postsDetails, createdPost])
             })
+            .catch(error => {
+                if (
+                    error.response &&
+                    error.response.data.message ===
+                        '451 Unavailable For Legal Reasons'
+                ) {
+                    alert(
+                        'The post contains a blacklisted link. Please remove it.',
+                    )
+                } else {
+                    console.error('Error:', error)
+                }
+            })
     }
 
     return (
