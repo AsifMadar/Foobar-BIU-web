@@ -39,22 +39,21 @@ function PostList({ posts, updatePosts }) {
                         `/users/${currentUser.username}/posts/${newPost.id}`,
                         newPost,
                     )
-                    .then(() => {
-                        newArray.splice(i, 1, newPost)
-                        updatePosts(newArray)
+                    .then(response => {
+                        if (response.status === 200) {
+                            newArray.splice(i, 1, newPost)
+                            updatePosts(newArray)
+                        } else if (
+                            response.status === 451 &&
+                            response.data.message ===
+                                'Unavailable For Legal Reasons'
+                        ) {
+                            // Handle error message display here
+                            alert('Unavailable For Legal Reasons')
+                        }
                     })
                     .catch(error => {
-                        if (
-                            error.response &&
-                            error.response.data.message ===
-                                '451 Unavailable For Legal Reasons'
-                        ) {
-                            alert(
-                                'The post contains a blacklisted link. Please remove it.',
-                            )
-                        } else {
-                            console.error('Error:', error)
-                        }
+                        console.error('Error:', error)
                     })
             }
         }

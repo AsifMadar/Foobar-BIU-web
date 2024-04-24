@@ -34,21 +34,26 @@ function UserFeed() {
     function publishPost(/** @type {Post}*/ postDetails) {
         instance
             .post(`/users/${user.username}/posts`, postDetails)
-            .then(({ data: createdPost }) => {
-                setPostsDetails([...postsDetails, createdPost])
-            })
-            .catch(error => {
-                if (
-                    error.response &&
-                    error.response.data.message ===
-                        '451 Unavailable For Legal Reasons'
+            .then(response => {
+                if (response.status === 200) {
+                    // Process the successful response
+                    setPostsDetails([...postsDetails, response.data])
+                } else if (
+                    response.status === 409 &&
+                    response.data.message === 'Not authorized'
+                ) {
+                    alert('You are not authorized to perform this action.')
+                } else if (
+                    response.status === 451 &&
+                    response.data.message === 'Unavailable For Legal Reasons'
                 ) {
                     alert(
                         'The post contains a blacklisted link. Please remove it.',
                     )
-                } else {
-                    console.error('Error:', error)
                 }
+            })
+            .catch(error => {
+                console.error('Error:', error)
             })
     }
 
