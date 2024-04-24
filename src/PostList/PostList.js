@@ -33,10 +33,28 @@ function PostList({ posts, updatePosts }) {
             newArray.splice(i, 1)
         } else if (newPost) {
             if (updateType === 'edit') {
-                instance.put(
-                    `/users/${currentUser.username}/posts/${newPost.id}`,
-                    newPost,
-                )
+                instance
+                    .put(
+                        `/users/${currentUser.username}/posts/${newPost.id}`,
+                        newPost,
+                    )
+                    .then(() => {
+                        newArray.splice(i, 1, newPost)
+                        updatePosts(newArray)
+                    })
+                    .catch(error => {
+                        if (
+                            error.response &&
+                            error.response.data.message ===
+                                '451 Unavailable For Legal Reasons'
+                        ) {
+                            alert(
+                                'The post contains a blacklisted link. Please remove it.',
+                            )
+                        } else {
+                            console.error('Error:', error)
+                        }
+                    })
             }
 
             newArray.splice(i, 1, newPost)
