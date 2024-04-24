@@ -17,6 +17,7 @@
         cursor: auto;
         pointer-events: none;
         &:hover {
+            background: unset;
             border-radius: unset;
         }
     }
