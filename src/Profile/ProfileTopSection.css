@@ -1,5 +1,9 @@
 .profile-top-section {
-    background: var(--bs-secondary-bg-subtle);
+    background: var(--bs-secondary-bg-subtl);
+    background-color: rgb(253, 253, 253);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    
 
     h1 {
         text-align: center;
@@ -28,9 +32,7 @@
             border-radius: 5px;
             padding: 5px;
 
-            &:hover {
-                background: var(--bs-tertiary-bg);
-            }
+        
 
             &.selected {
                 color: var(--bs-primary-text-emphasis);

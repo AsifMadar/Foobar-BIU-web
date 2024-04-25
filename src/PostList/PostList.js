@@ -51,9 +51,14 @@ function PostList({ posts, updatePosts }) {
                         }
                     })
                     .catch(error => {
-                        console.error('Error:', error)
                         if (error.response && error.response.status === 451) {
-                            alert('Unavailable For Legal Reasons')
+                            alert(
+                                'The post contains a blacklisted link. Did not update',
+                            )
+                        } else {
+                            alert(
+                                'An unexpected error occurred while updating the post.',
+                            )
                         }
                     })
             }

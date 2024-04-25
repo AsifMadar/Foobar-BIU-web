@@ -12,52 +12,64 @@ import instance from '../utils/axios.js'
 const Friends = ({ user, updateUser }) => {
     const { user: loggedInUser } = useContext(UserContent)
 
-    const handleRemoveFriend = () => {
-        instance.delete(
-            `/users/${loggedInUser.username}/friends/${user.username}`,
-        )
+    const handleRemoveFriend = async friendUsername => {
+        try {
+            await instance.delete(
+                `/users/${loggedInUser.username}/friends/${friendUsername}`,
+            )
 
-        if (!user.friendRequests) return
-
-        // Update the local copy
-        const updatedUser = structuredClone(user)
-        // Remove friend from friend requests
-        const index = updatedUser.friendRequests.indexOf(user.username)
-        if (index > -1) updatedUser.friendRequests.splice(index, 1)
-        updateUser(updatedUser)
+            // Update the local copy (changed!!)
+            const updatedUser = { ...user }
+            updatedUser.friends = updatedUser.friends.filter(
+                friend => friend !== friendUsername,
+            )
+            updateUser(updatedUser)
+        } catch (error) {
+            console.error('Error removing friend:', error)
+        }
     }
 
     const isMe = user.username === loggedInUser.username
     const isFriend = isMe || user.friends?.includes(loggedInUser.username)
 
+    // Divide friends into rows of three
+    const friendRows = []
+    for (let i = 0; i < user.friends.length; i += 3) {
+        friendRows.push(user.friends.slice(i, i + 3))
+    }
+
     return (
         <div className="container p-3">
-            <div className="row">
-                {user.friends.map(username => (
-                    <div className="col" key={username}>
-                        <div className="friend-item col col-md-6 d-flex rounded align-items-center justify-content-between p-3 shadow my-3">
-                            <div className="friend-name">{username}</div>
-                            {isMe && (
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={handleRemoveFriend}>
-                                    Remove
-                                </button>
-                            )}
+            {friendRows.map((row, rowIndex) => (
+                <div className="row" key={rowIndex}>
+                    {row.map(friendUsername => (
+                        <div className="col-md-4" key={friendUsername}>
+                            <div className="friend-item d-flex rounded align-items-center justify-content-between p-3 shadow my-3">
+                                <div className="friend-name">
+                                    {friendUsername}
+                                </div>
+                                {isMe && (
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() =>
+                                            handleRemoveFriend(friendUsername)
+                                        }>
+                                        Remove
+                                    </button>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                ))}
-                {user.friends.length === 0 && (
-                    <p className="text-center">
-                        {isFriend
-                            ? (isMe
-                                  ? "You don't"
-                                  : `${user.displayName} doesn't`) +
-                              ' have any friends yet'
-                            : `You have to befriend ${user.displayName} to see their friends list`}
-                    </p>
-                )}
-            </div>
+                    ))}
+                </div>
+            ))}
+            {user.friends.length === 0 && (
+                <p className="text-center">
+                    {isFriend
+                        ? (isMe ? "You don't" : `${user.displayName} doesn't`) +
+                          ' have any friends yet'
+                        : `You have to befriend ${user.displayName} to see their friends list`}
+                </p>
+            )}
         </div>
     )
 }
