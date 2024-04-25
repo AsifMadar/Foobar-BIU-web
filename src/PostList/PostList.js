@@ -33,10 +33,6 @@ function PostList({ posts, updatePosts }) {
                     newArray.splice(i, 1)
                     updatePosts(newArray)
                 })
-                .catch(error => {
-                    console.error('Error:', error)
-                    alert('An error occurred while deleting the post.')
-                })
         } else if (newPost) {
             if (updateType === 'edit') {
                 instance
@@ -54,10 +50,6 @@ function PostList({ posts, updatePosts }) {
                         if (error.response && error.response.status === 451) {
                             alert(
                                 'The post contains a blacklisted link. Did not update',
-                            )
-                        } else {
-                            alert(
-                                'An unexpected error occurred while updating the post.',
                             )
                         }
                     })

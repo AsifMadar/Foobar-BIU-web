@@ -1,3 +1,4 @@
+import './Friends.css'
 import { useContext } from 'react'
 import { UserContent } from '../App/App.js'
 import instance from '../utils/axios.js'
@@ -32,17 +33,11 @@ const Friends = ({ user, updateUser }) => {
     const isMe = user.username === loggedInUser.username
     const isFriend = isMe || user.friends?.includes(loggedInUser.username)
 
-    // Divide friends into rows of three
-    const friendRows = []
-    for (let i = 0; i < user.friends.length; i += 3) {
-        friendRows.push(user.friends.slice(i, i + 3))
-    }
-
     return (
-        <div className="container p-3">
-            {friendRows.map((row, rowIndex) => (
-                <div className="row" key={rowIndex}>
-                    {row.map(friendUsername => (
+        <div className="container">
+            {user.friends.length > 0 ? (
+                <div className="row">
+                    {user.friends.map(friendUsername => (
                         <div className="col-md-4" key={friendUsername}>
                             <div className="friend-item d-flex rounded align-items-center justify-content-between p-3 shadow my-3">
                                 <div className="friend-name">
@@ -61,8 +56,7 @@ const Friends = ({ user, updateUser }) => {
                         </div>
                     ))}
                 </div>
-            ))}
-            {user.friends.length === 0 && (
+            ) : (
                 <p className="text-center">
                     {isFriend
                         ? (isMe ? "You don't" : `${user.displayName} doesn't`) +

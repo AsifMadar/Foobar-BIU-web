@@ -38,7 +38,6 @@ const TimeLine = ({ user }) => {
             <div className="row justify-content-center">
                 <div className="col-md-8">
                     {' '}
-                    {/* Adjust width here */}
                     <PostList
                         posts={postsDetails}
                         updatePosts={setPostsDetails}

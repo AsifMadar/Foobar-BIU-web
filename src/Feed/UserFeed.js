@@ -17,7 +17,7 @@ function UserFeed() {
                 setPostsDetails(
                     postList.data.map(post => ({ ...post, comments: [] })),
                 ),
-            ) // Will happen at some later point
+            )
         return []
     })
 
@@ -44,21 +44,14 @@ function UserFeed() {
                 }
             })
             .catch(error => {
-                console.error('Error:', error)
                 if (error.response) {
                     const { status, data } = error.response
                     console.log('Error response:', status, data)
-                    if (status === 409 && data.message === 'Not authorized') {
-                        alert('You are not authorized to perform this action.')
-                    } else if (status === 451) {
+                    if (status === 451) {
                         alert(
                             'The post contains a blacklisted link. Please remove it.',
                         )
                     }
-                } else {
-                    alert(
-                        'An unexpected error occurred while publishing the post.',
-                    )
                 }
             })
     }
