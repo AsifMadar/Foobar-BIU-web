@@ -49,7 +49,7 @@ function UserFeed() {
                     console.log('Error response:', status, data)
                     if (status === 451) {
                         alert(
-                            'The post contains a blacklisted link. Please remove it.',
+                            'Cannot publish post as it contained a blacklisted link',
                         )
                     }
                 }
