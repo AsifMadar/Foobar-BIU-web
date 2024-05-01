@@ -49,7 +49,7 @@ function PostList({ posts, updatePosts }) {
                     .catch(error => {
                         if (error.response && error.response.status === 451) {
                             alert(
-                                'The post contains a blacklisted link. Did not update',
+                                'Cannot publish post as it contained a blacklisted link',
                             )
                         }
                     })
