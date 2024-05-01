@@ -5,13 +5,14 @@ import { UserContent } from '../App/App.js'
 
 function MenuTop() {
     const { pathname } = useLocation()
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [isDarkMode, setIsDarkMode] = useState(() => {
         // Initialize isDarkMode state with the value from local storage
         const storedMode = localStorage.getItem('darkMode')
         return storedMode ? JSON.parse(storedMode) : false
     })
 
-    const { user } = useContext(UserContent)
+    const { user, setUser } = useContext(UserContent)
 
     useEffect(() => {
         // Update body dataset attribute when isDarkMode changes
@@ -23,7 +24,16 @@ function MenuTop() {
     const toggleColorMode = () => {
         setIsDarkMode(prevMode => !prevMode)
     }
-
+    const toggleDropdown = () => {
+        setIsDropdownOpen(prevState => !prevState)
+    }
+    const logout = () => {
+        localStorage.clear()
+        setUser(prevUser => ({
+            ...prevUser,
+            isSignedIn: false,
+        }))
+    }
     const isActive = pn => {
         if (pathname.endsWith('friendrequests')) {
             return pathname.startsWith(pn) && pn.endsWith('friendrequests')
@@ -48,22 +58,26 @@ function MenuTop() {
             to: null,
             imgSrc: 'https://cdn-icons-png.flaticon.com/128/4406/4406124.png',
         },
-        {
-            to: null,
-            imgSrc: 'https://cdn-icons-png.flaticon.com/128/4141/4141968.png',
-        },
     ]
 
     return (
         <div className="top-section">
-            <img
-                src="https://cdn-icons-png.flaticon.com/128/5968/5968764.png"
-                alt="Facebook Icon"
-                className="icon"
-            />
-            <input type="text" placeholder="Search" className="search-bar" />
-            <div className="user-info">
-                <button className="search-button btn btn-info">Search</button>
+            <div className="inner-container">
+                <img
+                    src="https://cdn-icons-png.flaticon.com/128/5968/5968764.png"
+                    alt="Facebook Icon"
+                    className="icon"
+                />
+                <input
+                    type="text"
+                    placeholder="Search"
+                    className="search-bar"
+                />
+                <div className="user-info">
+                    <button className="search-button btn btn-info">
+                        Search
+                    </button>
+                </div>
             </div>
             <div className="feedpages">
                 {links.map((linkInfo, i) =>
@@ -90,22 +104,30 @@ function MenuTop() {
                     ),
                 )}
             </div>
-            <div className="dark-mode-switcher">
-                <div className="form-check form-switch">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                        id="flexSwitchCheckDefault"
-                        checked={isDarkMode}
-                        onChange={toggleColorMode}
-                    />
-                    <label
-                        className="form-check-label"
-                        htmlFor="flexSwitchCheckDefault">
-                        Dark Mode
-                    </label>
-                </div>
+            <div className="dark-mode-logout-dropdown">
+                <button
+                    className="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    onClick={toggleDropdown}>
+                    Menu
+                </button>
+                <ul
+                    className={`dropdown-menu ${isDropdownOpen ? 'show' : ''} dropdown-menu-right`}
+                    aria-labelledby="dropdownMenuButton">
+                    <li>
+                        <button
+                            className="dropdown-item"
+                            onClick={toggleColorMode}>
+                            {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+                        </button>
+                    </li>
+                    <li>
+                        <button className="dropdown-item" onClick={logout}>
+                            Logout
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
     )

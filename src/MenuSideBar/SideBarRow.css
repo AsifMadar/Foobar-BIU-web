@@ -9,7 +9,7 @@
     width: 200px;
 
     &:hover {
-        background-color: rgb(226, 225, 224);
+        background-color: var(--bs-secondary-bg-subtle);
         border-radius: 10px;
     }
 

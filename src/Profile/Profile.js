@@ -9,6 +9,7 @@ import instance from '../utils/axios.js'
 import ManageUser from './ManageUser.js'
 import ProfileTopSection from './ProfileTopSection.js'
 import TimeLine from './TimeLine.js'
+import MenuSideBar from '../MenuSideBar/MenuSideBar.js'
 
 /** @typedef {import('../data/posts.json').User} User */
 

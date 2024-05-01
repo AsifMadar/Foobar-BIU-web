@@ -1,8 +1,13 @@
 .user-feed-container {
     display: flex;
     flex-direction: row;
+    
+    
 }
+.inner-container{
+    display: flex;
 
+}
 
 .post {
     box-shadow: 0 0 10px rgba(61, 173, 104, 0.1);
