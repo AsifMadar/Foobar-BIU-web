@@ -49,7 +49,7 @@ function UserFeed() {
                     console.log('Error response:', status, data)
                     if (status === 451) {
                         alert(
-                            'The post contains a blacklisted link. Please remove it.',
+                            'Cannot publish post as it contained a blacklisted link.',
                         )
                     }
                 }
@@ -58,7 +58,9 @@ function UserFeed() {
 
     return (
         <div className="user-feed-container">
-            <MenuSideBar />
+            <div className="inner-container">
+                <MenuSideBar />
+            </div>
             <div className="container m-3">
                 <PostEditor
                     id="create-post-area"

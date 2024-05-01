@@ -1,11 +1,18 @@
-.dark-mode-switcher {
+.dark-mode-logout-dropdown {
     right: 20px;
     top: 20px;
+    margin-right: 20px;
 
-    input, label {
-        cursor: pointer;
-    }
 }
+.dropdown-toggle {
+    min-width: 120px; 
+    
+  
+}
+.dropdown-menu {
+    width:fit-content /* Set width to fit the text */
+}
+
 
 .top-section {
     background: var(--bs-light-bg-subtle);
@@ -18,6 +25,14 @@
     top: 0;
     width: 100%;
     z-index: 99;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+.inner-container{
+    display: flex;
+
 }
 
 .active {
@@ -26,7 +41,8 @@
 }
 
 .search-bar {
-    flex: 0.4;
+    width: 200px;
+    flex: 0 0 auto; 
     height: 40px;
     border-radius: 15px;
     margin-right: 10px;
@@ -46,7 +62,7 @@
 }
 
 .feedpages {
-    width: 50%;
+    width: 40%;
     display: flex;
     justify-content: space-evenly;
 }

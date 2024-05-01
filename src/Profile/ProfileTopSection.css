@@ -1,5 +1,5 @@
 .profile-top-section {
-    background: var(--bs-secondary-bg-subtl);
+    background: var(--bs-light-bg-subtle);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
     
@@ -7,7 +7,9 @@
     h1 {
         text-align: center;
     }
-
+    .nav-links a:hover {
+        background: var(--bs-tertiary-bg);
+    }
     .image-container {
         background: var(--bs-primary-bg-subtle);
         border-radius: 0 0 10px 10px;
