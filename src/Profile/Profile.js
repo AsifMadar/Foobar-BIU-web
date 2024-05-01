@@ -44,8 +44,6 @@ function Profile() {
 
     return (
         <div className="profile d-flex">
-            <MenuSideBar />
-
             <div className="profile-container">
                 <ProfileTopSection
                     user={user}
