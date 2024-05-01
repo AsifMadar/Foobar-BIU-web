@@ -17,6 +17,7 @@ const MAX_IMAGES_NUM = 1
 function PostEditor({ currentUser, details, updateDetails }) {
     const newPostTextRef = createRef()
     const [newDetails, setNewDetails] = useState(details)
+    const [imagesInputInitial, setImagesInputInitial] = useState(details.images)
 
     function updateText() {
         const newDetailsCopy = structuredClone(newDetails)
@@ -35,6 +36,7 @@ function PostEditor({ currentUser, details, updateDetails }) {
         newDetailsCopy.contents = ''
         newDetailsCopy.images = []
         newPostTextRef.current.value = newDetailsCopy.contents
+        setImagesInputInitial([]) // Reset <ImagesInput />
         setNewDetails(newDetailsCopy)
     }
 
@@ -71,6 +73,7 @@ function PostEditor({ currentUser, details, updateDetails }) {
                 <ImagesInput
                     maxImagesNum={MAX_IMAGES_NUM}
                     onUpdate={updateImages}
+                    initialImages={imagesInputInitial}
                 />
             </article>
             <footer className="d-grid gap-2">

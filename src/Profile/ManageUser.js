@@ -13,6 +13,7 @@ import instance, { jwt } from '../utils/axios.js'
 const ManageUser = ({ user, updateUser }) => {
     const [profileImage, setImg] = useState(null)
     const [displayName, setDisplayName] = useState('')
+    const [imagesInputInitial] = useState([])
 
     const isDisplayNameValid = name =>
         /^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/.test(name) &&
@@ -60,7 +61,11 @@ const ManageUser = ({ user, updateUser }) => {
     return (
         <div className="manage-user container d-flex flex-column align-items-center mt-4">
             <h5>Profile Image</h5>
-            <ImagesInput maxImagesNum={1} onUpdate={updateImg} />
+            <ImagesInput
+                maxImagesNum={1}
+                onUpdate={updateImg}
+                initialImages={imagesInputInitial}
+            />
             <AdvancedTextField
                 label="Display name"
                 onInputChange={setDisplayName}
