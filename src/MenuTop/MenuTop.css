@@ -16,7 +16,7 @@
 
 .top-section {
     background: var(--bs-light-bg-subtle);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(var(--bs-dark-rgb), 0.1); 
     display: flex;
     height: 120%;
     opacity: .99;
@@ -37,7 +37,7 @@
 
 .active {
     padding: 5px;
-    box-shadow: 0 0 20px gray;
+    box-shadow: 0 0 10px rgba(var(--bs-secondary-rgb)); 
 }
 
 .search-bar {
