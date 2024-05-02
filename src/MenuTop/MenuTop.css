@@ -1,16 +1,15 @@
 .dark-mode-logout-dropdown {
-    right: 20px;
-    top: 20px;
-    margin-right: 20px;
+    margin-right: 3em;
 
 }
+
 .dropdown-toggle {
     min-width: 120px; 
-    
-  
 }
+
 .dropdown-menu {
-    width:fit-content /* Set width to fit the text */
+    margin-top: 0.25em;
+    width: fit-content;
 }
 
 
@@ -30,9 +29,9 @@
 
 
 }
+
 .inner-container{
     display: flex;
-
 }
 
 .active {
