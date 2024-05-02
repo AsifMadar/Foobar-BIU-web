@@ -53,6 +53,9 @@ function PostList({ posts, updatePosts }) {
                             )
                         }
                     })
+            } else {
+                newArray.splice(i, 1, newPost)
+                updatePosts(newArray)
             }
         }
 
