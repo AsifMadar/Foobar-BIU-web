@@ -1,6 +1,12 @@
 .user-feed-container {
     display: flex;
     flex-direction: row;
+    
+    
+}
+.inner-container{
+    display: flex;
+
 }
 
 .post {

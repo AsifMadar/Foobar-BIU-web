@@ -35,7 +35,14 @@ const TimeLine = ({ user }) => {
 
     return (
         <div className="container p-3">
-            <PostList posts={postsDetails} updatePosts={setPostsDetails} />
+            <div className="row justify-content-center">
+                <div className="col-md-8">
+                    <PostList
+                        posts={postsDetails}
+                        updatePosts={setPostsDetails}
+                    />
+                </div>
+            </div>
 
             {postsDetails.length === 0 && (
                 <p className="text-center">

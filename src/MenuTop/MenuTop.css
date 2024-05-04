@@ -1,15 +1,21 @@
-.dark-mode-switcher {
-    right: 20px;
-    top: 20px;
+.dark-mode-logout-dropdown {
+    margin-right: 3em;
 
-    input, label {
-        cursor: pointer;
-    }
 }
+
+.dropdown-toggle {
+    min-width: 120px; 
+}
+
+.dropdown-menu {
+    margin-top: 0.25em;
+    width: fit-content;
+}
+
 
 .top-section {
     background: var(--bs-light-bg-subtle);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(var(--bs-dark-rgb), 0.1); 
     display: flex;
     height: 120%;
     opacity: .99;
@@ -18,15 +24,24 @@
     top: 0;
     width: 100%;
     z-index: 99;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+.inner-container{
+    display: flex;
 }
 
 .active {
     padding: 5px;
-    box-shadow: 0 0 20px gray;
+    box-shadow: 0 0 10px rgba(var(--bs-secondary-rgb)); 
 }
 
 .search-bar {
-    flex: 0.4;
+    width: 200px;
+    flex: 0 0 auto; 
     height: 40px;
     border-radius: 15px;
     margin-right: 10px;
@@ -46,7 +61,7 @@
 }
 
 .feedpages {
-    width: 50%;
+    width: 40%;
     display: flex;
     justify-content: space-evenly;
 }

@@ -17,7 +17,7 @@ function UserFeed() {
                 setPostsDetails(
                     postList.data.map(post => ({ ...post, comments: [] })),
                 ),
-            ) // Will happen at some later point
+            )
         return []
     })
 
@@ -32,16 +32,35 @@ function UserFeed() {
     }
 
     function publishPost(/** @type {Post}*/ postDetails) {
+        console.log('Publishing post with details:', postDetails)
+
         instance
             .post(`/users/${user.username}/posts`, postDetails)
-            .then(({ data: createdPost }) => {
-                setPostsDetails([...postsDetails, createdPost])
+            .then(response => {
+                if (response.status === 200) {
+                    // Process the successful response
+                    console.log('Post published successfully:', response.data)
+                    setPostsDetails([...postsDetails, response.data])
+                }
+            })
+            .catch(error => {
+                if (error.response) {
+                    const { status, data } = error.response
+                    console.log('Error response:', status, data)
+                    if (status === 451) {
+                        alert(
+                            'Cannot publish post as it contained a blacklisted link.',
+                        )
+                    }
+                }
             })
     }
 
     return (
         <div className="user-feed-container">
-            <MenuSideBar />
+            <div className="inner-container">
+                <MenuSideBar />
+            </div>
             <div className="container m-3">
                 <PostEditor
                     id="create-post-area"

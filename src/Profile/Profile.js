@@ -7,7 +7,6 @@ import FriendRequests from './FriendRequests.js'
 import Friends from './Friends.js'
 import instance from '../utils/axios.js'
 import ManageUser from './ManageUser.js'
-import MenuSideBar from '../MenuSideBar/MenuSideBar.js'
 import ProfileTopSection from './ProfileTopSection.js'
 import TimeLine from './TimeLine.js'
 
@@ -44,8 +43,6 @@ function Profile() {
 
     return (
         <div className="profile d-flex">
-            <MenuSideBar />
-
             <div className="profile-container">
                 <ProfileTopSection
                     user={user}

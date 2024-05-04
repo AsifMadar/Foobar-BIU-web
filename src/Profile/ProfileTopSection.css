@@ -1,10 +1,15 @@
 .profile-top-section {
-    background: var(--bs-secondary-bg-subtle);
+    background: var(--bs-light-bg-subtle);
+    box-shadow: 0 0 10px rgba(var(--bs-dark-rgb), 0.1); 
+
+    
 
     h1 {
         text-align: center;
     }
-
+    .nav-links a:hover {
+                background: var(--bs-tertiary-bg);
+    }
     .image-container {
         background: var(--bs-primary-bg-subtle);
         border-radius: 0 0 10px 10px;
@@ -13,7 +18,7 @@
 
         img {
             border-radius: 100%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(var(--bs-dark-rgb), 0.1); 
             height: 160px !important;
             margin-bottom: -20px;
             margin-left: calc(50% - 160px / 2);
@@ -28,9 +33,7 @@
             border-radius: 5px;
             padding: 5px;
 
-            &:hover {
-                background: var(--bs-tertiary-bg);
-            }
+        
 
             &.selected {
                 color: var(--bs-primary-text-emphasis);

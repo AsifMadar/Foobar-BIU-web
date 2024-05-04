@@ -27,26 +27,41 @@ function PostList({ posts, updatePosts }) {
         const newArray = [...posts]
 
         if (updateType === 'delete') {
-            instance.delete(
-                `/users/${currentUser.username}/posts/${newPost.id}`,
-            )
-            newArray.splice(i, 1)
+            instance
+                .delete(`/users/${currentUser.username}/posts/${newPost.id}`)
+                .then(() => {
+                    newArray.splice(i, 1)
+                    updatePosts(newArray)
+                })
         } else if (newPost) {
             if (updateType === 'edit') {
-                instance.put(
-                    `/users/${currentUser.username}/posts/${newPost.id}`,
-                    newPost,
-                )
+                instance
+                    .put(
+                        `/users/${currentUser.username}/posts/${newPost.id}`,
+                        newPost,
+                    )
+                    .then(response => {
+                        if (response.status === 200) {
+                            newArray.splice(i, 1, newPost)
+                            updatePosts(newArray)
+                        }
+                    })
+                    .catch(error => {
+                        if (error.response && error.response.status === 451) {
+                            alert(
+                                'Cannot publish post as it contained a blacklisted link',
+                            )
+                        }
+                    })
+            } else {
+                newArray.splice(i, 1, newPost)
+                updatePosts(newArray)
             }
-
-            newArray.splice(i, 1, newPost)
         }
 
         if (updateType !== 'update') {
             setIsEditingIndex(-1)
         }
-
-        updatePosts(newArray)
     }
 
     return (

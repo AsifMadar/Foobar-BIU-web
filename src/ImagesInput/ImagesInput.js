@@ -1,13 +1,14 @@
-import { createRef, useState } from 'react'
+import { createRef, useEffect, useState } from 'react'
 import addImageIcon from '../img/add-image-icon.svg'
 
 /**
  * @param {object} props
+ * @param {string[]} props.initialImages
  * @param {number} props.maxImagesNum
- * @param {(newImages: string) => void} props.onUpdate
+ * @param {(newImages: string[]) => void} props.onUpdate
  */
-function ImagesInput({ maxImagesNum, onUpdate }) {
-    const [images, setImages] = useState([])
+function ImagesInput({ initialImages, maxImagesNum, onUpdate }) {
+    const [images, setImages] = useState(initialImages)
     const fileInputRef = createRef()
 
     function deleteImage(i) {
@@ -32,6 +33,10 @@ function ImagesInput({ maxImagesNum, onUpdate }) {
             onUpdate(imagesCopy)
         }
     }
+
+    useEffect(() => {
+        setImages(initialImages)
+    }, [initialImages])
 
     return (
         <div className="d-flex flex-column align-items-center">
